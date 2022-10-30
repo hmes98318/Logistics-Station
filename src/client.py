@@ -1,17 +1,12 @@
 # -*- coding: utf-8 -*-
 
 
-import socket
-import tqdm
-import os
-import time
-import pickle
-import signal
+import socket, pickle, tqdm, os, time
 
 """
 client:
 // startConnect()
-// getHeader()
+// askHeader()
 // recvFile()
 // stopConnect()
 """
@@ -39,9 +34,9 @@ class Client():
                 self.connection = True
                 print(f'Connect to server successfully {self.client.getpeername()[0]}:{self.client.getpeername()[1]}')
                 self.connection = True
-                
+
             except:
-                if retry > 10: 
+                if retry > 4: 
                     self.connection = False
                     return print('Fail to connect')
                 retry += 1
@@ -81,8 +76,9 @@ class Client():
         with open(self.file_location, 'wb') as f:
             progress = tqdm.tqdm(range(int(self.file_size)), f'receive {self.file_name}', unit='K', unit_divisor=1024, unit_scale=True)
 
+            received_size = 0
             self.client.settimeout(1)
-            while True:
+            while not received_size == self.file_size:
                 try:
                     bytes_read = self.client.recv(self.chunk_size) # read data from server
                 except:
@@ -91,10 +87,9 @@ class Client():
 
                 f.write(bytes_read)
                 progress.update(len(bytes_read))
+                received_size += len(bytes_read)
 
-                if not bytes_read:
-                    print("\n--all file received")
-                    return self.stop()
+            return print("\n--all file received")
 
 
     def receivedResponse(self):

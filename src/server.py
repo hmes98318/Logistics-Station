@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-import socket
-import time
-import tqdm
-import os
-import pickle
+import socket, pickle, tqdm, os, time
 
 """
 server:
@@ -73,12 +69,12 @@ class Server():
         with open(self.file_location, 'rb') as f:
             progress = tqdm.tqdm(range(int(self.file_size)), f'send{self.file_size}', unit='K', unit_divisor=1024)
 
-            for _ in progress:
+            while True:
                 bytes_read = f.read(self.chunk_size) # read file
 
                 if not bytes_read:
-                    print("\n--all send successfully")
-                    return self.stop()
+                    self.stop()
+                    return print("\n--all send successfully")
 
                 try:
                     self.client.sendall(bytes_read)
@@ -120,7 +116,7 @@ class Server():
 
 """
 if __name__ == '__main__':
-    server_host = '127.0.0.1'#'192.168.31.146'
+    server_host = '192.168.31.146'#'0.0.0.0'#'127.0.0.1'#
     server_port = 7777
     server_filename = '01.txt'
     server_filelocation = './tmp/test.7z'
@@ -129,8 +125,6 @@ if __name__ == '__main__':
     
     while True:
         server.start()
-        #server.waitReceive()
-        print('------time.sleep(5)-----')
         #time.sleep(8)
         server.status()
         server.sendHeader()
