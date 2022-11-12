@@ -38,11 +38,12 @@ class Client():
                 return print(f'Connect to server successfully {self.client.getpeername()[0]}:{self.client.getpeername()[1]}')
 
             except:
-                if retry > 4: 
+                if retry > 3: 
                     self.connection = False
                     return print('Fail to connect')
                 retry += 1
                 print('Fail to connect, try again')
+                time.sleep(1)
                 pass
 
 
