@@ -121,6 +121,11 @@ class Client():
 
     def setFolder(self, save_folder):
         save_folder = save_folder.replace('\\\\','/') # .\\save -> ./save
+
+        if not isDir(save_folder) :
+            os.makedirs(save_folder)
+            print('Save folder not exist, create new one.')
+
         self.save_folder = save_folder
         return
 
@@ -136,6 +141,9 @@ def getTime():
     result = time.strftime("%I-%M-%S", localtime)
     return str(result)
 
+
+def isDir(folder):
+    return os.path.isdir(folder)
 
 
 
