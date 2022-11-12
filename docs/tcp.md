@@ -314,7 +314,10 @@ client.start()
 client.askHeader()
 client.askFile()
 """
-檔案內容接收成功輸出:
+開始接收檔案內容輸出:
+Start receive file
+
+成功接收完成檔案內容輸出:
 --All file received
 """
 ```

@@ -87,6 +87,7 @@ class Client():
             return print('Fail to send')
 
         # start receive file
+        print('Start receive file')
         file_location = f'{self.save_folder}/received_{getTime()}_{self.file_name}'
         with open(file_location, 'wb') as f:
             progress = tqdm.tqdm(range(int(self.file_size)), f'receive {self.file_name}', unit='K', unit_divisor=1024, unit_scale=True)
