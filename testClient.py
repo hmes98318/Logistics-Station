@@ -1,11 +1,11 @@
-from src.client import Client
+from src.tcp.client import Client
 import time
 
 
 if __name__ == '__main__':
-    server_host = '192.168.31.146'#'127.0.0.1'#
+    server_host = '192.168.2.12'#'127.0.0.1'#
     server_port = 7777
-    save_folder = 'C:/Users/usr/Desktop/p2py/save'#'C:\\Users\\usr\\Desktop\\p2py' #'./save'
+    save_folder = './save'#'C:/Users/usr/Desktop/p2py/save'#'C:\\Users\\usr\\Desktop\\p2py' #
 
     client = Client()
     client.setHost(server_host, server_port)
