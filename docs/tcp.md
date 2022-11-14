@@ -297,7 +297,7 @@ Header 輸出:
 
 
 ### Client 請求檔案內容
-#### [`Client.start()`](#client-啟動)後才能成功調用，須先 [`askHeader()`](#請求檔案-header) 獲取目標檔案 header，成功執行完成後會自動關閉連接
+#### [`Client.start()`](#client-啟動)後才能成功調用，須先 [`askHeader()`](#client-請求檔案-header) 獲取目標檔案 header，成功執行完成後會自動關閉連接
 ```py
 askFile()
 ```
