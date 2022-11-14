@@ -87,7 +87,7 @@ server.init()
 
 
 ### Server 開始聆聽請求
-#### 等待 Client 發出 [`askHeader()`](#請求檔案-header) 或 [`askFile()`](#請求檔案內容)
+#### 等待 Client 發出 [`askHeader()`](#client-請求檔案-header) 或 [`askFile()`](#client-請求檔案內容)
 ```py
 startListening()
 ```
