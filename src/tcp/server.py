@@ -28,11 +28,11 @@ class Server():
 
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((self.host, self.port))
-        self.server.listen(self.max_listening)
         return print('---Successfully Initialized Server---')
 
 
     def startListening(self):
+        self.server.listen(self.max_listening)
         print(f'server start listening {self.server.getsockname()[0]}:{self.server.getsockname()[1]}...')
         while True:
             client, client_address = self.server.accept()
@@ -105,11 +105,9 @@ class Server():
                     client.sendall(bytes_read)
                     progress.update(len(bytes_read))
                 except :
-                    self.connection = False
                     return print("\nClient close connection")
 
     def stop(self):
-        self.connection = False
         print("***Close server***")
         return exit(0)
 
