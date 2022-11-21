@@ -134,8 +134,12 @@ class Client():
         save_folder = save_folder.replace('\\\\','/') # .\\save -> ./save
 
         if not isDir(save_folder) :
-            os.makedirs(save_folder)
-            print('Save folder not exist, create new one.')
+            try:
+                os.makedirs(save_folder)
+                print('Save folder not exist, create new one.')
+            except:
+                print('Save folder not exist, failed to create new one.')
+                return False
 
         self.save_folder = save_folder
         return True
