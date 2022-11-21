@@ -28,7 +28,8 @@ class Server():
 
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((self.host, self.port))
-        return print('---Successfully Initialized Server---')
+        print('---Successfully Initialized Server---')
+        return True
 
 
     def startListening(self):
@@ -53,7 +54,8 @@ class Server():
             except:
                 client.close()
                 self.users.pop(client_address)
-                return print(f"Close connect client {client_address}")
+                print(f"Close connect client {client_address}")
+                return False
 
             client.settimeout(None)
             #print(f'users: {self.showUser()}')
@@ -86,9 +88,11 @@ class Server():
         try:
             client.sendall(package)
         except:
-            return print("Fail to send header")
+            print("Fail to send header")
+            return False
 
-        return print('Send header successfully')
+        print('Send header successfully')
+        return True
 
 
     def sendFile(self, client):
@@ -99,13 +103,15 @@ class Server():
                 bytes_read = f.read(self.chunk_size) # read file
 
                 if not bytes_read:
-                    return print("\n--All send successfully")
+                    print("\n--All send successfully")
+                    return True
 
                 try:
                     client.sendall(bytes_read)
                     progress.update(len(bytes_read))
                 except :
-                    return print("\nClient close connection")
+                    print("\nClient close connection")
+                    return False
 
     def stop(self):
         print("***Close server***")
@@ -115,13 +121,13 @@ class Server():
     def setHost(self, host, port):
         self.host = host
         self.port = port
-        return
+        return True
 
 
     def setFile(self, filelocation):
         self.file_location = filelocation
         self.file_name = getFilename(filelocation)
-        return
+        return True
 
 
     def showUser(self):

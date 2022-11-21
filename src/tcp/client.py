@@ -34,17 +34,19 @@ class Client():
         while True:
             try:
                 self.client.connect((self.host, self.port))
-                self.connection = True
-                return print(f'Connect to server successfully {self.client.getpeername()[0]}:{self.client.getpeername()[1]}')
-
             except:
                 if retry > 3: 
                     self.connection = False
-                    return print('Fail to connect')
+                    print('Fail to connect')
+                    return False
                 retry += 1
                 print('Fail to connect, try again')
                 time.sleep(1)
                 pass
+
+            self.connection = True
+            print(f'Connect to server successfully {self.client.getpeername()[0]}:{self.client.getpeername()[1]}')
+            return True
 
 
     def askHeader(self):
@@ -56,22 +58,24 @@ class Client():
         try: # Ask header
             self.client.sendall(package)
         except:
-            return print('Fail to send')
+            print('Fail to send')
+            return True
 
         try: # Receive header
             self.client.settimeout(5)
             received_package = self.client.recv(self.chunk_size)
         except:
             self.connection = False
+            self.stop()
             print('Fail to receive package')
-            return self.stop()
+            return False
 
         header = pickle.loads(received_package)
         print(header)
 
         self.file_name = header['file_name']
         self.file_size = header['file_size']
-        return
+        return True
 
 
     def askFile(self):
@@ -84,7 +88,8 @@ class Client():
         try: # Ask file
             self.client.sendall(package)
         except:
-            return print('Fail to send')
+            print('Fail to send')
+            return False
 
         # start receive file
         print('Start receive file')
@@ -99,26 +104,29 @@ class Client():
                     bytes_read = self.client.recv(self.chunk_size) # read data from server
                 except:
                     self.connection = False
-                    return print('\nFail to get file')
+                    print('\nFail to get file')
+                    return False
 
                 f.write(bytes_read)
                 progress.update(len(bytes_read))
                 received_size += len(bytes_read)
 
             self.stop()
-            return print("\n--All file received")
+            print("\n--All file received")
+            return True
 
 
     def stop(self):
         self.connection = False
         self.client.close()
-        return print("***Close connection***")
+        print("***Close connection***")
+        return True
 
 
     def setHost(self, host, port):
         self.host = host
         self.port = port
-        return
+        return True
 
 
     def setFolder(self, save_folder):
@@ -129,7 +137,7 @@ class Client():
             print('Save folder not exist, create new one.')
 
         self.save_folder = save_folder
-        return
+        return True
 
 
     def showConnection(self):
