@@ -70,6 +70,7 @@ class Client():
             print('Fail to receive package')
             return False
 
+        self.client.settimeout(None)
         header = pickle.loads(received_package)
         print(header)
 
