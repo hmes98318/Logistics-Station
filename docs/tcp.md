@@ -27,6 +27,7 @@ server = Server(10) # max_listening = 10
 ```
 
 </details>
+<br>
 
 
 ### Server 參數設定
@@ -59,6 +60,7 @@ server.setFile('C:/Users/usr/Desktop/ftpy/folder/test.py') # 使用絕對路徑�
 ```
 
 </details>
+<br>
 
 
 ### Server 初始化
@@ -84,6 +86,7 @@ server.init()
 ```
 
 </details>
+<br>
 
 
 ### Server 開始聆聽請求
@@ -123,6 +126,7 @@ Close connect client ('192.168.2.12', 60943)
 ```
 
 </details>
+<br>
 
 
 ### Server 關閉連接
@@ -145,6 +149,7 @@ server.stop()
 ```
 
 </details>
+<br>
 
 
 ### Server 其他函式
@@ -180,6 +185,7 @@ users: 2
 ```
 
 </details>
+<br>
 
 
 
@@ -205,6 +211,7 @@ client = Client()
 ```
 
 </details>
+<br>
 
 
 ### Client 參數設定
@@ -221,7 +228,7 @@ setHost(host: str, port: int)
 setFolder(save_folder: str)
 ```
 必要參數  
-`save_folder`: Client 端儲存檔案的所在資料夾的相對路徑或絕對路徑    
+`save_folder`: Client 端儲存檔案的所在資料夾的相對路徑或絕對路徑，如果該位置未存在資料夾則自動生成    
 
 <details> <summary>Example Code</summary>
 
@@ -234,9 +241,12 @@ client.setHost('192.168.1.20', 5000)
 client.setFolder('./save') # Client 端儲存檔案所使用的資料夾的相對路徑
 # or
 client.setFolder('C:/Users/usr/Desktop/ftpy/save') # Client 端儲存檔案所使用的資料夾的絕對路徑
+# or
+client.setFolder('C:\\Users\\usr\\Desktop\\p2py\\save') # 輸入雙反斜線`setFolder()`會自動修改
 ```
 
 </details>
+<br>
 
 
 ### Client 啟動
@@ -265,6 +275,7 @@ Connect to server successfully 192.168.1.20:5000
 ```
 
 </details>
+<br>
 
 
 ### Client 請求檔案 Header
@@ -294,6 +305,7 @@ Header 輸出:
 ```
 
 </details>
+<br>
 
 
 ### Client 請求檔案內容
@@ -323,6 +335,7 @@ Start receive file
 ```
 
 </details>
+<br>
 
 
 ### Client 關閉連接
@@ -345,6 +358,7 @@ client.stop()
 ```
 
 </details>
+<br>
 
 
 ### Client 其他函式
@@ -371,3 +385,4 @@ connection: False
 ```
 
 </details>
+<br>
