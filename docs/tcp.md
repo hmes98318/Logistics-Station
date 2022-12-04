@@ -386,3 +386,34 @@ connection: False
 
 </details>
 <br>
+
+#### 顯示下載進度
+```py
+showProgress() => int
+```
+回傳值為整數`int` 0-100
+
+<details> <summary>Example Code</summary>
+
+```py
+...
+
+print(f'Download: {client.showProgress()} %')
+client.askFile()
+print(f'Download: {client.showProgress()} %')
+
+"""
+輸出:
+Download: 0 %
+
+開始接收檔案內容輸出:
+Start receive file
+成功接收完成檔案內容輸出:
+--All file received
+
+Download: 100 %
+"""
+```
+
+</details>
+<br>
