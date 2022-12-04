@@ -77,6 +77,7 @@ class Client():
 
         self.file_name = header['file_name']
         self.file_size = header['file_size']
+        self.progress = 0 # clear download progress
         return True
 
 
@@ -150,7 +151,7 @@ class Client():
     def showConnection(self):
         return self.connection
     
-    def showDownloadProgress(self):
+    def showProgress(self):
         return self.progress
 
 
