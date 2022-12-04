@@ -17,6 +17,7 @@ class Client():
 
         self.save_folder = None
         self.file_name = 'received_file'
+        self.progress = 0
 
         self.file_size = None
         self.chunk_size = 4096
@@ -94,9 +95,10 @@ class Client():
 
         # start receive file
         print('Start receive file')
+        self.progress = 0 # clear download progress
+
         file_location = f'{self.save_folder}/received_{getTime()}_{self.file_name}'
         with open(file_location, 'wb') as f:
-            progress = tqdm.tqdm(range(int(self.file_size)), f'receive {self.file_name}', unit='K', unit_divisor=1024, unit_scale=True)
 
             received_size = 0
             self.client.settimeout(1)
@@ -109,8 +111,8 @@ class Client():
                     return False
 
                 f.write(bytes_read)
-                progress.update(len(bytes_read))
                 received_size += len(bytes_read)
+                self.progress = countProgress(received_size, self.file_size)
 
             self.stop()
             print("\n--All file received")
@@ -147,8 +149,16 @@ class Client():
 
     def showConnection(self):
         return self.connection
+    
+    def showDownloadProgress(self):
+        return self.progress
 
 
+
+
+def countProgress(a, b):
+    percentage = 100 * float(a) / float(b)
+    return int(percentage)
 
 
 def getTime():
