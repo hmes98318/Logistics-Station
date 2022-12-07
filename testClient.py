@@ -3,7 +3,7 @@ import time
 
 
 if __name__ == '__main__':
-    server_host = '192.168.31.146'#'127.0.0.1'#
+    server_host = '127.0.0.1'#'127.0.0.1'#
     server_port = 7777
     save_folder = './save'#'C:/Users/usr/Desktop/p2py/save'#'C:\\Users\\usr\\Desktop\\p2py' #
 
@@ -16,8 +16,8 @@ if __name__ == '__main__':
     time.sleep(1)
     print(f'connection: {client.showConnection()}')
     time.sleep(1)
-    print(client.showDownloadProgress())
+    print('download: '+str(client.showProgress()))
     client.askFile()
-    print(client.showDownloadProgress())
+    print('download: '+str(client.showProgress()))
     client.stop()
     print(f'connection: {client.showConnection()}')
