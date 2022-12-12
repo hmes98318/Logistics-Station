@@ -37,12 +37,16 @@ class Server():
         self.server.listen(self.max_listening)
         print(f'server start listening {self.server.getsockname()[0]}:{self.server.getsockname()[1]}...')
         while True:
-            client, client_address = self.server.accept()
-            self.users[client_address] = client
-            print(f'Client connect successful {self.users[client_address].getpeername()[0]}:{self.users[client_address].getpeername()[1]}')
+            try:
+                client, client_address = self.server.accept()
+                self.users[client_address] = client
+                print(f'Client connect successful {self.users[client_address].getpeername()[0]}:{self.users[client_address].getpeername()[1]}')
 
-            thread = threading.Thread(target=self.waitingSend, args=(self.users[client_address], client_address), daemon=True)
-            thread.start()
+                thread = threading.Thread(target=self.waitingSend, args=(self.users[client_address], client_address), daemon=True)
+                thread.start()
+            except:
+                print('***Stop listening***')
+                return False
 
 
     def waitingSend(self, client, client_address):
@@ -115,8 +119,9 @@ class Server():
                     return False
 
     def stop(self):
+        self.server.close()
         print("***Close server***")
-        return exit(0)
+        return True
 
 
     def setHost(self, host, port):
