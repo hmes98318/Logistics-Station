@@ -15,13 +15,14 @@ class Client():
         self.host = None
         self.port = 7777
 
-        self.save_folder = None
-        self.file_name = 'received_file'
-        self.progress = 0
-
-        self.file_size = None
         self.chunk_size = 4096
         self.connection = False
+
+        self.save_folder = None
+        self.file_name = 'received_file'
+        self.file_size = None
+        self.file_type = 'txt'
+        self.progress = 0
 
 
     def start(self):
@@ -77,6 +78,7 @@ class Client():
 
         self.file_name = header['file_name']
         self.file_size = header['file_size']
+        self.file_type = header['file_type']
         self.progress = 0 # clear download progress
         return True
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-import socket, pickle, tqdm, os, time, threading, re
+import socket, pickle, tqdm, os, time, threading, re, pathlib
 
 
 """
@@ -15,12 +15,13 @@ class Server():
         self.host = '0.0.0.0'
         self.port = 7777
 
-        self.file_name = None
-        self.file_location = None
-
         self.max_listening = max_listening # max waiting count
         self.chunk_size = 4096
         self.users = {}
+
+        self.file_location = None
+        self.file_name = None
+        self.file_type = None
 
 
     def init(self):
@@ -75,11 +76,11 @@ class Server():
 
 
     def sendHeader(self, client):
-        self.file_size = os.path.getsize(self.file_location) # get file size
 
         header = {
             'file_name' : self.file_name,
-            'file_size' : self.file_size # bytes
+            'file_size' : self.file_size, # bytes
+            'file_type' : self.file_type # .txt     
         }
         
         print(header)
@@ -126,19 +127,15 @@ class Server():
 
     def setFile(self, filelocation):
         self.file_location = filelocation
-        self.file_name = getFilename(filelocation)
+
+        self.file_name = pathlib.Path(self.file_location).name # get file name
+        self.file_size = os.path.getsize(self.file_location) # get file size
+        self.file_type = ''.join(pathlib.Path(self.file_location).suffixes) # ['.tar', 'gz'] => '.tar.gz'
         return True
 
 
     def showUser(self):
         return self.users
-
-
-
-
-def getFilename(file_addr):
-    split_file = re.split('\/',file_addr)
-    return split_file[len(split_file)-1]
 
 
 
