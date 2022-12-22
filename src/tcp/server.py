@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-
 import socket, pickle, os, time, threading, re, pathlib
+
 
 """
 status code
 10: response Header
 20: response File
 """
+SERVER = 'Server:'
 
 
 class Server():
@@ -23,30 +24,32 @@ class Server():
         self.file_name = None
         self.file_type = None
 
+
     def init(self):
-        if not self.file_name or not self.file_location: raise SystemError('Uninitialized file')
+        if not self.file_name or not self.file_location: raise SystemError(SERVER, 'Uninitialized file.')
 
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((self.host, self.port))
-        print('---Successfully Initialized Server---')
+        print(SERVER, 'Successfully Initialized Server.')
         return True
+
 
     def startListening(self):
         self.server.listen(self.max_listening)
-        print(f'server start listening {self.server.getsockname()[0]}:{self.server.getsockname()[1]}...')
+        print(SERVER, f'Server start listening {self.server.getsockname()[0]}:{self.server.getsockname()[1]}...')
         while True:
             try:
                 client, client_address = self.server.accept()
                 self.users[client_address] = client
-                print(
-                    f'Client connect successful {self.users[client_address].getpeername()[0]}:{self.users[client_address].getpeername()[1]}')
+                print(SERVER, f'Client connect successful {self.users[client_address].getpeername()[0]}:{self.users[client_address].getpeername()[1]}')
 
                 thread = threading.Thread(target=self.waitingSend, args=(self.users[client_address], client_address),
                                           daemon=True)
                 thread.start()
             except:
-                print('***Stop listening***')
+                print(SERVER, '***Stop listening***')
                 return False
+
 
     def waitingSend(self, client, client_address):
         while True:
@@ -54,30 +57,20 @@ class Server():
                 client.settimeout(5)
                 package = client.recv(self.chunk_size)
                 status = pickle.loads(package)
-                print(status)
+                print(SERVER, f'status = {str(status)}')
             except:
                 client.close()
                 self.users.pop(client_address)
-                print(f"Close connect client {client_address}")
+                print(SERVER, f"Close connect client {client_address}")
                 return False
 
             client.settimeout(None)
-            # print(f'users: {self.showUser()}')
+            # print(SERVER, f'users: {self.showUser()}')
             if status['code'] == 10:
                 self.sendHeader(client)
             elif status['code'] == 20:
                 self.sendFile(client)
-            """
-            else:
-                try:
-                    status = { 'code' : 412 }
-                    package = pickle.dumps(status)
-                    client.sendall(package)
-                except:
-                    client.close()
-                    self.users.pop(client_address)
-                    return print(f"Close connection {client_address}")
-            """
+
 
     def sendHeader(self, client):
 
@@ -87,45 +80,46 @@ class Server():
             'file_type': self.file_type  # .txt
         }
 
-        print(header)
+        print(SERVER, f'header = {str(header)}')
         package = pickle.dumps(header)
 
         try:
             client.sendall(package)
         except:
-            print("Fail to send header")
+            print(SERVER, '--Fail to send header.')
             return False
 
-        print('Send header successfully')
+        print(SERVER, 'Send header successfully.')
         return True
+
 
     def sendFile(self, client):
         with open(self.file_location, 'rb') as f:
-            # progress = tqdm.tqdm(range(int(self.file_size)), f'send{self.file_size}', unit='K', unit_divisor=1024)
-
             while True:
                 bytes_read = f.read(self.chunk_size)  # read file
 
                 if not bytes_read:
-                    print("\n--All send successfully")
+                    print(SERVER, 'All send successfully.')
                     return True
 
                 try:
                     client.sendall(bytes_read)
-                    # progress.update(len(bytes_read))
                 except:
-                    print("\nClient close connection")
+                    print(SERVER, '--Client stop connection.')
                     return False
+
 
     def stop(self):
         self.server.close()
-        print("***Close server***")
+        print(SERVER, '***Close server***')
         return True
+
 
     def setHost(self, host, port):
         self.host = host
         self.port = port
         return True
+
 
     def setFile(self, filelocation):
         self.file_location = filelocation
@@ -134,6 +128,7 @@ class Server():
         self.file_size = os.path.getsize(self.file_location)  # get file size
         self.file_type = ''.join(pathlib.Path(self.file_location).suffixes)  # ['.tar', 'gz'] => '.tar.gz'
         return True
+
 
     def showUser(self):
         return self.users

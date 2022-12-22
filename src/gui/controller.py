@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import sys
 
-sys.path.append("./src")  # 更改模塊導入路徑
+sys.path.append('./src')  # 更改模塊導入路徑
 
 # PyQt5 引擎 ---------------------------------------
 from PyQt5 import QtWidgets, QtGui, QtCore, Qt
@@ -19,8 +21,11 @@ from tcp.server import *
 from gui.LoginWindow import Ui_LoginWindow
 from gui.MainWindow import Ui_MainWindow
 
+
 client = Client()
 server = Server()
+
+GUI = 'GUI:'
 
 
 # LoginWindow 登入畫面
@@ -61,11 +66,11 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
         self.ui.button_LogicIn.clicked.connect(self.loginIn)
 
     def LoginClose(self):
-        print('關閉視窗!')
+        print(GUI, '關閉視窗!')
         self.close()
 
     def LoginMinimized(self):
-        print('縮小視窗!')
+        print(GUI, '縮小視窗!')
         self.showMinimized()
 
     ###---------- 滑鼠移動事件(拖動視窗實現) ----------###
@@ -94,8 +99,8 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
         input_ID = self.ui.input_ID.text()
         input_PW = self.ui.input_PW.text()
 
-        # print(input_ID, type(input_ID))
-        # print(input_PW, type(input_PW))
+        # print(GUI, input_ID, type(input_ID))
+        # print(GUI, input_PW, type(input_PW))
 
         if userData.get(input_ID, 'fail') != 'fail':
             if userData[input_ID] == input_PW:
@@ -114,7 +119,7 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
                                                 QMessageBox.Ok)
             return
 
-        print("loginIn Clicked!")
+        print(GUI, 'LoginIn clicked!')
 
     ###-------------------------------------------###
 
@@ -131,8 +136,8 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.setup_control()
 
         self.ui.stackedWidget.setCurrentIndex(2)  # 登入成功後初始介面為 Setting
-        self.ui.button_Setting.setStyleSheet("background-color: rgb(255, 255, 255);;"
-                                             "border-radius: 10px;")  # 更改顏色
+        self.ui.button_Setting.setStyleSheet('background-color: rgb(255, 255, 255);;'
+                                             'border-radius: 10px;')  # 更改顏色
         self.ui.button_Client.setEnabled(False)  # 未設定 IP 和 Port 時禁用
         self.ui.button_Server.setEnabled(False)  # 未設定 IP 和 Port 時禁用
 
@@ -200,11 +205,11 @@ class MainWindow_controller(QtWidgets.QWidget):
     ###--- 各事件對應函數 ---###
 
     def MainClose(self):
-        print('關閉視窗!')
+        print(GUI, '關閉視窗!')
         self.close()
 
     def MainMinimized(self):
-        print('縮小視窗!')
+        print(GUI, '縮小視窗!')
         self.showMinimized()
 
     ### Client -----------------------------------------------------------------------------------------------------------
@@ -228,12 +233,13 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.thread_ClientReceiveFile.start()
 
     def QThread_ClientReceiving(self):
+        self.cFileLayoutVisible(False)  # 清空 client layout 避免要重複下載 連接時還顯示著上一個 header
         self.ui.button_RequireFile.setEnabled(False)
         self.ui.button_RequireFile.setText('正在連接 Server...')
 
         SUCCESS_START = client.start()
         if SUCCESS_START == False:
-            print('### Client connect fail')
+            print(GUI, '--Client connection fail.')
             self.ui.button_RequireFile.setEnabled(True)
             self.ui.button_RequireFile.setText('連接 Server 失敗，確認目標 IP 位置無誤後重試')
             self.thread_ClientReceiveFile.quit()  # 掛起線程
@@ -241,16 +247,16 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         SUCCESS_ASKHEADER = client.askHeader()
         if SUCCESS_ASKHEADER == False:
-            print('### Client askHeader() fail')
+            print(GUI, '--Client askHeader() fail.')
             self.ui.button_RequireFile.setEnabled(True)
             self.ui.button_RequireFile.setText('連接 Server 失敗，確認目標 IP 位置無誤後重試')
             self.thread_ClientReceiveFile.quit()  # 掛起線程
             return
 
-        print(f'connection: {client.showConnection()}')
+        print(GUI, f'Connection status: {client.showConnection()}')
 
         self.cFileLayoutVisible(True)
-        print('### start askFile()')
+        print(GUI, 'Start askFile()')
         self.ui.button_RequireFile.setText('下載中...')
         client.askFile(self.ProgressBarUpdate)
 
@@ -278,36 +284,37 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop)
             self.ui.button_Startlistening.setEnabled(False)
 
-        # print(server.host + ' ' + str(server.port))
+        # print(GUI, server.host + ' ' + str(server.port))
 
     def SelectSendFile(self):
         try:
             # 開啟資料夾，回傳型態為 tuple
             folder_path = QFileDialog.getOpenFileName(self,
-                                                      "Open file",
-                                                      "./")  # start path
-            print('### folder_path: ', folder_path)
+                                                      'Open file',
+                                                      './')  # start path
             file_name = os.path.basename(folder_path[0])
             file_size = os.path.getsize(folder_path[0]) / 1024  # 1024 byte = 1 kb
-            print('### file_name: ', file_name)
-            print('### file_size: ', file_size)
+
+            print(GUI, 'folder_path: ', folder_path)
+            print(GUI, 'file_name: ', file_name)
+            print(GUI, 'file_size: ', file_size)
             server.setFile(folder_path[0])
 
             self.ui.label_Filename.setText(file_name)
             if file_size < 1024:
-                self.ui.label_Filesize.setText(str('%.2f' % file_size) + " KB")
+                self.ui.label_Filesize.setText(str('%.2f' % file_size) + ' KB')
             elif file_size < 1024 * 1024:
-                self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024)) + " MB")
+                self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024)) + ' MB')
             elif file_size < 1024 * 1024 * 1024:
-                self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024 / 1024)) + " GB")
+                self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024 / 1024)) + ' GB')
             else:
-                self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024 / 1024 / 1024)) + " TB")
+                self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024 / 1024 / 1024)) + ' TB')
 
             self.ui.button_Startlistening.setEnabled(True)
             self.sFileLayoutVisible(True)
             return
         except:
-            print("沒有選檔案@w@,或是檔案類型錯誤")
+            print(GUI, '沒有選檔案@w@, 或是檔案類型錯誤')
 
     def StartListening(self):
         self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用
@@ -335,7 +342,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.thread_ServerListening.quit()
         else:
             result = QMessageBox.warning(self,
-                                         '---------⊗警告訊息⊗---------',
+                                         '⊗警告訊息⊗',
                                          '當前 client 端正在連接!!!\n',
                                          QMessageBox.Ok)
             if result == QMessageBox.Ok:
@@ -353,7 +360,7 @@ class MainWindow_controller(QtWidgets.QWidget):
                                   self.ui.button_User)
 
     def SettingSave(self):
-        while 1:
+        while True:
             try:
                 input_clientIP = self.ui.input_clientIP.text()
                 input_clientPort = int(self.ui.input_clientPort.text())
@@ -362,7 +369,7 @@ class MainWindow_controller(QtWidgets.QWidget):
 
                 if self.ui.input_ShowSavepath.text() == 'x':
                     QMessageBox.warning(self,
-                                        '---------警告訊息---------',
+                                        '警告訊息',
                                         '請選擇保存路徑!\n',
                                         QMessageBox.Ok)
                     return
@@ -378,22 +385,22 @@ class MainWindow_controller(QtWidgets.QWidget):
                 return
             except TypeError and ValueError:
                 result = QMessageBox.warning(self,
-                                             '---------警告訊息---------',
+                                             '參數錯誤',
                                              '請確認輸入正確的數值!\n'
-                                             'IPv4 範例 197.128.0.1\n'
-                                             'Port 範例 1234',
+                                             'IPv4 範例 192.168.1.10\n'
+                                             'Port 範例 5000',
                                              QMessageBox.Ok)
                 if result == QMessageBox.Ok:
-                    print('TypeError or ValueError')
+                    print(GUI, 'TypeError or ValueError.')
                     return
 
     def OpenSaveFolder(self):
         folder_path = QFileDialog.getExistingDirectory(self,
-                                                       "Open folder",
-                                                       "./")  # start path
+                                                       'Open folder',
+                                                       './')  # start path
 
         client.setFolder(folder_path)  # 設置 client 儲存路徑
-        # print(folder_path)
+        # print(GUI, folder_path)
         self.ui.input_ShowSavepath.setText(folder_path)
 
     ### User -----------------------------------------------------------------------------------------------------------
@@ -455,11 +462,11 @@ class MainWindow_controller(QtWidgets.QWidget):
                              Other2: QtWidgets.QPushButton,
                              Other3: QtWidgets.QPushButton):
 
-        otherPage_StyleSheet = "background-color: rgba(36, 67, 124, 50);" \
-                               "border-radius: 10px;" \
-                               "color: rgb(255, 255, 255);"
-        nowPage_StyleSheet = "background-color: rgba(255, 255, 255, 255);" \
-                             "border-radius: 10px;"
+        otherPage_StyleSheet = 'background-color: rgba(36, 67, 124, 50);' \
+                               'border-radius: 10px;' \
+                               'color: rgb(255, 255, 255);'
+        nowPage_StyleSheet = 'background-color: rgba(255, 255, 255, 255);' \
+                             'border-radius: 10px;'
 
         NowFocus.setStyleSheet(nowPage_StyleSheet)
         Other1.setStyleSheet(otherPage_StyleSheet)
@@ -469,11 +476,9 @@ class MainWindow_controller(QtWidgets.QWidget):
 
 """
 if __name__ == '__main__':
-
-
     app = QtWidgets.QApplication(sys.argv)
     LoginWindow = LoginWindow_controller()
-    print('succccccc')
+
     LoginWindow.show()
     sys.exit(app.exec_())
 """
