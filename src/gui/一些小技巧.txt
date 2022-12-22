@@ -1,0 +1,35 @@
+1. 使用 styleSheet 設定背景圖片時，為了避免子類繼承到賦類的 styleSheet 格式。
+
+    可以使用==>
+        #控件名稱{
+            styleSheet 內容
+        }
+    Ex.
+        #frame{
+            background-image:url(./image/login.jpg);  # 背景圖片來源
+            border-radius: 20px;  # 圓角效果
+        }
+2. 文本輸入框
+    frame 屬性: 可取消邊框黑線
+
+3. 滑鼠按鈕
+    event.button() = 0：沒有按鍵輸入
+    event.button() = 1：滑鼠左鍵
+    event.button() = 2：滑鼠右鍵
+
+4. python dict 取值
+    car = {"color": "black", "brand": "toyota"}  # 建立一個car字典裡面包含兩個鍵值對
+        for key, value in car.items():  # items()方法會讓for迴圈將每個鍵-值對分別存到key和value的變數中
+            print("key : " + key)  # 印出鍵
+            print("value : " + value)  # 印出值
+
+
+5. QMessageBox 對話框
+    reply = QMessageBox.information(self, 'my messagebox', 'hello world',
+            QMessageBox.Ok | QMessageBox.Close, QMessageBox.Close)
+        if reply == QMessageBox.Ok (列舉類型) :
+            print('Ok clicked.')
+            self.mybutton.setText("Ok clicked.")
+        else:
+            print('Close clicked.')
+            self.mybutton.setText("Close clicked.")
