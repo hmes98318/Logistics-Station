@@ -84,7 +84,7 @@ class Client():
         return True
 
 
-    def askFile(self):
+    def askFile(self, ProgressBarUpdate):
         if not self.connection : raise SystemError('Server not connection.')
         if not self.file_size : raise SystemError('Fail to get header, retry askHeader().')
 
@@ -117,6 +117,7 @@ class Client():
                 f.write(bytes_read)
                 received_size += len(bytes_read)
                 self.progress = countProgress(received_size, self.file_size)
+                ProgressBarUpdate.emit()
 
             self.stop()
             print("\n--All file received")

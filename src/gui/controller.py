@@ -1,4 +1,5 @@
 import sys
+sys.path.append("./src") # 更改模塊導入路徑
 
 # PyQt5 引擎 ---------------------------------------
 from PyQt5 import QtWidgets, QtGui, QtCore, Qt
@@ -7,16 +8,18 @@ from PyQt5.QtGui import QMouseEvent
 from PyQt5.QtWidgets import QMessageBox, QFileDialog
 
 # 用戶資料 -----------------------------------------
-import UserData
+from data.UserData import *
 
 # Socket 模塊-------------------------------------
-sys.path.append("..")
 from tcp.client import *
 from tcp.server import *
 
 # UI 介面 ----------------------------------------
-from LoginWindow import Ui_LoginWindow
-from MainWindow import Ui_MainWindow
+from gui.LoginWindow import Ui_LoginWindow
+from gui.MainWindow import Ui_MainWindow
+
+
+
 
 client = Client()
 server = Server()
@@ -31,15 +34,16 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.setup_control()
 
-        """ 窗體美化 """
+        #--- 窗體美化 ---#
         self.setWindowFlags(
-            QtCore.Qt.CustomizeWindowHint |  # 窗體置頂
-            QtCore.Qt.FramelessWindowHint  # 窗體去邊框
+            QtCore.Qt.CustomizeWindowHint | # 窗體置頂
+            QtCore.Qt.FramelessWindowHint # 窗體去邊框
         )
         self.setAttribute(
-            QtCore.Qt.WA_TranslucentBackground  # 窗體去背景
+            QtCore.Qt.WA_TranslucentBackground # 窗體去背景
         )
-        """"""
+        #---------------#
+
 
     # TODO (要互動的元件擺放位置)
     def setup_control(self):
@@ -59,25 +63,30 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
         # Login 按鈕，檢查帳號資訊-----------------------------------
         self.ui.button_LogicIn.clicked.connect(self.loginIn)
 
+
     def LoginClose(self):
         print('關閉視窗!')
         self.close()
+
 
     def LoginMinimized(self):
         print('縮小視窗!')
         self.showMinimized()
 
-    # 滑鼠移動事件(拖動視窗實現) -----------------------
+
+    ###---------- 滑鼠移動事件(拖動視窗實現) ----------###
 
     def loginPressEvent(self, e: QMouseEvent):
         if e.button() == 1:
             self._startPos = QPoint(e.x(), e.y())
             self._tracking = True
 
+
     def loginMoveEvent(self, e: QMouseEvent):
         if self._tracking:
             self._endPos = e.pos() - self._startPos
             self.move(self.pos() + self._endPos)
+
 
     def loginReleaseEvent(self, e: QMouseEvent):
         if e.button() == 1:
@@ -85,7 +94,10 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
             self._startPos = None
             self._endPos = None
 
-    # 登入檢查---------------------------------------
+    ###----------------------------------------------###
+
+
+    ###----------------- 登入檢查 -----------------###
 
     def loginIn(self):
         input_ID = self.ui.input_ID.text()
@@ -94,12 +106,12 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
         # print(input_ID, type(input_ID))
         # print(input_PW, type(input_PW))
 
-        if UserData.userData.get(input_ID, 'fail') != 'fail':
-            if UserData.userData[input_ID] == input_PW:
+        if userData.get(input_ID, 'fail') != 'fail':
+            if userData[input_ID] == input_PW:
                 # from main import MainWindow
                 MainWindow = MainWindow_controller()
-                MainWindow.show()  # 開啟 MainWindow
-                self.close()  # 關閉 LoginWindow
+                MainWindow.show() # 開啟 MainWindow
+                self.close() # 關閉 LoginWindow
             else:
                 pwfailResult = QMessageBox.warning(self,
                                                    '提示訊息', '密碼錯誤',
@@ -107,16 +119,21 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
                 return
         else:
             allfailResult = QMessageBox.warning(self,
-                                                '提示訊息', '找不到此帳號! ',
+                                                '提示訊息', '找不到此帳號!',
                                                 QMessageBox.Ok)
             return
 
         print("loginIn Clicked!")
 
+    ###-------------------------------------------###
+
+
+
 
 # MainWindow 主要畫面
 class MainWindow_controller(QtWidgets.QWidget):
-    ProgressBarUpdate = pyqtSignal()  # 初始化自訂義信號槽
+
+    ProgressBarUpdate = pyqtSignal() # 初始化自訂義信號槽
 
     def __init__(self):
         # in python3, super(Class, self).xxx = super().xxx
@@ -150,7 +167,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.thread_ClientReceiveFile = QThread()  # 定義 Client 新執行序
         self.ProgressBarUpdate.connect(self.UpdateProgressBar_ReceiveFile)  # 連接自訂義信號槽函數
 
-        """ 窗體美化 """
+        #--- 窗體美化 ---#
         self.setWindowFlags(
             QtCore.Qt.CustomizeWindowHint |  # 窗體置頂
             QtCore.Qt.FramelessWindowHint  # 窗體去邊框
@@ -158,8 +175,8 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.setAttribute(
             QtCore.Qt.WA_TranslucentBackground  # 窗體去背景
         )
+        #---------------#
 
-        """"""
 
     # TODO (要互動的元件擺放位置)
     def setup_control(self):
@@ -193,26 +210,33 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_OpenSaveFolder.clicked.connect(self.OpenSaveFolder)
         self.ui.button_SettingSave.clicked.connect(self.SettingSave)
 
-    # 各事件對應函數 ------------------------------------------------------------------------------------------------------
+
+    ###--- 各事件對應函數 ---###
 
     def MainClose(self):
         print('關閉視窗!')
         self.close()
 
+
     def MainMinimized(self):
         print('縮小視窗!')
         self.showMinimized()
 
-    # Client -----------------------------------------------------------------------------------------------------------
+
+
+
+    ### Client -----------------------------------------------------------------------------------------------------------
 
     def SwitchToClientPage(self):
         self.ui.stackedWidget.setCurrentIndex(0)  # 切換 Stack Widget 到 (索引值 0 / Client) 頁
         # self.ui.label_schedule.setText(str(0))
+
         # 顏色轉換
         self.button_setStyleSheet(self.ui.button_Client,
                                   self.ui.button_Server,
                                   self.ui.button_Setting,
                                   self.ui.button_User)
+
 
     def ClientRequireFile(self):
         # self.ui.label_schedule.setText(str(0))
@@ -221,6 +245,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_RequireFile.setText('正在下載')
         self.thread_ClientReceiveFile.run = self.QThread_ClientReceiving
         self.thread_ClientReceiveFile.start()
+
 
     def QThread_ClientReceiving(self):
         self.ui.button_RequireFile.setEnabled(False)
@@ -250,16 +275,18 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_RequireFile.setText('下載中...')
         client.askFile(self.ProgressBarUpdate)
 
-
         self.ui.button_RequireFile.setEnabled(True)
         self.ui.button_RequireFile.setText('連線至 Server 獲取檔案')
         self.thread_ClientReceiveFile.quit() # 掛起線程
         return
 
+
     def UpdateProgressBar_ReceiveFile(self):
         self.ui.progressBar_RecevieFile.setValue(int(client.showProgress()))  # 增加進度條
 
-    # Server -----------------------------------------------------------------------------------------------------------
+
+
+    ### Server -----------------------------------------------------------------------------------------------------------
 
     def SwitchToServerPage(self):
         self.ui.stackedWidget.setCurrentIndex(1)  # 切換 Stack Widget 到 (索引值 1 / Server) 頁
@@ -276,6 +303,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.ui.button_Startlistening.setEnabled(False)
 
         # print(server.host + ' ' + str(server.port))
+
 
     def SelectSendFile(self):
         # 開啟資料夾，回傳型態為 tuple
@@ -304,6 +332,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         except Exception:
             print("沒有選檔案@w@,或是檔案類型錯誤")
 
+
     def StartListening(self):
         self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用
         self.ui.button_SelectfFile.setEnabled(False)  # 聆聽時選擇檔案 button 禁用
@@ -312,9 +341,11 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.thread_ServerListening.run = self.QThread_ServerListening
         self.thread_ServerListening.start()
 
+
     def QThread_ServerListening(self):
         server.init()
         server.startListening()
+
 
     def StopListening(self):
         if server.showUser() == {}:
@@ -336,7 +367,8 @@ class MainWindow_controller(QtWidgets.QWidget):
             if result == QMessageBox.Ok:
                 return
 
-    # Setting ----------------------------------------------------------------------------------------------------------
+
+    ### Setting -----------------------------------------------------------------------------------------------------------
 
     def SwitchToSettingPage(self):
         self.ui.stackedWidget.setCurrentIndex(2)  # 切換 Stack Widget 到 (索引值 2 / Setting) 頁
@@ -346,6 +378,7 @@ class MainWindow_controller(QtWidgets.QWidget):
                                   self.ui.button_Client,
                                   self.ui.button_Server,
                                   self.ui.button_User)
+
 
     def SettingSave(self):
         while 1:
@@ -382,6 +415,7 @@ class MainWindow_controller(QtWidgets.QWidget):
                     print('TypeError or ValueError')
                     return
 
+
     def OpenSaveFolder(self):
         folder_path = QFileDialog.getExistingDirectory(self,
                                                        "Open folder",
@@ -391,7 +425,8 @@ class MainWindow_controller(QtWidgets.QWidget):
         # print(folder_path)
         self.ui.input_ShowSavepath.setText(folder_path)
 
-    # User -------------------------------------------------------------------------------------------------------------
+
+    ### User -----------------------------------------------------------------------------------------------------------
 
     def SwitchToUserPage(self):
         self.ui.stackedWidget.setCurrentIndex(3)  # 切換 Stack Widget 到 (索引值 3 / User) 頁
@@ -403,17 +438,20 @@ class MainWindow_controller(QtWidgets.QWidget):
                                   self.ui.button_Server,
                                   self.ui.button_Setting)
 
-    # 滑鼠移動事件(拖動視窗實現) --------------------------------------------------------------------------------------------
+
+    ### 滑鼠移動事件(拖動視窗實現) -----------------------------------------------------------------------------------------
 
     def MainPressEvent(self, e: QMouseEvent):
         if e.button() == 1:
             self._startPos = QPoint(e.x(), e.y())
             self._tracking = True
 
+
     def MainMoveEvent(self, e: QMouseEvent):
         if self._tracking:
             self._endPos = e.pos() - self._startPos
             self.move(self.pos() + self._endPos)
+
 
     def MainReleaseEvent(self, e: QMouseEvent):
         if e.button() == 1:
@@ -421,7 +459,8 @@ class MainWindow_controller(QtWidgets.QWidget):
             self._startPos = None
             self._endPos = None
 
-    # 奇怪的東西 ---------------------------------------------------------------------------------------------------------
+
+    ### 奇怪的東西 --------------------------------------------------------------------------------------------------------
 
     def sFileLayoutVisible(self, flag):
         self.ui.label_Filesize.setVisible(flag)
@@ -432,6 +471,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.Layout_FileInfo.setEnabled(flag)
         # self.ui.Layout_Filesize.setEnabled(flag)
         # self.ui.Layout_Filename.setEnabled(flag)
+
 
     def cFileLayoutVisible(self, flag):
         # self.ui.label_cFilesize.setVisible(flag)
@@ -444,6 +484,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.progressBar_RecevieFile.setVisible(flag)
 
         self.ui.Layout_cFileInfo.setEnabled(flag)
+
 
     def button_setStyleSheet(self, NowFocus: QtWidgets.QPushButton,
                              Other1: QtWidgets.QPushButton,
@@ -462,10 +503,14 @@ class MainWindow_controller(QtWidgets.QWidget):
         Other3.setStyleSheet(otherPage_StyleSheet)
 
 
+
+"""
 if __name__ == '__main__':
-    
+
 
     app = QtWidgets.QApplication(sys.argv)
     LoginWindow = LoginWindow_controller()
+    print('succccccc')
     LoginWindow.show()
     sys.exit(app.exec_())
+"""
