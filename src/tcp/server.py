@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-import socket, pickle, os, time, threading, re, pathlib, tqdm
+import socket, pickle, os, time, threading, re, pathlib
 
 """
 status code
@@ -101,7 +101,7 @@ class Server():
 
     def sendFile(self, client):
         with open(self.file_location, 'rb') as f:
-            progress = tqdm.tqdm(range(int(self.file_size)), f'send{self.file_size}', unit='K', unit_divisor=1024)
+            # progress = tqdm.tqdm(range(int(self.file_size)), f'send{self.file_size}', unit='K', unit_divisor=1024)
 
             while True:
                 bytes_read = f.read(self.chunk_size)  # read file
@@ -112,7 +112,7 @@ class Server():
 
                 try:
                     client.sendall(bytes_read)
-                    progress.update(len(bytes_read))
+                    # progress.update(len(bytes_read))
                 except:
                     print("\nClient close connection")
                     return False
