@@ -306,17 +306,18 @@ class MainWindow_controller(QtWidgets.QWidget):
 
 
     def SelectSendFile(self):
-        # 開啟資料夾，回傳型態為 tuple
-        folder_path = QFileDialog.getOpenFileName(self,
-                                                  "Open file",
-                                                  "./")  # start path
-        print(folder_path)
-        file_name = os.path.basename(folder_path[0])
-        file_size = os.path.getsize(folder_path[0]) / 1024  # 1024 byte = 1 kb
-        print(file_name)
-        print(file_size)
-        server.setFile(folder_path[0])
         try:
+            # 開啟資料夾，回傳型態為 tuple
+            folder_path = QFileDialog.getOpenFileName(self,
+                                                    "Open file",
+                                                    "./")  # start path
+            print('### folder_path: ', folder_path)
+            file_name = os.path.basename(folder_path[0])
+            file_size = os.path.getsize(folder_path[0]) / 1024  # 1024 byte = 1 kb
+            print('### file_name: ',file_name)
+            print('### file_size: ',file_size)
+            server.setFile(folder_path[0])
+
             self.ui.label_Filename.setText(file_name)
             if file_size < 1024:
                 self.ui.label_Filesize.setText(str('%.2f' % file_size) + " KB")
@@ -326,10 +327,11 @@ class MainWindow_controller(QtWidgets.QWidget):
                 self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024 / 1024)) + " GB")
             else:
                 self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024 / 1024 / 1024)) + " TB")
+
             self.ui.button_Startlistening.setEnabled(True)
             self.sFileLayoutVisible(True)
             return
-        except Exception:
+        except :
             print("沒有選檔案@w@,或是檔案類型錯誤")
 
 
