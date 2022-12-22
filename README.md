@@ -7,3 +7,15 @@ TCP/IP network programming independent study report
 
 ### Docs  
 [TCP](/docs/tcp.md)
+
+
+### Install modules
+[`requirements.txt`](./requirements.txt)
+```
+pip install -r requirements.txt
+```
+
+### Entrypoint 
+```
+python ./main.py
+```
