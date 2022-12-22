@@ -1,3 +1,5 @@
+import sys
+
 # PyQt5 引擎 ---------------------------------------
 from PyQt5 import QtWidgets, QtGui, QtCore, Qt
 from PyQt5.QtCore import *
@@ -8,8 +10,9 @@ from PyQt5.QtWidgets import QMessageBox, QFileDialog
 import UserData
 
 # Socket 模塊-------------------------------------
-from Server import *
-from Client import *
+sys.path.append("..")
+from tcp.client import *
+from tcp.server import *
 
 # UI 介面 ----------------------------------------
 from LoginWindow import Ui_LoginWindow
@@ -216,67 +219,45 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.progressBar_RecevieFile.setMaximum(100)  # 進度條最大值 100
         self.ui.button_RequireFile.setEnabled(False)
         self.ui.button_RequireFile.setText('正在下載')
-        self.cFileLayoutVisible(True)
         self.thread_ClientReceiveFile.run = self.QThread_ClientReceiving
         self.thread_ClientReceiveFile.start()
 
     def QThread_ClientReceiving(self):
-        while 1:
-            if client.showConnection() is True:
-                continue
-            else:
-                client.start()
-                client.askHeader()
+        self.ui.button_RequireFile.setEnabled(False)
+        self.ui.button_RequireFile.setText('正在連接 Server...')
 
-                print(f'connection: {client.showConnection()}')
-                if not client.connection: raise SystemError('Server not connection.')
-                if not client.file_size: raise SystemError('Fail to get header, retry askHeader().')
+        SUCCESS_START = client.start()
+        if SUCCESS_START == False :
+            print('### Client connect fail')
+            self.ui.button_RequireFile.setEnabled(True)
+            self.ui.button_RequireFile.setText('連接 Server 失敗，確認目標 IP 位置無誤後重試')
+            self.thread_ClientReceiveFile.quit() # 掛起線程
+            return
 
-                status = {'code': 20}
-                package = pickle.dumps(status)
+        SUCCESS_ASKHEADER = client.askHeader()
+        if SUCCESS_ASKHEADER == False : 
+            print('### Client askHeader() fail')
+            self.ui.button_RequireFile.setEnabled(True)
+            self.ui.button_RequireFile.setText('連接 Server 失敗，確認目標 IP 位置無誤後重試')
+            self.thread_ClientReceiveFile.quit() # 掛起線程
+            return
 
-                try:  # Ask file
-                    client.client.sendall(package)
-                except:
-                    print('Fail to send')
-                    return False
 
-                # start receive file
+        print(f'connection: {client.showConnection()}')
 
-                print('Start receive file')
-                client.progress = 0  # clear download progress
+        self.cFileLayoutVisible(True)
+        print('### start askFile()')
+        self.ui.button_RequireFile.setText('下載中...')
+        client.askFile(self.ProgressBarUpdate)
 
-                file_location = f'{client.save_folder}/received_{getTime()}_{client.file_name}'  # 檔案名稱
-                with open(file_location, 'wb') as f:
 
-                    received_size = 0
-                    client.client.settimeout(1)
-                    while not received_size == client.file_size:
-
-                        try:
-
-                            bytes_read = client.client.recv(client.chunk_size)  # read data from server
-                        except:
-                            client.connection = False
-                            print('\nFail to get file')
-                            self.thread_ClientReceiveFile.quit()  # 掛起線程
-                            return False
-
-                        f.write(bytes_read)
-                        received_size += len(bytes_read)
-                        client.progress = countProgress(received_size, client.file_size)
-                        self.ProgressBarUpdate.emit()  # 更新進度條。因為 GUI 無法在子執行緒中更新，只能另外發射信號給槽函數
-                        # self.ui.label_schedule.setText(str(client.progress))  # Debug 用
-                    client.stop()
-                    print("\n--All file received")
-
-                self.ui.button_RequireFile.setEnabled(True)
-                self.ui.button_RequireFile.setText('連線至 Server 獲取檔案')
-                self.thread_ClientReceiveFile.quit()  # 掛起線程
-                return
+        self.ui.button_RequireFile.setEnabled(True)
+        self.ui.button_RequireFile.setText('連線至 Server 獲取檔案')
+        self.thread_ClientReceiveFile.quit() # 掛起線程
+        return
 
     def UpdateProgressBar_ReceiveFile(self):
-        self.ui.progressBar_RecevieFile.setValue(int(client.progress))  # 增加進度條
+        self.ui.progressBar_RecevieFile.setValue(int(client.showProgress()))  # 增加進度條
 
     # Server -----------------------------------------------------------------------------------------------------------
 
@@ -322,7 +303,6 @@ class MainWindow_controller(QtWidgets.QWidget):
             return
         except Exception:
             print("沒有選檔案@w@,或是檔案類型錯誤")
-            print(Exception)
 
     def StartListening(self):
         self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用
@@ -483,7 +463,7 @@ class MainWindow_controller(QtWidgets.QWidget):
 
 
 if __name__ == '__main__':
-    import sys
+    
 
     app = QtWidgets.QApplication(sys.argv)
     LoginWindow = LoginWindow_controller()
