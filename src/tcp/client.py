@@ -36,6 +36,7 @@ class Client():
         while True:
             try:
                 self.client.connect((self.host, self.port))
+                break
             except:
                 if retry > 3: 
                     self.connection = False
@@ -46,9 +47,9 @@ class Client():
                 time.sleep(1)
                 pass
 
-            self.connection = True
-            print(f'Connect to server successfully {self.client.getpeername()[0]}:{self.client.getpeername()[1]}')
-            return True
+        self.connection = True
+        print(f'Connect to server successfully {self.client.getpeername()[0]}:{self.client.getpeername()[1]}')
+        return True
 
 
     def askHeader(self):
