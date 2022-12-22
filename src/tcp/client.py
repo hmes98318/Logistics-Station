@@ -156,6 +156,15 @@ class Client():
     
     def showProgress(self):
         return self.progress
+    
+    def showFilename(self):
+        return self.file_name
+
+    def showFilesize(self):
+        return self.file_size
+    
+    def showFiletype(self):
+        return self.file_type
 
 
 
