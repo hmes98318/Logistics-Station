@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-import socket, pickle, tqdm, os, time
+import socket, pickle, os, time
 
 
 """
