@@ -14,8 +14,8 @@ from PyQt5.QtWidgets import QMessageBox, QFileDialog
 from data.UserData import *
 
 # Socket 模塊-------------------------------------
-from tcp.client import *
-from tcp.server import *
+from tcp.Client import *
+from tcp.Server import *
 
 # UI 介面 ----------------------------------------
 from gui.LoginWindow import Ui_LoginWindow
