@@ -22,9 +22,11 @@ python ./main.py
 
 
 ### Examples
+`account` : user  
+`password` : password  
+</br>
 <img src="./public/img1.png" alt="img1" width="600"/>
 <img src="./public/img2.png" alt="img2" width="600"/>
 <img src="./public/img3.png" alt="img3" width="600"/>
 <img src="./public/img4.png" alt="img4" width="600"/>
 <img src="./public/img5.png" alt="img5" width="600"/>
-
