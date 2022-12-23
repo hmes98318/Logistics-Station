@@ -1,5 +1,5 @@
 # ftpy
-A simple FTP file shares implement in Python
+A simple FTP file shares implement in Python TCP socket  
 
 TCP/IP network programming independent study report
 
