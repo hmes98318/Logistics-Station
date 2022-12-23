@@ -1,4 +1,4 @@
-from src.tcp.server import Server
+from tcp.Server import Server
 import time
 
 
