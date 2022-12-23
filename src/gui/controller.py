@@ -245,8 +245,7 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         SUCCESS_ASKHEADER = client.askHeader()
         cfile_size = client.showFilesize() / 1024  # 1024 byte = 1 kb
-        # self.FileSizeConvert(cfile_size, self.ui.label_cFilesize)
-        self.ui.label_cFilesize.setText(str(cfile_size))
+        self.FileSizeConvert(cfile_size, self.ui.label_cFilesize)
         self.ui.label_cFilename.setText(str(client.showFilename()))
         if SUCCESS_ASKHEADER == False:
             print(GUI, '--Client askHeader() fail.')
@@ -303,20 +302,23 @@ class MainWindow_controller(QtWidgets.QWidget):
             server.setFile(folder_path[0])
 
             self.ui.label_Filename.setText(file_name)
-            if file_size < 1024:
-                self.ui.label_Filesize.setText(str('%.2f' % file_size) + ' KB')
-            elif file_size < 1024 * 1024:
-                self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024)) + ' MB')
-            elif file_size < 1024 * 1024 * 1024:
-                self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024 / 1024)) + ' GB')
-            else:
-                self.ui.label_Filesize.setText(str('%.2f' % (file_size / 1024 / 1024 / 1024)) + ' TB')
+            self.FileSizeConvert(file_size, self.ui.label_Filesize)  # 文件大小轉換，印出
 
             self.ui.button_Startlistening.setEnabled(True)
             self.sFileLayoutVisible(True)
             return
         except:
             print(GUI, '沒有選檔案@w@, 或是檔案類型錯誤')
+
+    def FileSizeConvert(self, file_size, label: QtWidgets.QLabel):
+        if file_size < 1024:
+            label.setText(str('%.2f' % file_size) + ' KB')
+        elif file_size < 1024 * 1024:
+            label.setText(str('%.2f' % (file_size / 1024)) + ' MB')
+        elif file_size < 1024 * 1024 * 1024:
+            label.setText(str('%.2f' % (file_size / 1024 / 1024)) + ' GB')
+        else:
+            label.setText(str('%.2f' % (file_size / 1024 / 1024 / 1024)) + ' TB')
 
     def StartListening(self):
         self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用
