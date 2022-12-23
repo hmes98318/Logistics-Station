@@ -182,3 +182,4 @@ class Ui_LoginWindow(object):
         self.CreateID.setText(_translate("LoginWindow", "註冊帳號"))
         self.input_ID.setPlaceholderText(_translate("LoginWindow", "帳號"))
         self.input_PW.setPlaceholderText(_translate("LoginWindow", "密碼"))
+

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import os
 import sys
 
 sys.path.append('./src')  # 更改模塊導入路徑
@@ -20,7 +20,6 @@ from tcp.Server import *
 # UI 介面 ----------------------------------------
 from gui.LoginWindow import Ui_LoginWindow
 from gui.MainWindow import Ui_MainWindow
-
 
 client = Client()
 server = Server()
@@ -118,7 +117,6 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
                                                 '提示訊息', '找不到此帳號!',
                                                 QMessageBox.Ok)
             return
-
         print(GUI, 'LoginIn clicked!')
 
     ###-------------------------------------------###
@@ -151,7 +149,6 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.sFileLayoutVisible(False)
         self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop)  # 置上對齊
         self.ui.button_Startlistening.setEnabled(False)
-
         self.cFileLayoutVisible(False)
         self.ui.Layout_cRequireFile.setAlignment(Qt.AlignTop)  # 置上對齊
         # ------------------------------------------------------------
@@ -238,6 +235,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_RequireFile.setText('正在連接 Server...')
 
         SUCCESS_START = client.start()
+
         if SUCCESS_START == False:
             print(GUI, '--Client connection fail.')
             self.ui.button_RequireFile.setEnabled(True)
@@ -246,6 +244,10 @@ class MainWindow_controller(QtWidgets.QWidget):
             return
 
         SUCCESS_ASKHEADER = client.askHeader()
+        cfile_size = client.showFilesize() / 1024  # 1024 byte = 1 kb
+        # self.FileSizeConvert(cfile_size, self.ui.label_cFilesize)
+        self.ui.label_cFilesize.setText(str(cfile_size))
+        self.ui.label_cFilename.setText(str(client.showFilename()))
         if SUCCESS_ASKHEADER == False:
             print(GUI, '--Client askHeader() fail.')
             self.ui.button_RequireFile.setEnabled(True)
@@ -448,8 +450,8 @@ class MainWindow_controller(QtWidgets.QWidget):
     def cFileLayoutVisible(self, flag):
         # self.ui.label_cFilesize.setVisible(flag)
         # self.ui.label_cFilename.setVisible(flag)
-        self.ui.label_spacer1.setVisible(flag)
-        self.ui.label_spacer2.setVisible(flag)
+        self.ui.label_cFilename.setVisible(flag)
+        self.ui.label_cFilesize.setVisible(flag)
         self.ui.hint_cFileize.setVisible(flag)
         self.ui.hint_cFilename.setVisible(flag)
         self.ui.hint_schedule.setVisible(flag)
