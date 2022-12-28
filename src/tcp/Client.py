@@ -14,9 +14,9 @@ Server 114: 寄件失敗(server error)
 Client 120: 發送尋找包裹請求(req header)
 Server 121: 回傳包裹資訊(server res) 回傳 header
 Client 122: 開始取件(download)
-Server 121: 回傳包裹資訊(server res) 回傳 header
 Server 123: 查無包裹(server res)
 Server 124: 取件失敗(server error)
+Server 125: 取件成功(server res)
 """
 
 
