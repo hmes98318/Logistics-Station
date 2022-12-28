@@ -132,3 +132,4 @@ dmypy.json
 # test folder
 tmp/
 save/
+tar-cache/
