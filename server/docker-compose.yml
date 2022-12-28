@@ -9,7 +9,6 @@ services:
     ports:
       - 7000:7000
     environment:
-      - SERVER_HOST=0.0.0.0
       - SERVER_PORT=7000
       - DEPOT=/data/depot
       - MONGO_URL=mongodb://logistics:dbpAssw0rd@db:27017/
