@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     print('reqConnection()')
     client.reqConnection()
-    time.sleep(1)
+    #time.sleep(1)
 
 
     """
