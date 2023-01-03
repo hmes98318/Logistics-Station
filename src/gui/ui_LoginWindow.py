@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'LoginWindow.ui'
+# Form implementation generated from reading ui file 'c:\Users\MSI GP65\Documents\GitHub\ftpy\src\gui\LoginWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -73,7 +73,7 @@ class Ui_LoginWindow(object):
         font.setUnderline(False)
         font.setWeight(75)
         self.button_LogicIn.setFont(font)
-        self.button_LogicIn.setStyleSheet("background-color: rgb(170, 255, 255);\n"
+        self.button_LogicIn.setStyleSheet("background-color: rgb(10, 255, 255);\n"
 "border-radius: 15px;")
         self.button_LogicIn.setObjectName("button_LogicIn")
         self.ForgetPW = QtWidgets.QLabel(self.frame)
@@ -182,4 +182,3 @@ class Ui_LoginWindow(object):
         self.CreateID.setText(_translate("LoginWindow", "註冊帳號"))
         self.input_ID.setPlaceholderText(_translate("LoginWindow", "帳號"))
         self.input_PW.setPlaceholderText(_translate("LoginWindow", "密碼"))
-

@@ -513,35 +513,26 @@ background-color: rgba(13, 95, 160, 200);</string>
      <widget class="QPushButton" name="button_Startlistening">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>650</x>
         <y>600</y>
         <width>101</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>標楷體</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(192, 216, 251);
 border-radius: 10px;</string>
       </property>
       <property name="text">
-       <string>開始聆聽</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="button_Stoplistening">
-      <property name="geometry">
-       <rect>
-        <x>660</x>
-        <y>600</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(192, 216, 251);
-border-radius: 10px;</string>
-      </property>
-      <property name="text">
-       <string>中斷聆聽</string>
+       <string>發送包裹</string>
       </property>
      </widget>
      <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -691,6 +682,12 @@ border-radius: 10px;</string>
         <height>211</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>標楷體</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">border-radius: 15px;</string>
       </property>
@@ -743,158 +740,6 @@ border-radius: 10px;</string>
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QGroupBox" name="groupBox_server">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>300</y>
-        <width>641</width>
-        <height>140</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>標楷體</family>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="title">
-       <string>伺服器端設定</string>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="verticalLayoutWidget_3">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>30</y>
-         <width>591</width>
-         <height>91</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="Layout_server1">
-        <item>
-         <layout class="QHBoxLayout" name="Layout_server2">
-          <item>
-           <widget class="QLabel" name="hint_serverIP">
-            <property name="font">
-             <font>
-              <family>微軟正黑體</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>IP地址(IPv4) :</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="input_serverIP">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Consolas</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgba(170, 170, 255, 70);
-border-radius: 10px;</string>
-            </property>
-            <property name="inputMask">
-             <string>000.000.000.000</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>300</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="Layout_server3">
-          <item>
-           <widget class="QLabel" name="hint_serverPort">
-            <property name="font">
-             <font>
-              <family>微軟正黑體</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>Port(0~65535) :</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="input_serverPort">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Consolas</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgba(170, 170, 255, 70);
-border-radius: 10px;</string>
-            </property>
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>400</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
      <widget class="QGroupBox" name="groupBox_client">
       <property name="geometry">
        <rect>
@@ -913,7 +758,7 @@ border-radius: 10px;</string>
        </font>
       </property>
       <property name="title">
-       <string>用戶端設定</string>
+       <string>代理伺服器設定</string>
       </property>
       <property name="flat">
        <bool>true</bool>
