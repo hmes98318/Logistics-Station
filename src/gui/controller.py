@@ -18,8 +18,8 @@ from tcp.Client import *
 from server.src.Server import *
 
 # UI 介面 ----------------------------------------
-from gui.LoginWindow import Ui_LoginWindow
-from gui.MainWindow import Ui_MainWindow
+from gui.ui_LoginWindow import Ui_LoginWindow
+from gui.ui_MainWindow import Ui_MainWindow
 
 client = Client()
 server = Server()
@@ -140,10 +140,8 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_Server.setEnabled(False)  # 未設定 IP 和 Port 時禁用
 
         self.ui.input_ShowSavepath.setText('x')
-        self.ui.input_serverIP.setText('0.0.0.0')
         self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用 (沒有檔案)
         self.ui.button_SelectfFile.setEnabled(True)  # 選擇檔案 button 啟用
-        self.ui.button_Stoplistening.setEnabled(False)  # 終止聆聽 button 禁用
 
         # --------------測試區域----------------------------------------
         self.sFileLayoutVisible(False)
@@ -192,7 +190,6 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         # Server 頁面按鈕事件 -----------------------------------------
         self.ui.button_Startlistening.clicked.connect(self.StartListening)
-        self.ui.button_Stoplistening.clicked.connect(self.StopListening)
         self.ui.button_SelectfFile.clicked.connect(self.SelectSendFile)
 
         # Setting 頁面按鈕事件 -----------------------------------------
@@ -280,11 +277,6 @@ class MainWindow_controller(QtWidgets.QWidget):
                                   self.ui.button_Setting,
                                   self.ui.button_User)
 
-        if server.showUser() == {} and False:
-            self.sFileLayoutVisible(False)
-            self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop)
-            self.ui.button_Startlistening.setEnabled(False)
-
         # print(GUI, server.host + ' ' + str(server.port))
 
     def SelectSendFile(self):
@@ -299,7 +291,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             print(GUI, 'folder_path: ', folder_path)
             print(GUI, 'file_name: ', file_name)
             print(GUI, 'file_size: ', file_size)
-            server.setFile(folder_path[0])
+            client.packingBox(folder_path[0])
 
             self.ui.label_Filename.setText(file_name)
             self.FileSizeConvert(file_size, self.ui.label_Filesize)  # 文件大小轉換，印出
@@ -323,7 +315,6 @@ class MainWindow_controller(QtWidgets.QWidget):
     def StartListening(self):
         self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用
         self.ui.button_SelectfFile.setEnabled(False)  # 聆聽時選擇檔案 button 禁用
-        self.ui.button_Stoplistening.setEnabled(True)  # 終止聆聽 button 啟用
 
         self.thread_ServerListening.run = self.QThread_ServerListening
         self.thread_ServerListening.start()
@@ -336,7 +327,6 @@ class MainWindow_controller(QtWidgets.QWidget):
         if server.showUser() == {}:
             self.ui.button_Startlistening.setEnabled(True)  # 開始聆聽 button 啟用
             self.ui.button_SelectfFile.setEnabled(True)  # 結束聆聽後選擇檔案 button 啟用
-            self.ui.button_Stoplistening.setEnabled(False)  # 終止聆聽 button 禁用
 
             self.sFileLayoutVisible(False)
             self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop)
@@ -368,8 +358,6 @@ class MainWindow_controller(QtWidgets.QWidget):
             try:
                 input_clientIP = self.ui.input_clientIP.text()
                 input_clientPort = int(self.ui.input_clientPort.text())
-                input_serverIP = self.ui.input_serverIP.text()
-                input_serverPort = int(self.ui.input_serverPort.text())
 
                 if self.ui.input_ShowSavepath.text() == 'x':
                     QMessageBox.warning(self,
@@ -379,7 +367,6 @@ class MainWindow_controller(QtWidgets.QWidget):
                     return
 
                 client.setHost(input_clientIP, input_clientPort)
-                server.setHost(input_serverIP, input_serverPort)
 
                 QMessageBox.information(self,
                                         '提示訊息', '保存成功',
@@ -403,7 +390,7 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                        'Open folder',
                                                        './')  # start path
 
-        client.setFolder(folder_path)  # 設置 client 儲存路徑
+        client.setSaveFolder(folder_path)  # 設置 client 儲存路徑
         # print(GUI, folder_path)
         self.ui.input_ShowSavepath.setText(folder_path)
 
