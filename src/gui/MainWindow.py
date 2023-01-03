@@ -267,7 +267,7 @@ class Ui_MainWindow(object):
         self.button_SelectfFile = QtWidgets.QPushButton(self.verticalLayoutWidget_4)
         self.button_SelectfFile.setMinimumSize(QtCore.QSize(730, 100))
         self.button_SelectfFile.setMaximumSize(QtCore.QSize(730, 100))
-        self.button_SelectfFile.setStyleSheet("background-image: url(./gui/image/button_SelectFile.png);\n"
+        self.button_SelectfFile.setStyleSheet("background-image: url(./src/gui/image/button_SelectFile.png);\n"
 "border-radius: 10px;")
         self.button_SelectfFile.setText("")
         self.button_SelectfFile.setObjectName("button_SelectfFile")
@@ -458,7 +458,7 @@ class Ui_MainWindow(object):
         font.setFamily("微軟正黑體")
         font.setPointSize(10)
         self.button_OpenSaveFolder.setFont(font)
-        self.button_OpenSaveFolder.setStyleSheet("background-image: url(./gui/image/button_openSaveFile.png);\n"
+        self.button_OpenSaveFolder.setStyleSheet("background-image: url(./src/gui/image/button_openSaveFile.png);\n"
 "border-radius: 10px;")
         self.button_OpenSaveFolder.setText("")
         self.button_OpenSaveFolder.setObjectName("button_OpenSaveFolder")
@@ -497,7 +497,7 @@ class Ui_MainWindow(object):
         self.MainMin.setFont(font)
         self.MainMin.setToolTip("")
         self.MainMin.setWhatsThis("")
-        self.MainMin.setStyleSheet("border-image: url(./gui/image/WindowMin.jpg);")
+        self.MainMin.setStyleSheet("border-image: url(./src/gui/image/WindowMin.jpg);")
         self.MainMin.setText("")
         self.MainMin.setIconSize(QtCore.QSize(30, 30))
         self.MainMin.setObjectName("MainMin")
@@ -509,7 +509,7 @@ class Ui_MainWindow(object):
         font.setPointSize(13)
         self.MainClose.setFont(font)
         self.MainClose.setToolTip("")
-        self.MainClose.setStyleSheet("border-image: url(./gui/image/WindowClose.jpg);\n"
+        self.MainClose.setStyleSheet("border-image: url(./src/gui/image/WindowClose.jpg);\n"
 "")
         self.MainClose.setText("")
         self.MainClose.setIconSize(QtCore.QSize(30, 30))

@@ -15,7 +15,7 @@ from data.UserData import *
 
 # Socket 模塊-------------------------------------
 from tcp.Client import *
-from tcp.Server import *
+from server.src.Server import *
 
 # UI 介面 ----------------------------------------
 from gui.LoginWindow import Ui_LoginWindow

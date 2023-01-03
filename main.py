@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from gui.controller import *
+from src.gui.controller import *
 
 
 if __name__ == '__main__':
