@@ -74,7 +74,7 @@ border-radius: 20px;}
        <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
-         <height>30</height>
+         <height>50</height>
         </size>
        </property>
       </spacer>
@@ -84,13 +84,13 @@ border-radius: 20px;}
        <property name="minimumSize">
         <size>
          <width>200</width>
-         <height>40</height>
+         <height>70</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>200</width>
-         <height>50</height>
+         <height>70</height>
         </size>
        </property>
        <property name="font">
@@ -109,7 +109,8 @@ border-radius: 20px;}
 color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Client</string>
+        <string>Receive 
+ package</string>
        </property>
        <property name="checkable">
         <bool>false</bool>
@@ -127,7 +128,7 @@ color: rgb(255, 255, 255);</string>
        <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
-         <height>30</height>
+         <height>50</height>
         </size>
        </property>
       </spacer>
@@ -137,19 +138,19 @@ color: rgb(255, 255, 255);</string>
        <property name="minimumSize">
         <size>
          <width>200</width>
-         <height>40</height>
+         <height>70</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>200</width>
-         <height>50</height>
+         <height>70</height>
         </size>
        </property>
        <property name="font">
         <font>
          <family>BankGothic Md BT</family>
-         <pointsize>20</pointsize>
+         <pointsize>18</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -157,7 +158,8 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Server</string>
+        <string>Send 
+ Package</string>
        </property>
       </widget>
      </item>
@@ -169,7 +171,7 @@ color: rgb(255, 255, 255);</string>
        <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
-         <height>30</height>
+         <height>50</height>
         </size>
        </property>
       </spacer>
@@ -279,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -548,7 +550,7 @@ border-radius: 10px;</string>
         <x>20</x>
         <y>20</y>
         <width>732</width>
-        <height>211</height>
+        <height>266</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="Layout_SelectFile">
@@ -679,6 +681,19 @@ border-radius: 10px;</string>
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QListView" name="listView_Sendpackage">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>290</y>
+        <width>731</width>
+        <height>211</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 15px;</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="Setting">
