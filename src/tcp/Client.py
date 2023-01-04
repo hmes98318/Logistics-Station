@@ -307,7 +307,7 @@ class Client():
         print('Start reqBoxRecv().')
         if not self.connection : raise SystemError('Server not connection.')
         if not self.save_folder : raise SystemError('save_folder not set.')
-        if not self.box_name or not self.box_size or not self.box_file_size or not self.box_type : 
+        if not self.box_name or not self.box_size or not self.box_file_size : 
             raise SystemError('Have not Box info, run reqBoxHeader() first.')
 
         data = {'key' : boxKey}
