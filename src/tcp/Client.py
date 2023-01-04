@@ -182,7 +182,7 @@ class Client():
         return False
 
 
-    def reqBoxSend(self):
+    def reqBoxSend(self, ProgressBarUpdate=None):
         print('Start reqBoxSend().')
         self.upload_progress = 0 # 清空上傳進度
 
@@ -225,6 +225,7 @@ class Client():
 
                     sent_size += self.chunk_size
                     self.upload_progress = countProgress(sent_size, self.file_size) # 計算上傳進度
+                    ### ProgressBarUpdate.emit() # PYQT5 --------------------------------------------------
                 except:
                     print('--reqBoxSend() Failed to send Box.')
                     os.remove(file_location) # remove upload cache
@@ -302,7 +303,7 @@ class Client():
         return True
 
 
-    def reqBoxRecv(self, boxKey):
+    def reqBoxRecv(self, boxKey, ProgressBarUpdate=None):
         print('Start reqBoxRecv().')
         if not self.connection : raise SystemError('Server not connection.')
         if not self.save_folder : raise SystemError('save_folder not set.')
@@ -326,7 +327,7 @@ class Client():
         file_location = f'{self.cache_tar_download}/{boxKey}.tar'
         # print('reqBoxRecv() file_location: ',file_location)
 
-        SUCCESS_WRITE = self.writeData(file_location)
+        SUCCESS_WRITE = self.writeData(file_location, ProgressBarUpdate)
         self.client.settimeout(None)
         
         if SUCCESS_WRITE == False :
@@ -347,7 +348,7 @@ class Client():
         return True
 
 
-    def writeData(self, file_location): ### Don't call this
+    def writeData(self, file_location, ProgressBarUpdate): ### Don't call this
         error_bytes = json.dumps({ 'code' : 124 }).encode('UTF-8')
         self.download_progress = 0
 
