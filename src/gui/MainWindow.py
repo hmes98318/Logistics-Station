@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainWindow.ui'
+# Form implementation generated from reading ui file 'c:\Users\MSI GP65\Documents\GitHub\ftpy\src\gui\MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -185,18 +185,18 @@ class Ui_MainWindow(object):
         self.Layout_cRequireFile.addLayout(self.Layout_schedule)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.lineEdit = QtWidgets.QLineEdit(self.verticalLayoutWidget_5)
-        self.lineEdit.setMinimumSize(QtCore.QSize(0, 50))
+        self.input_PickupNumber = QtWidgets.QLineEdit(self.verticalLayoutWidget_5)
+        self.input_PickupNumber.setMinimumSize(QtCore.QSize(0, 50))
         font = QtGui.QFont()
         font.setFamily("Consolas")
         font.setPointSize(20)
-        self.lineEdit.setFont(font)
-        self.lineEdit.setStyleSheet("border-radius: 10px;\n"
+        self.input_PickupNumber.setFont(font)
+        self.input_PickupNumber.setStyleSheet("border-radius: 10px;\n"
 "background-color: rgba(13, 95, 160, 100);")
-        self.lineEdit.setText("")
-        self.lineEdit.setAlignment(QtCore.Qt.AlignCenter)
-        self.lineEdit.setObjectName("lineEdit")
-        self.horizontalLayout.addWidget(self.lineEdit)
+        self.input_PickupNumber.setText("")
+        self.input_PickupNumber.setAlignment(QtCore.Qt.AlignCenter)
+        self.input_PickupNumber.setObjectName("input_PickupNumber")
+        self.horizontalLayout.addWidget(self.input_PickupNumber)
         self.button_RequireFile = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
         self.button_RequireFile.setMinimumSize(QtCore.QSize(200, 50))
         self.button_RequireFile.setMaximumSize(QtCore.QSize(200, 50))
@@ -507,7 +507,7 @@ class Ui_MainWindow(object):
         self.layout_MainControll.addWidget(self.MainClose)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -522,7 +522,7 @@ class Ui_MainWindow(object):
         self.hint_cFilename.setText(_translate("MainWindow", "文件名:"))
         self.hint_cFileize.setText(_translate("MainWindow", "檔案大小:"))
         self.hint_schedule.setText(_translate("MainWindow", "進度  "))
-        self.lineEdit.setPlaceholderText(_translate("MainWindow", "請輸入取件碼"))
+        self.input_PickupNumber.setPlaceholderText(_translate("MainWindow", "請輸入取件碼"))
         self.button_RequireFile.setText(_translate("MainWindow", "取件✔"))
         self.button_Startlistening.setText(_translate("MainWindow", "發送包裹"))
         self.hint_Filename.setText(_translate("MainWindow", "檔案名稱:"))
