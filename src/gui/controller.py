@@ -151,7 +151,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.Layout_cRequireFile.setAlignment(Qt.AlignTop)  # 置上對齊
         # ------------------------------------------------------------
 
-        self.thread_ServerListening = QThread()  # 定義 Server 新執行序
+        self.thread_SendFile = QThread()  # 定義 Server 新執行序
         self.thread_ClientReceiveFile = QThread()  # 定義 Client 新執行序
         self.ProgressBarUpdate.connect(self.UpdateProgressBar_ReceiveFile)  # 連接自訂義信號槽函數
 
@@ -316,12 +316,11 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_Startlistening.setEnabled(False)  # 開始發送 button 禁用
         self.ui.button_SelectfFile.setEnabled(False)  # 聆聽時選擇檔案 button 禁用
 
-        # self.thread_ServerListening.run = self.QThread_ServerListening
-        # self.thread_ServerListening.start()
+        self.thread_SendFile.run = self.QThread_SendFile
+        self.thread_SendFile.start()
 
-    # def QThread_ServerListening(self):
-        # server.init()
-        # server.startListening()
+    def QThread_SendFile(self):
+        print()
 
     ### Setting -----------------------------------------------------------------------------------------------------------
 
