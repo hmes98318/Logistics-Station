@@ -225,9 +225,10 @@ class Client():
 
                     sent_size += self.chunk_size
                     self.upload_progress = countProgress(sent_size, self.file_size) # 計算上傳進度
-                    ### ProgressBarUpdate.emit() # PYQT5 --------------------------------------------------
+                    ProgressBarUpdate.emit() # PYQT5 --------------------------------------------------
                 except:
                     print('--reqBoxSend() Failed to send Box.')
+                    f.close()
                     os.remove(file_location) # remove upload cache
                     self.packaged = False
                     self.upload_progress = 0
@@ -238,6 +239,7 @@ class Client():
             self.upload_progress = 100
 
         self.packaged = False
+        f.close()
         os.remove(file_location) # remove upload cache
 
         try: # Receive receive Box key
