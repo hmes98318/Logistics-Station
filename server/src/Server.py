@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import socket, json, os, threading, random, pymongo
-
+import socket, json, os, threading, random
+from src.database.mongo import DataBase
 
 """
 # Status Code
@@ -28,7 +28,7 @@ class Server():
     def __init__(self):
         self.host = '0.0.0.0'
         self.port = 7000
-        self.dataBase = None
+        self.DB = None
         self.depot = './depot'
 
         self.MONGO_URL = None
@@ -73,7 +73,10 @@ class Server():
     def init(self):
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((self.host, self.port))
-        self.dataBase = dataBase(self.MONGO_URL, self.DATABASE_NAME, self.DATABASE_COLLECTION) # connect MongoDB
+
+        # connect MongoDB
+        self.DB = DataBase(self.MONGO_URL, self.DATABASE_NAME, self.DATABASE_COLLECTION)
+        self.DB.connect()
 
         print('Host: ', self.host)
         print('Port: ', self.port)
@@ -175,7 +178,7 @@ class Server():
 
         while True:
             query = {'key' : boxKey}
-            if DB_find(self.dataBase, query) != False:
+            if self.DB.find(query) != False:
                 boxKey = generateKey(self.KEY_LENGTH)
             else:
                 break
@@ -201,7 +204,7 @@ class Server():
             print('--recvBox() Failed to recv Box, remove cache.')
             os.remove(file_location)
         else :
-            self.dataBase.insert_one(newBox) # 成功寫入才插入 dataBase
+            self.DB.insertOne(newBox) # 成功寫入才插入 dataBase
 
         # 111: 寄件成功
         # 114: 寄件失敗
@@ -231,7 +234,7 @@ class Server():
         try:
             boxKey = data['key']
             query = {'key' : boxKey}
-            resultData = DB_find(self.dataBase, query)
+            resultData = self.DB.find(query)
             print('searchBox() resultData = ', resultData)
 
             if resultData != False :
@@ -266,7 +269,7 @@ class Server():
         try:
             boxKey = data['key']
             query = {'key' : boxKey}
-            resultData = DB_find(self.dataBase, query)
+            resultData = self.DB.find(query)
             print('sendBox() resultData = ', resultData)
 
             if resultData != False :
@@ -303,7 +306,6 @@ class Server():
 ### Private methods -----------------------------------------------------------------------------------------------------------
 
 def writeData(client, chunk_size, file_location, file_size):
-    
     try:
         with open(file_location, 'wb') as f:
 
@@ -351,28 +353,6 @@ def readData(client, chunk_size, file_location):
     return True
 
 
-def dataBase(DB_url, DB_name, DB_col):
-
-    mongo = pymongo.MongoClient(DB_url)
-
-    DB_list = mongo.list_database_names()
-    if not DB_name in DB_list:
-        print('DataBase not exists, create new one')
-
-    dataBase = mongo[DB_name]
-    collection = dataBase[DB_col]
-    return collection
-
-
-def DB_find(db, query):
-    resData = db.find_one(query)
-
-    if resData == None:
-        return False
-    else:
-        return resData
-
-
 def generateKey(length):
     availableChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -380,31 +360,3 @@ def generateKey(length):
     for _ in range(length):
         boxKey += availableChars[random.randint(0, len(availableChars) - 1)]
     return boxKey
-
-
-
-"""
-if __name__ == '__main__':
-    server_host = '0.0.0.0' #os.getenv('SERVER_HOST')#'0.0.0.0'#'192.168.31.146'#'127.0.0.1'#
-    server_port = 8000 #os.getenv('SERVER_PORT')#
-    server_depot = './asd' #os.getenv('DEPOT') #'./depot'
-
-    DB_url = 'mongodb://localhost:27017'
-    DB_name = 'test'
-    DB_col = 'lst'
-
-    print('Host: ', server_host)
-    print('Port: ', server_port)
-    print('Deport: ', server_depot)
-
-
-    #
-    server = Server()
-    server.setHost(server_host, server_port)
-    server.setDepot(server_depot)
-    server.setDataBase(DB_url, DB_name, DB_col)
-    server.init()
-    server.startListening()
-    #server.stop()
-    #
-"""
