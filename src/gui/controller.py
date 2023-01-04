@@ -156,7 +156,8 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         self.thread_SendFile = QThread()  # 定義 Server 新執行序
         self.thread_ClientReceiveFile = QThread()  # 定義 Client 新執行序
-        self.ProgressBarUpdate.connect(self.UpdateProgressBar_ReceiveFile)  # 連接自訂義信號槽函數
+        self.ProgressBarUpdate.connect(self.UpdataProgressBar_ReceiveFile)  # 連接自訂義信號槽函數
+        self.ProgressBarUpdate.connect(self.UpdataprogressBar_SendFile) 
 
         # --- 窗體美化 ---#
         self.setWindowFlags(
@@ -266,7 +267,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.thread_ClientReceiveFile.quit()  # 掛起線程
         return
 
-    def UpdateProgressBar_ReceiveFile(self):
+    def UpdataProgressBar_ReceiveFile(self):
         self.ui.progressBar_RecevieFile.setValue(int(client.showProgress()))  # 增加進度條
 
     ### Server -----------------------------------------------------------------------------------------------------------
@@ -319,7 +320,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_Startlistening.setEnabled(False)  # 開始發送 button 禁用
         self.ui.button_SelectfFile.setEnabled(False)  # 聆聽時選擇檔案 button 禁用
 
-        self.thread_SendFile.run = self.QThread_SendFile
+        self.thread_SendFile.run = self.QThread_SendFile()
         self.thread_SendFile.start()
 
     def QThread_SendFile(self):
@@ -330,8 +331,13 @@ class MainWindow_controller(QtWidgets.QWidget):
         print('------------------')
         print('[Send] reqBoxSend()')
         client.packingBox()
-        recvKey = client.reqBoxSend()
+        recvKey = client.reqBoxSend(self.UpdataprogressBar_SendFile)
         print('reqBoxSend() -> recvKey :', recvKey)
+        client.stop()
+        self.thread_SendFile.quit()
+    
+    def UpdataprogressBar_SendFile(self):
+        self.ui.progressBar_SendFile.setValue(int(client.showUploadProgress()))  # 增加進度條
 
     ### Setting -----------------------------------------------------------------------------------------------------------
 
