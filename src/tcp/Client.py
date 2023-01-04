@@ -182,7 +182,7 @@ class Client():
         return False
 
 
-    def reqBoxSend(self, ProgressBarUpdate=None):
+    def reqBoxSend(self, ProgressBarUpdate):
         print('Start reqBoxSend().')
         self.upload_progress = 0 # 清空上傳進度
 
@@ -226,8 +226,9 @@ class Client():
                     sent_size += self.chunk_size
                     self.upload_progress = countProgress(sent_size, self.file_size) # 計算上傳進度
                     ProgressBarUpdate.emit() # PYQT5 --------------------------------------------------
-                except:
+                except Exception as e:
                     print('--reqBoxSend() Failed to send Box.')
+                    print(e)
                     f.close()
                     os.remove(file_location) # remove upload cache
                     self.packaged = False
@@ -237,6 +238,7 @@ class Client():
 
             f.close()
             self.upload_progress = 100
+            ProgressBarUpdate.emit() # PYQT5 --------
 
         self.packaged = False
         f.close()

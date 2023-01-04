@@ -124,7 +124,8 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
 
 # MainWindow 主要畫面
 class MainWindow_controller(QtWidgets.QWidget):
-    ProgressBarUpdate = pyqtSignal()  # 初始化自訂義信號槽
+    DownloadProgressBarUpdate = pyqtSignal()  # 初始化自訂義信號槽
+    UploadProgressBarUpdate = pyqtSignal()
 
     def __init__(self):
         # in python3, super(Class, self).xxx = super().xxx
@@ -156,8 +157,8 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         self.thread_SendFile = QThread()  # 定義 Server 新執行序
         self.thread_ClientReceiveFile = QThread()  # 定義 Client 新執行序
-        self.ProgressBarUpdate.connect(self.UpdataProgressBar_ReceiveFile)  # 連接自訂義信號槽函數
-        self.ProgressBarUpdate.connect(self.UpdataprogressBar_SendFile) 
+        self.DownloadProgressBarUpdate.connect(self.UpdataProgressBar_ReceiveFile)  # 連接自訂義信號槽函數
+        self.UploadProgressBarUpdate.connect(self.UpdataprogressBar_SendFile) 
 
         # --- 窗體美化 ---#
         self.setWindowFlags(
@@ -260,7 +261,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.cFileLayoutVisible(True)
         print(GUI, 'Start askFile()')
         self.ui.button_RequireFile.setText('下載中...')
-        client.askFile(self.ProgressBarUpdate)
+        client.askFile(self.DownloadProgressBarUpdate)
 
         self.ui.button_RequireFile.setEnabled(True)
         self.ui.button_RequireFile.setText('連線至 Server 獲取檔案')
@@ -331,7 +332,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         print('------------------')
         print('[Send] reqBoxSend()')
         client.packingBox()
-        recvKey = client.reqBoxSend(self.UpdataprogressBar_SendFile)
+        recvKey = client.reqBoxSend(self.UploadProgressBarUpdate)
         print('reqBoxSend() -> recvKey :', recvKey)
         client.stop()
         self.thread_SendFile.quit()
