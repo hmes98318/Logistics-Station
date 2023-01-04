@@ -507,7 +507,7 @@ def get_folder_size(folder):
 
 
 
-
+"""
 if __name__ == '__main__':
     server_host = '127.0.0.1'#'proxy.ggwp.tw'#'192.168.31.146'#
     server_port = 7000
@@ -524,26 +524,22 @@ if __name__ == '__main__':
     time.sleep(1)
 
 
-    """
+    
     print('------------------')
     print('reqBoxSend()')
-    client.packingBox()
+    #client.packingBox()
     recvKey = client.reqBoxSend()
     print('reqBoxSend() -> recvKey :', recvKey)
     time.sleep(1)
-    """
 
 
-    boxKey = 'puUU2'#'eSF6t'
-    #"""
+    #boxKey = 'puUU2'#'eSF6t'
     print('------------------')
     print('reqBoxHeader()')
     client.reqBoxHeader(boxKey)
     time.sleep(1)
     print('reqBoxRecv()')
     client.reqBoxRecv(boxKey)
-    #"""
-
-
 
     client.stop()
+"""
