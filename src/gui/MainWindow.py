@@ -231,7 +231,7 @@ class Ui_MainWindow(object):
 "border-radius: 10px;")
         self.button_Startlistening.setObjectName("button_Startlistening")
         self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.Server)
-        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(20, 20, 732, 266))
+        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(20, 20, 732, 531))
         self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
         self.Layout_SelectFile = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
         self.Layout_SelectFile.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -286,7 +286,7 @@ class Ui_MainWindow(object):
         self.hint_Sendschedule = QtWidgets.QLabel(self.verticalLayoutWidget_4)
         self.hint_Sendschedule.setMaximumSize(QtCore.QSize(50, 50))
         font = QtGui.QFont()
-        font.setFamily("標楷體")
+        font.setFamily("微軟正黑體")
         font.setPointSize(12)
         self.hint_Sendschedule.setFont(font)
         self.hint_Sendschedule.setInputMethodHints(QtCore.Qt.ImhSensitiveData)
@@ -320,8 +320,7 @@ class Ui_MainWindow(object):
         self.button_SelectfFile.setText("")
         self.button_SelectfFile.setObjectName("button_SelectfFile")
         self.Layout_SelectFile.addWidget(self.button_SelectfFile)
-        self.listView_Sendpackage = QtWidgets.QListView(self.Server)
-        self.listView_Sendpackage.setGeometry(QtCore.QRect(20, 290, 731, 211))
+        self.listView_Sendpackage = QtWidgets.QListView(self.verticalLayoutWidget_4)
         font = QtGui.QFont()
         font.setFamily("標楷體")
         font.setPointSize(11)
@@ -329,6 +328,7 @@ class Ui_MainWindow(object):
         self.listView_Sendpackage.setStyleSheet("border-radius: 10px;\n"
 "background-color: rgba(13, 95, 160, 200);")
         self.listView_Sendpackage.setObjectName("listView_Sendpackage")
+        self.Layout_SelectFile.addWidget(self.listView_Sendpackage)
         self.stackedWidget.addWidget(self.Server)
         self.Setting = QtWidgets.QWidget()
         self.Setting.setObjectName("Setting")
@@ -389,6 +389,7 @@ class Ui_MainWindow(object):
         self.input_clientIP.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         self.input_clientIP.setStyleSheet("background-color: rgba(170, 170, 255, 70);\n"
 "border-radius: 10px;")
+        self.input_clientIP.setInputMask("")
         self.input_clientIP.setFrame(True)
         self.input_clientIP.setAlignment(QtCore.Qt.AlignCenter)
         self.input_clientIP.setCursorMoveStyle(QtCore.Qt.LogicalMoveStyle)
@@ -507,7 +508,7 @@ class Ui_MainWindow(object):
         self.layout_MainControll.addWidget(self.MainClose)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -533,7 +534,6 @@ class Ui_MainWindow(object):
         self.button_SettingSave.setText(_translate("MainWindow", "儲存設定"))
         self.groupBox_client.setTitle(_translate("MainWindow", "代理伺服器設定"))
         self.hint_clientIP.setText(_translate("MainWindow", "IP地址(IPv4) :"))
-        self.input_clientIP.setInputMask(_translate("MainWindow", "000.000.000.000"))
         self.hint_clientPort.setText(_translate("MainWindow", "Port(0~65535) :"))
         self.hint_saveFolderPath.setText(_translate("MainWindow", "存檔位置 :"))
         self.label_4.setText(_translate("MainWindow", "User"))

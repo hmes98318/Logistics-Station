@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -574,7 +574,7 @@ border-radius: 10px;</string>
         <x>20</x>
         <y>20</y>
         <width>732</width>
-        <height>266</height>
+        <height>531</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="Layout_SelectFile">
@@ -696,7 +696,7 @@ border-radius: 10px;</string>
            </property>
            <property name="font">
             <font>
-             <family>標楷體</family>
+             <family>微軟正黑體</family>
              <pointsize>12</pointsize>
             </font>
            </property>
@@ -766,27 +766,21 @@ border-radius: 10px;</string>
          </property>
         </widget>
        </item>
-      </layout>
-     </widget>
-     <widget class="QListView" name="listView_Sendpackage">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>290</y>
-        <width>731</width>
-        <height>211</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>標楷體</family>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-radius: 10px;
+       <item>
+        <widget class="QListView" name="listView_Sendpackage">
+         <property name="font">
+          <font>
+           <family>標楷體</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-radius: 10px;
 background-color: rgba(13, 95, 160, 200);</string>
-      </property>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="Setting">
@@ -917,7 +911,7 @@ border-radius: 10px;</string>
 border-radius: 10px;</string>
             </property>
             <property name="inputMask">
-             <string>000.000.000.000</string>
+             <string/>
             </property>
             <property name="frame">
              <bool>true</bool>
