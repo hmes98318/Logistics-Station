@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\MSI GP65\Documents\GitHub\ftpy\src\gui\MainWindow.ui'
+# Form implementation generated from reading ui file 'MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -104,7 +104,7 @@ class Ui_MainWindow(object):
         self.Client = QtWidgets.QWidget()
         self.Client.setObjectName("Client")
         self.verticalLayoutWidget_5 = QtWidgets.QWidget(self.Client)
-        self.verticalLayoutWidget_5.setGeometry(QtCore.QRect(20, 20, 732, 231))
+        self.verticalLayoutWidget_5.setGeometry(QtCore.QRect(20, 20, 731, 231))
         self.verticalLayoutWidget_5.setObjectName("verticalLayoutWidget_5")
         self.Layout_cRequireFile = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_5)
         self.Layout_cRequireFile.setContentsMargins(0, 0, 0, 0)
@@ -183,9 +183,23 @@ class Ui_MainWindow(object):
         self.progressBar_RecevieFile.setObjectName("progressBar_RecevieFile")
         self.Layout_schedule.addWidget(self.progressBar_RecevieFile)
         self.Layout_cRequireFile.addLayout(self.Layout_schedule)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.lineEdit = QtWidgets.QLineEdit(self.verticalLayoutWidget_5)
+        self.lineEdit.setMinimumSize(QtCore.QSize(0, 50))
+        font = QtGui.QFont()
+        font.setFamily("Consolas")
+        font.setPointSize(20)
+        self.lineEdit.setFont(font)
+        self.lineEdit.setStyleSheet("border-radius: 10px;\n"
+"background-color: rgba(13, 95, 160, 100);")
+        self.lineEdit.setText("")
+        self.lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit.setObjectName("lineEdit")
+        self.horizontalLayout.addWidget(self.lineEdit)
         self.button_RequireFile = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
-        self.button_RequireFile.setMinimumSize(QtCore.QSize(730, 100))
-        self.button_RequireFile.setMaximumSize(QtCore.QSize(730, 100))
+        self.button_RequireFile.setMinimumSize(QtCore.QSize(200, 50))
+        self.button_RequireFile.setMaximumSize(QtCore.QSize(200, 50))
         font = QtGui.QFont()
         font.setFamily("微軟正黑體")
         font.setPointSize(12)
@@ -194,7 +208,8 @@ class Ui_MainWindow(object):
 "color: rgb(170, 255, 255);\n"
 "background-color: rgba(13, 95, 160, 200);")
         self.button_RequireFile.setObjectName("button_RequireFile")
-        self.Layout_cRequireFile.addWidget(self.button_RequireFile)
+        self.horizontalLayout.addWidget(self.button_RequireFile)
+        self.Layout_cRequireFile.addLayout(self.horizontalLayout)
         self.label_spacer3_2 = QtWidgets.QLabel(self.Client)
         self.label_spacer3_2.setGeometry(QtCore.QRect(160, 190, 12, 45))
         self.label_spacer3_2.setMinimumSize(QtCore.QSize(12, 0))
@@ -265,6 +280,38 @@ class Ui_MainWindow(object):
         self.Layout_Filesize.addWidget(self.label_Filesize)
         self.Layout_FileInfo.addLayout(self.Layout_Filesize)
         self.Layout_SelectFile.addLayout(self.Layout_FileInfo)
+        self.Layout_Sendschedule = QtWidgets.QHBoxLayout()
+        self.Layout_Sendschedule.setSpacing(0)
+        self.Layout_Sendschedule.setObjectName("Layout_Sendschedule")
+        self.hint_Sendschedule = QtWidgets.QLabel(self.verticalLayoutWidget_4)
+        self.hint_Sendschedule.setMaximumSize(QtCore.QSize(50, 50))
+        font = QtGui.QFont()
+        font.setFamily("標楷體")
+        font.setPointSize(12)
+        self.hint_Sendschedule.setFont(font)
+        self.hint_Sendschedule.setInputMethodHints(QtCore.Qt.ImhSensitiveData)
+        self.hint_Sendschedule.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignVCenter)
+        self.hint_Sendschedule.setObjectName("hint_Sendschedule")
+        self.Layout_Sendschedule.addWidget(self.hint_Sendschedule)
+        self.progressBar_SendFile = QtWidgets.QProgressBar(self.verticalLayoutWidget_4)
+        self.progressBar_SendFile.setMaximumSize(QtCore.QSize(16777215, 25))
+        font = QtGui.QFont()
+        font.setFamily("Consolas")
+        font.setPointSize(11)
+        self.progressBar_SendFile.setFont(font)
+        self.progressBar_SendFile.setStyleSheet("#progressBar_SendFile{\n"
+"border: 2px solid #000;\n"
+"border-radius: 10px;\n"
+"text-align:center;\n"
+"}\n"
+"#progressBar_SendFile::chunk { \n"
+"background-color: rgb(170, 170, 255);\n"
+"border-radius: 8px;\n"
+"}")
+        self.progressBar_SendFile.setProperty("value", 24)
+        self.progressBar_SendFile.setObjectName("progressBar_SendFile")
+        self.Layout_Sendschedule.addWidget(self.progressBar_SendFile)
+        self.Layout_SelectFile.addLayout(self.Layout_Sendschedule)
         self.button_SelectfFile = QtWidgets.QPushButton(self.verticalLayoutWidget_4)
         self.button_SelectfFile.setMinimumSize(QtCore.QSize(730, 100))
         self.button_SelectfFile.setMaximumSize(QtCore.QSize(730, 100))
@@ -279,7 +326,8 @@ class Ui_MainWindow(object):
         font.setFamily("標楷體")
         font.setPointSize(11)
         self.listView_Sendpackage.setFont(font)
-        self.listView_Sendpackage.setStyleSheet("border-radius: 15px;")
+        self.listView_Sendpackage.setStyleSheet("border-radius: 10px;\n"
+"background-color: rgba(13, 95, 160, 200);")
         self.listView_Sendpackage.setObjectName("listView_Sendpackage")
         self.stackedWidget.addWidget(self.Server)
         self.Setting = QtWidgets.QWidget()
@@ -474,12 +522,14 @@ class Ui_MainWindow(object):
         self.hint_cFilename.setText(_translate("MainWindow", "文件名:"))
         self.hint_cFileize.setText(_translate("MainWindow", "檔案大小:"))
         self.hint_schedule.setText(_translate("MainWindow", "進度  "))
-        self.button_RequireFile.setText(_translate("MainWindow", "連線至 Server 獲取檔案✔"))
+        self.lineEdit.setPlaceholderText(_translate("MainWindow", "請輸入取件碼"))
+        self.button_RequireFile.setText(_translate("MainWindow", "取件✔"))
         self.button_Startlistening.setText(_translate("MainWindow", "發送包裹"))
         self.hint_Filename.setText(_translate("MainWindow", "檔案名稱:"))
         self.label_Filename.setText(_translate("MainWindow", "NOfile"))
         self.hint_Filesize.setText(_translate("MainWindow", "檔案大小:"))
         self.label_Filesize.setText(_translate("MainWindow", "0 mb"))
+        self.hint_Sendschedule.setText(_translate("MainWindow", "進度  "))
         self.button_SettingSave.setText(_translate("MainWindow", "儲存設定"))
         self.groupBox_client.setTitle(_translate("MainWindow", "代理伺服器設定"))
         self.hint_clientIP.setText(_translate("MainWindow", "IP地址(IPv4) :"))
