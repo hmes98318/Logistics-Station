@@ -1,9 +1,9 @@
 FROM python:3.10.9
 
-WORKDIR /logistics-node
+WORKDIR /logistics-station
 
 RUN pip install pymongo python-dotenv
 
-COPY ./ /logistics-node
+COPY . .
 
 CMD [ "python","main.py" ]
