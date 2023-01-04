@@ -15,14 +15,14 @@ from data.UserData import *
 
 # Socket 模塊-------------------------------------
 from tcp.Client import *
-from server.src.Server import *
+# from server.src.Server import *
 
 # UI 介面 ----------------------------------------
-from gui.ui_LoginWindow import Ui_LoginWindow
-from gui.ui_MainWindow import Ui_MainWindow
+from gui.LoginWindow import Ui_LoginWindow
+from gui.MainWindow import Ui_MainWindow
 
 client = Client()
-server = Server()
+# server = Server()
 
 GUI = 'GUI:'
 
@@ -237,7 +237,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             print(GUI, '--Client connection fail.')
             self.ui.button_RequireFile.setEnabled(True)
             self.ui.button_RequireFile.setText('連接 Server 失敗，確認目標 IP 位置無誤後重試')
-            self.thread_ClientReceiveFile.quit()  # 掛起線程
+            self.thread_ClientReceiveFile.quit()  # 掛起線程S
             return
 
         SUCCESS_ASKHEADER = client.askHeader()
@@ -313,34 +313,15 @@ class MainWindow_controller(QtWidgets.QWidget):
             label.setText(str('%.2f' % (file_size / 1024 / 1024 / 1024)) + ' TB')
 
     def StartListening(self):
-        self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用
+        self.ui.button_Startlistening.setEnabled(False)  # 開始發送 button 禁用
         self.ui.button_SelectfFile.setEnabled(False)  # 聆聽時選擇檔案 button 禁用
 
-        self.thread_ServerListening.run = self.QThread_ServerListening
-        self.thread_ServerListening.start()
+        # self.thread_ServerListening.run = self.QThread_ServerListening
+        # self.thread_ServerListening.start()
 
-    def QThread_ServerListening(self):
-        server.init()
-        server.startListening()
-
-    def StopListening(self):
-        if server.showUser() == {}:
-            self.ui.button_Startlistening.setEnabled(True)  # 開始聆聽 button 啟用
-            self.ui.button_SelectfFile.setEnabled(True)  # 結束聆聽後選擇檔案 button 啟用
-
-            self.sFileLayoutVisible(False)
-            self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop)
-            self.ui.button_Startlistening.setEnabled(False)
-
-            server.stop()
-            self.thread_ServerListening.quit()
-        else:
-            result = QMessageBox.warning(self,
-                                         '⊗警告訊息⊗',
-                                         '當前 client 端正在連接!!!\n',
-                                         QMessageBox.Ok)
-            if result == QMessageBox.Ok:
-                return
+    # def QThread_ServerListening(self):
+        # server.init()
+        # server.startListening()
 
     ### Setting -----------------------------------------------------------------------------------------------------------
 
