@@ -1,4 +1,4 @@
-import socket, pickle, os, time, pathlib, tarfile
+import socket, json, os, time, pathlib, tarfile
 
 
 """
@@ -138,13 +138,14 @@ class Client():
         print('Start checking connection status.')
 
         status = { 'code' : 100 }
-        package = pickle.dumps(status)
+        package = json.dumps(status).encode('UTF-8')
 
         try: # Ask header
             self.client.settimeout(5)
             self.client.sendall(package)
-        except:
+        except Exception as error:
             print('--reqConnection() Fail to send package to Server.')
+            print(error)
             self.stop()
             self.connection = False
             return False
@@ -158,7 +159,7 @@ class Client():
             return False
 
         self.client.settimeout(None)
-        status = pickle.loads(received_package)
+        status = json.loads(received_package.decode('UTF-8'))
 
         code = status['code']
         print(f'Server connection status {code} ok.')
@@ -197,7 +198,7 @@ class Client():
         }
 
         status = { 'code' : 110 , 'header': header}
-        package = pickle.dumps(status)
+        package = json.dumps(status).encode('UTF-8')
 
         try: # send Box header
             self.client.settimeout(5)
@@ -246,7 +247,7 @@ class Client():
             return False
 
         self.client.settimeout(None)
-        status = pickle.loads(received_package)
+        status = json.loads(received_package.decode('UTF-8'))
         # print('reqBoxSend() recv status = ', status)
 
         if status['code'] == 114: # 寄件失敗
@@ -265,7 +266,7 @@ class Client():
 
         data = {'key' : boxKey}
         status = { 'code' : 120 , 'data' : data}
-        package = pickle.dumps(status)
+        package = json.dumps(status).encode('UTF-8')
 
         try: # Ask if the Box exists
             self.client.settimeout(5)
@@ -285,7 +286,7 @@ class Client():
             return False
 
         self.client.settimeout(None)
-        status = pickle.loads(received_package)
+        status = json.loads(received_package.decode('UTF-8'))
         print('recv status = ', status)
 
         if status['code'] == 123:
@@ -310,7 +311,7 @@ class Client():
 
         data = {'key' : boxKey}
         status = { 'code' : 122 , 'data' : data}
-        package = pickle.dumps(status)
+        package = json.dumps(status).encode('UTF-8')
 
         try: # Ask if the Box exists
             self.client.settimeout(5)
@@ -347,7 +348,7 @@ class Client():
 
 
     def writeData(self, file_location): ### Don't call this
-        error_bytes = pickle.dumps({ 'code' : 124 })
+        error_bytes = json.dumps({ 'code' : 124 }).encode('UTF-8')
         self.download_progress = 0
 
         try:

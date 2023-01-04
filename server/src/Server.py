@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import socket, pickle, os, threading, random#, #pymongo
+import socket, json, os, threading, random, pymongo
 
 
 """
@@ -131,7 +131,7 @@ class Server():
             try:
                 client.settimeout(5)
                 package = client.recv(self.chunk_size)
-                status = pickle.loads(package)
+                status = json.loads(package.decode('UTF-8'))
                 print(f'status = {str(status)}')
             except:
                 print(f"Close connect client {client_address}")
@@ -158,7 +158,7 @@ class Server():
 
     def sendConnection(self, client):
         status = { 'code' : 200 }
-        package = pickle.dumps(status)
+        package = json.dumps(status).encode('UTF-8')
 
         try:
             client.sendall(package)
@@ -212,7 +212,7 @@ class Server():
             data = {'key': boxKey}
             status = { 'code' : 111 , 'data': data}
 
-        package = pickle.dumps(status)
+        package = json.dumps(status).encode('UTF-8')
 
         try:
             client.sendall(package)
@@ -248,7 +248,7 @@ class Server():
 
 
         print('searchBox() = ', status)
-        package = pickle.dumps(status)
+        package = json.dumps(status).encode('UTF-8')
 
         try:
             client.sendall(package)
@@ -277,7 +277,7 @@ class Server():
             
             else :
                 print('sendBox() boxKey not found.')
-                package = pickle.dumps(status)
+                package = json.dumps(status).encode('UTF-8')
 
                 try:
                     client.sendall(package)
@@ -286,7 +286,7 @@ class Server():
                     return False
         except:
             print('--sendBox.DB_find() dataBase errors.')
-            package = pickle.dumps(status)
+            package = json.dumps(status).encode('UTF-8')
 
             try:
                 client.sendall(package)
