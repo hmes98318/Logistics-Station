@@ -143,12 +143,15 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用 (沒有檔案)
         self.ui.button_SelectfFile.setEnabled(True)  # 選擇檔案 button 啟用
 
-        # --------------測試區域----------------------------------------
         self.sFileLayoutVisible(False)
         self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop)  # 置上對齊
         self.ui.button_Startlistening.setEnabled(False)
         self.cFileLayoutVisible(False)
         self.ui.Layout_cRequireFile.setAlignment(Qt.AlignTop)  # 置上對齊
+
+        # --------------測試區域----------------------------------------
+        self.ui.progressBar_RecevieFile.setValue(0)  # 進度條 0 
+        self.ui.progressBar_SendFile.setValue(0)
         # ------------------------------------------------------------
 
         self.thread_SendFile = QThread()  # 定義 Server 新執行序
@@ -291,7 +294,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             print(GUI, 'folder_path: ', folder_path)
             print(GUI, 'file_name: ', file_name)
             print(GUI, 'file_size: ', file_size)
-            client.packingBox(folder_path[0])
+            client.setFile(folder_path[0])
 
             self.ui.label_Filename.setText(file_name)
             self.FileSizeConvert(file_size, self.ui.label_Filesize)  # 文件大小轉換，印出
@@ -320,7 +323,15 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.thread_SendFile.start()
 
     def QThread_SendFile(self):
-        print()
+        self.ui.progressBar_SendFile.setMaximum(100)  # 進度條最大值 100
+        client.start()
+        print('[Send] reqConnection()')
+        client.reqConnection()
+        print('------------------')
+        print('[Send] reqBoxSend()')
+        client.packingBox()
+        recvKey = client.reqBoxSend()
+        print('reqBoxSend() -> recvKey :', recvKey)
 
     ### Setting -----------------------------------------------------------------------------------------------------------
 
@@ -411,6 +422,8 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.label_Filename.setVisible(flag)
         self.ui.hint_Filesize.setVisible(flag)
         self.ui.hint_Filename.setVisible(flag)
+        self.ui.hint_Sendschedule.setVisible(flag)
+        self.ui.progressBar_SendFile.setVisible(flag)
 
         self.ui.Layout_FileInfo.setEnabled(flag)
         # self.ui.Layout_Filesize.setEnabled(flag)
