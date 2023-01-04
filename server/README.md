@@ -1,4 +1,4 @@
-#  Logistics-Node 的節點伺服器配置
+#  Logistics-Station 的伺服器配置
 
 
 ## 使用 Python 部屬
@@ -38,7 +38,7 @@ python ./main.py
 
 ## 使用 Docker Compose 部屬
 
-image link : https://hub.docker.com/r/hmes98318/logistics-node
+image link : https://hub.docker.com/r/hmes98318/logistics-station
 
 ### 配置 [`docker-compose.yml`](./docker-compose.yml)
 ```yml
@@ -47,21 +47,21 @@ version: '3.8'
 services:
 
   server:
-    image: hmes98318/logistics-node:1.0.0
-    container_name: logistics-node
+    image: hmes98318/logistics-station:1.1.0
+    container_name: logistics-station
     restart: always
     ports:
       - 7000:7000
     environment:
-      - SERVER_PORT=7000    # Server 聆聽的端口位置
-      - DEPOT=/data/depot   # 掛載儲存包裹的位置
+      - SERVER_PORT=7000
+      - DEPOT=/data/depot
       - MONGO_URL=mongodb://logistics:dbpAssw0rd@db:27017/
-      - DATABASE_NAME=depot
-      - DATABASE_COLLECTION=list
-      - KEY_LENGTH=5    # 生成的取件碼長度
-      - MAX_LISTENING=10    # 最大等待連接數
+      - DATABASE_NAME=Logistics-Station
+      - DATABASE_COLLECTION=data
+      - KEY_LENGTH=5
+      - MAX_LISTENING=10
     volumes:
-      - /usr/local/logistics-node/depot:/data/depot
+      - /usr/local/logistics-station/depot:/data/depot
     depends_on:
       - db
     networks:
@@ -77,7 +77,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=logistics
       - MONGO_INITDB_ROOT_PASSWORD=dbpAssw0rd
     volumes:
-      - /usr/local/logistics-node/data/db:/data/db
+      - /usr/local/logistics-station/data/db:/data/db
     networks:
       - logistics-net
 
