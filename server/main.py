@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
 
     DB_url = os.getenv('MONGO_URL') if (os.getenv('MONGO_URL') != None ) else 'mongodb://localhost:27017'
-    DB_name = os.getenv('DATABASE_NAME') if (os.getenv('DATABASE_NAME') != None ) else 'Logistics-Node'
+    DB_name = os.getenv('DATABASE_NAME') if (os.getenv('DATABASE_NAME') != None ) else 'Logistics-Station'
     DB_col = os.getenv('DATABASE_COLLECTION') if (os.getenv('DATABASE_COLLECTION') != None ) else 'data'
 
     key_len = os.getenv('KEY_LENGTH') if (os.getenv('KEY_LENGTH') != None ) else 5
