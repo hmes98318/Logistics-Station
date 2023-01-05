@@ -311,14 +311,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             print(GUI, '沒有選檔案@w@, 或是檔案類型錯誤')
 
     def FileSizeConvert(self, file_size, label: QtWidgets.QLabel):
-        if file_size < 1024:
-            label.setText(str('%.2f' % file_size) + ' KB')
-        elif file_size < 1024 * 1024:
-            label.setText(str('%.2f' % (file_size / 1024)) + ' MB')
-        elif file_size < 1024 * 1024 * 1024:
-            label.setText(str('%.2f' % (file_size / 1024 / 1024)) + ' GB')
-        else:
-            label.setText(str('%.2f' % (file_size / 1024 / 1024 / 1024)) + ' TB')
+        label.setText(sizeConverter(file_size))
 
     def StartListening(self):
         self.ui.button_Startlistening.setEnabled(False)  # 開始發送 button 禁用
@@ -482,11 +475,14 @@ class MainWindow_controller(QtWidgets.QWidget):
         Other3.setStyleSheet(otherPage_StyleSheet)
 
 
-"""
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    LoginWindow = LoginWindow_controller()
 
-    LoginWindow.show()
-    sys.exit(app.exec_())
-"""
+
+def sizeConverter(file_size):
+    if file_size < 1024:
+        return (str('%.2f' % file_size) + ' KB')
+    elif file_size < 1024 * 1024:
+        return (str('%.2f' % (file_size / 1024)) + ' MB')
+    elif file_size < 1024 * 1024 * 1024:
+        return (str('%.2f' % (file_size / 1024 / 1024)) + ' GB')
+    else:
+        return (str('%.2f' % (file_size / 1024 / 1024 / 1024)) + ' TB')
