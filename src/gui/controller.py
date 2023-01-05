@@ -126,7 +126,7 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
 class MainWindow_controller(QtWidgets.QWidget):
     DownloadProgressBarUpdate = pyqtSignal()  # 初始化自訂義信號槽
     UploadProgressBarUpdate = pyqtSignal()
-    recvkeylist = []
+    recvKeyList = []
 
     def __init__(self):
         # in python3, super(Class, self).xxx = super().xxx
@@ -297,6 +297,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             client.setFile(folder_path[0])
 
             self.ui.label_Filename.setText(file_name)
+            self.ui.progressBar_SendFile.setValue(0) #進度條歸0
             self.FileSizeConvert(file_size, self.ui.label_Filesize)  # 文件大小轉換，印出
 
             self.ui.button_Startlistening.setEnabled(True)
@@ -309,15 +310,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         label.setText(sizeConverter(file_size))
 
     def StartListening(self):
-        self.ui.button_Startlistening.setEnabled(False)  # 開始發送 button 禁用
-        self.ui.button_SelectfFile.setEnabled(False)  # 聆聽時選擇檔案 button 禁用
-
-        self.thread_SendFile.run = self.QThread_SendFile
-        self.thread_SendFile.start()
-
-    def QThread_SendFile(self):
         self.ui.progressBar_SendFile.setMaximum(100)  # 進度條最大值 100
-        self.ui.progressBar_SendFile.setValue(0) #進度條歸0
         self.ui.progressBar_SendFile.setStyleSheet("#progressBar_SendFile{\n"
                                                     "border: 2px solid #000;\n"
                                                     "border-radius: 10px;\n"
@@ -327,36 +320,68 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                     "background-color: rgb(170, 170, 255);\n"
                                                     "border-radius: 8px;\n"
                                                     "}") # 進度條顏色
-        client.start()
-        print('[Send] reqConnection()')
-        client.reqConnection()
+        self.ui.button_Startlistening.setEnabled(False)  # 開始發送 button 禁用
+        self.ui.button_SelectfFile.setEnabled(False)  # 聆聽時選擇檔案 button 禁用
+
+        self.thread_SendFile.run = self.QThread_SendFile
+        self.thread_SendFile.start()
+
+    def QThread_SendFile(self):
+        self.sFileLayoutVisible(True)
+        self.ui.button_Startlistening.setEnabled(True)
+
         print('------------------')
+        print('[Send] start()')
+        self.ui.button_Startlistening.setText('連接Server...')
+        SUCCESS_START = client.start()
+        if SUCCESS_START == False:
+            print(GUI, '--Client connection fail.')
+            self.ui.button_Startlistening.setEnabled(True)
+            self.ui.button_SelectfFile.setEnabled(True)
+            self.ui.button_Startlistening.setText('連接失敗')
+            self.thread_SendFile.quit()  # 掛起線程
+            return
+
+        print('[Send] packingBox()')
+        self.ui.button_Startlistening.setText('打包檔案中...')
+        SUCCESS_PACKBOX = client.packingBox()
+        if SUCCESS_PACKBOX == False:
+            print(GUI, '--Client connection fail.')
+            self.ui.button_Startlistening.setEnabled(True)
+            self.ui.button_SelectfFile.setEnabled(True)
+            self.ui.button_Startlistening.setText('打包失敗')
+            self.thread_SendFile.quit()  # 掛起線程
+            return
+
         print('[Send] reqBoxSend()')
-        client.packingBox()
+        self.ui.button_Startlistening.setText('發送包裹中...')
         recvKey = client.reqBoxSend(self.UploadProgressBarUpdate)
         print('reqBoxSend() -> recvKey :', recvKey)
 
         ### 取件碼顯示 -------------------------------------------
         if recvKey == False:
-            recvKey = '寄件失敗'
-        self.recvkeylist.append(str('  ' + recvKey + '\t\t\t檔案大小 : ' + sizeConverter(client.tar_size / 1024)))
+            self.recvKeyList.append('\t寄件失敗')
+        else:
+            # tar_size 算出來最小都 10KB 起跳 我也不知為啥 client.py 的寫法跟 self.SelectSendFile() 的一樣 說不定是打包成tar後的鍋 反正能動先不管了
+            self.recvKeyList.append(str('\t' + recvKey + '\t\t\t檔案大小 : ' + sizeConverter(client.tar_size / 1024)))
 
         self.ui.listWidget_Sendpackage.clear()
-        self.ui.listWidget_Sendpackage.addItems(self.recvkeylist)
+        self.ui.listWidget_Sendpackage.addItems(self.recvKeyList)
         ### -----------------------------------------------------
 
         client.stop()
 
-        self.ui.button_Startlistening.setEnabled(True) #  # 開始發送 button 啟用
+        self.ui.button_Startlistening.setText('發送包裹') # 傳送完成了按鈕重置
+        self.ui.button_Startlistening.setEnabled(True) # 開始發送 button 啟用
         self.ui.button_SelectfFile.setEnabled(True)  # 選擇檔案 button 啟用
-
         self.thread_SendFile.quit()  # 掛起線程
-    
+
     def UpdataprogressBar_SendFile(self):
         progress = int(client.showUploadProgress())
-        print('progress:',str(progress))
-        
-        if progress >= 99:
+        #print('progress:',str(progress))
+
+        if progress > 99:
+            self.ui.button_Startlistening.setText('接收取件碼中...')
             self.ui.progressBar_SendFile.setStyleSheet("#progressBar_SendFile{\n"
                                                     "border: 2px solid #000;\n"
                                                     "border-radius: 10px;\n"
