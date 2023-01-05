@@ -782,7 +782,7 @@ border-color: rgb(62, 127, 177);
 background-color: rgba(85, 170, 255, 100);</string>
          </property>
          <property name="flow">
-          <enum>QListView::LeftToRight</enum>
+          <enum>QListView::TopToBottom</enum>
          </property>
         </widget>
        </item>

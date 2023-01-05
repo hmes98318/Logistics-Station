@@ -330,7 +330,7 @@ class Ui_MainWindow(object):
         self.listWidget_Sendpackage.setStyleSheet("border-radius: 10px;\n"
 "border-color: rgb(62, 127, 177);\n"
 "background-color: rgba(85, 170, 255, 100);")
-        self.listWidget_Sendpackage.setFlow(QtWidgets.QListView.LeftToRight)
+        self.listWidget_Sendpackage.setFlow(QtWidgets.QListView.TopToBottom)
         self.listWidget_Sendpackage.setObjectName("listWidget_Sendpackage")
         self.Layout_SelectFile.addWidget(self.listWidget_Sendpackage)
         self.stackedWidget.addWidget(self.Server)
