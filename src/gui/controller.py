@@ -25,7 +25,7 @@ client = Client()
 # server = Server()
 
 GUI = 'GUI:'
-
+DEFAULT_SAVE_DIR = f'{os.path.dirname(__file__)}/save'.replace('\\','/') # .\foo\bar -> ./foo/bar
 
 # LoginWindow 登入畫面
 class LoginWindow_controller(QtWidgets.QMainWindow):
@@ -146,7 +146,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         #self.ui.button_Client.setEnabled(False)  # 未設定 IP 和 Port 時禁用
         #self.ui.button_Server.setEnabled(False)  # 未設定 IP 和 Port 時禁用
 
-        self.ui.input_ShowSavepath.setText('x')
+        self.ui.input_ShowSavepath.setText(DEFAULT_SAVE_DIR) # 預設路徑
         self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用 (沒有檔案)
         self.ui.button_SelectfFile.setEnabled(True)  # 選擇檔案 button 啟用
 
@@ -412,7 +412,7 @@ class MainWindow_controller(QtWidgets.QWidget):
                 input_clientPort = int(self.ui.input_clientPort.text())
                 client.setHost(input_clientIP, input_clientPort)
                 return
-                '''if self.ui.input_ShowSavepath.text() == 'x':
+                '''if self.ui.input_ShowSavepath.text() == DEFAULT_SAVE_DIR:
                     QMessageBox.warning(self,
                                         '警告訊息',
                                         '請選擇保存路徑!\n',
@@ -444,7 +444,7 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                        './')  # start path
 
         client.setSaveFolder(folder_path)  # 設置 client 儲存路徑
-        # print(GUI, folder_path)
+        print(GUI, 'setSaveFolder() =', folder_path)
         self.ui.input_ShowSavepath.setText(folder_path)
 
     ### User -----------------------------------------------------------------------------------------------------------
