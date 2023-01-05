@@ -126,6 +126,7 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
 class MainWindow_controller(QtWidgets.QWidget):
     DownloadProgressBarUpdate = pyqtSignal()  # 初始化自訂義信號槽
     UploadProgressBarUpdate = pyqtSignal()
+    recvkeylist = []
 
     def __init__(self):
         # in python3, super(Class, self).xxx = super().xxx
@@ -135,6 +136,9 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.setup_control()
 
         self.ui.stackedWidget.setCurrentIndex(2)  # 登入成功後初始介面為 Setting
+        self.ui.input_clientIP.setText('proxy.ggwp.tw')
+        self.ui.input_clientPort.setText('7000')
+
         self.ui.button_Setting.setStyleSheet('background-color: rgb(255, 255, 255);;'
                                              'border-radius: 10px;')  # 更改顏色
         self.ui.button_Client.setEnabled(False)  # 未設定 IP 和 Port 時禁用
@@ -275,7 +279,6 @@ class MainWindow_controller(QtWidgets.QWidget):
 
     def SwitchToServerPage(self):
         self.ui.stackedWidget.setCurrentIndex(1)  # 切換 Stack Widget 到 (索引值 1 / Server) 頁
-
         # 顏色轉換
         self.button_setStyleSheet(self.ui.button_Server,
                                   self.ui.button_Client,
@@ -334,8 +337,22 @@ class MainWindow_controller(QtWidgets.QWidget):
         client.packingBox()
         recvKey = client.reqBoxSend(self.UploadProgressBarUpdate)
         print('reqBoxSend() -> recvKey :', recvKey)
+
+        ### 取件碼顯示 -------------------------------------------
+        if recvKey == False:
+            recvKey = '寄件失敗'
+        self.recvkeylist.append(str('    ' + recvKey + ' 檔案大小 : ' + str(client.tar_size)))
+
+        self.ui.listWidget_Sendpackage.clear()
+        self.ui.listWidget_Sendpackage.addItems(self.recvkeylist)
+        ### -----------------------------------------------------
+
         client.stop()
-        self.thread_SendFile.quit()
+
+        self.ui.button_Startlistening.setEnabled(True) #  # 開始發送 button 啟用
+        self.ui.button_SelectfFile.setEnabled(True)  # 選擇檔案 button 啟用
+
+        self.thread_SendFile.quit()  # 掛起線程
     
     def UpdataprogressBar_SendFile(self):
         self.ui.progressBar_SendFile.setValue(int(client.showUploadProgress()))  # 增加進度條
