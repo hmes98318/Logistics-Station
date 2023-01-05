@@ -322,6 +322,16 @@ class MainWindow_controller(QtWidgets.QWidget):
 
     def QThread_SendFile(self):
         self.ui.progressBar_SendFile.setMaximum(100)  # 進度條最大值 100
+        self.ui.progressBar_SendFile.setValue(0) #進度條歸0
+        self.ui.progressBar_SendFile.setStyleSheet("#progressBar_SendFile{\n"
+                                                    "border: 2px solid #000;\n"
+                                                    "border-radius: 10px;\n"
+                                                    "text-align:center;\n"
+                                                    "}\n"
+                                                    "#progressBar_SendFile::chunk { \n"
+                                                    "background-color: rgb(170, 170, 255);\n"
+                                                    "border-radius: 8px;\n"
+                                                    "}") # 進度條顏色
         client.start()
         print('[Send] reqConnection()')
         client.reqConnection()
@@ -334,7 +344,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         ### 取件碼顯示 -------------------------------------------
         if recvKey == False:
             recvKey = '寄件失敗'
-        self.recvkeylist.append(str('    ' + recvKey + ' 檔案大小 : ' + str(client.tar_size)))
+        self.recvkeylist.append(str('  ' + recvKey + '\t\t\t檔案大小 : ' + sizeConverter(client.tar_size)))
 
         self.ui.listWidget_Sendpackage.clear()
         self.ui.listWidget_Sendpackage.addItems(self.recvkeylist)
@@ -348,7 +358,21 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.thread_SendFile.quit()  # 掛起線程
     
     def UpdataprogressBar_SendFile(self):
-        self.ui.progressBar_SendFile.setValue(int(client.showUploadProgress()))  # 增加進度條
+        progress = int(client.showUploadProgress())
+        print('progress:',str(progress))
+        
+        if progress >= 99:
+            self.ui.progressBar_SendFile.setStyleSheet("#progressBar_SendFile{\n"
+                                                    "border: 2px solid #000;\n"
+                                                    "border-radius: 10px;\n"
+                                                    "text-align:center;\n"
+                                                    "}\n"
+                                                    "#progressBar_SendFile::chunk { \n"
+                                                    "background-color: rgb(0, 217, 0);\n"
+                                                    "border-radius: 8px;\n"
+                                                    "}")
+        """"""
+        self.ui.progressBar_SendFile.setValue(progress) # 增加進度條
 
     ### Setting -----------------------------------------------------------------------------------------------------------
 
