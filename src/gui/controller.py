@@ -344,7 +344,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         ### 取件碼顯示 -------------------------------------------
         if recvKey == False:
             recvKey = '寄件失敗'
-        self.recvkeylist.append(str('  ' + recvKey + '\t\t\t檔案大小 : ' + sizeConverter(client.tar_size)))
+        self.recvkeylist.append(str('  ' + recvKey + '\t\t\t檔案大小 : ' + sizeConverter(client.tar_size / 1024)))
 
         self.ui.listWidget_Sendpackage.clear()
         self.ui.listWidget_Sendpackage.addItems(self.recvkeylist)
