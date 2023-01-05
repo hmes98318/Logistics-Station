@@ -320,15 +320,19 @@ class Ui_MainWindow(object):
         self.button_SelectfFile.setText("")
         self.button_SelectfFile.setObjectName("button_SelectfFile")
         self.Layout_SelectFile.addWidget(self.button_SelectfFile)
-        self.listView_Sendpackage = QtWidgets.QListView(self.verticalLayoutWidget_4)
+        self.listWidget_Sendpackage = QtWidgets.QListWidget(self.verticalLayoutWidget_4)
         font = QtGui.QFont()
-        font.setFamily("標楷體")
-        font.setPointSize(11)
-        self.listView_Sendpackage.setFont(font)
-        self.listView_Sendpackage.setStyleSheet("border-radius: 10px;\n"
-"background-color: rgba(13, 95, 160, 200);")
-        self.listView_Sendpackage.setObjectName("listView_Sendpackage")
-        self.Layout_SelectFile.addWidget(self.listView_Sendpackage)
+        font.setFamily("Consolas")
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setWeight(50)
+        self.listWidget_Sendpackage.setFont(font)
+        self.listWidget_Sendpackage.setStyleSheet("border-radius: 10px;\n"
+"border-color: rgb(62, 127, 177);\n"
+"background-color: rgba(85, 170, 255, 100);")
+        self.listWidget_Sendpackage.setFlow(QtWidgets.QListView.LeftToRight)
+        self.listWidget_Sendpackage.setObjectName("listWidget_Sendpackage")
+        self.Layout_SelectFile.addWidget(self.listWidget_Sendpackage)
         self.stackedWidget.addWidget(self.Server)
         self.Setting = QtWidgets.QWidget()
         self.Setting.setObjectName("Setting")
@@ -508,7 +512,7 @@ class Ui_MainWindow(object):
         self.layout_MainControll.addWidget(self.MainClose)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

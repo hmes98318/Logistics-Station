@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -767,16 +767,22 @@ border-radius: 10px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QListView" name="listView_Sendpackage">
+        <widget class="QListWidget" name="listWidget_Sendpackage">
          <property name="font">
           <font>
-           <family>標楷體</family>
-           <pointsize>11</pointsize>
+           <family>Consolas</family>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="styleSheet">
           <string notr="true">border-radius: 10px;
-background-color: rgba(13, 95, 160, 200);</string>
+border-color: rgb(62, 127, 177);
+background-color: rgba(85, 170, 255, 100);</string>
+         </property>
+         <property name="flow">
+          <enum>QListView::LeftToRight</enum>
          </property>
         </widget>
        </item>
