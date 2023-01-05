@@ -256,7 +256,7 @@ class MainWindow_controller(QtWidgets.QWidget):
 
 
     def DownloadFile(self):
-        self.thread_ClientReceiveFile.run = self.QThread_DownloadingFile()
+        self.thread_ClientReceiveFile.run = self.QThread_DownloadingFile
         self.thread_ClientReceiveFile.start()
 
     def QThread_DownloadingFile(self):
@@ -312,7 +312,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_Startlistening.setEnabled(False)  # 開始發送 button 禁用
         self.ui.button_SelectfFile.setEnabled(False)  # 聆聽時選擇檔案 button 禁用
 
-        self.thread_SendFile.run = self.QThread_SendFile()
+        self.thread_SendFile.run = self.QThread_SendFile
         self.thread_SendFile.start()
 
     def QThread_SendFile(self):
