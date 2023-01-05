@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -297,6 +297,69 @@ border-radius: 15px;}</string>
        <property name="spacing">
         <number>10</number>
        </property>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLineEdit" name="input_PickupNumber">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>20</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius: 10px;
+background-color: rgba(13, 95, 160, 100);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="placeholderText">
+            <string>請輸入取件碼</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="button_RequireFile">
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>微軟正黑體</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius: 10px;
+color: rgb(170, 255, 255);
+background-color: rgba(13, 95, 160, 200);</string>
+           </property>
+           <property name="text">
+            <string>取件✔</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
        <item>
         <layout class="QHBoxLayout" name="Layout_cFileInfo">
          <property name="spacing">
@@ -387,6 +450,13 @@ border-radius: 15px;}</string>
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="button_DownloadFile">
+           <property name="text">
+            <string>Download</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
@@ -446,69 +516,6 @@ border-radius: 8px;
            </property>
            <property name="value">
             <number>24</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLineEdit" name="input_PickupNumber">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Consolas</family>
-             <pointsize>20</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border-radius: 10px;
-background-color: rgba(13, 95, 160, 100);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-           <property name="placeholderText">
-            <string>請輸入取件碼</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="button_RequireFile">
-           <property name="minimumSize">
-            <size>
-             <width>200</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>200</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>微軟正黑體</family>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border-radius: 10px;
-color: rgb(170, 255, 255);
-background-color: rgba(13, 95, 160, 200);</string>
-           </property>
-           <property name="text">
-            <string>取件✔</string>
            </property>
           </widget>
          </item>

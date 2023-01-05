@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\MSI GP65\Documents\GitHub\ftpy\src\gui\MainWindow.ui'
+# Form implementation generated from reading ui file 'MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -110,6 +110,33 @@ class Ui_MainWindow(object):
         self.Layout_cRequireFile.setContentsMargins(0, 0, 0, 0)
         self.Layout_cRequireFile.setSpacing(10)
         self.Layout_cRequireFile.setObjectName("Layout_cRequireFile")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.input_PickupNumber = QtWidgets.QLineEdit(self.verticalLayoutWidget_5)
+        self.input_PickupNumber.setMinimumSize(QtCore.QSize(0, 50))
+        font = QtGui.QFont()
+        font.setFamily("Consolas")
+        font.setPointSize(20)
+        self.input_PickupNumber.setFont(font)
+        self.input_PickupNumber.setStyleSheet("border-radius: 10px;\n"
+"background-color: rgba(13, 95, 160, 100);")
+        self.input_PickupNumber.setText("")
+        self.input_PickupNumber.setAlignment(QtCore.Qt.AlignCenter)
+        self.input_PickupNumber.setObjectName("input_PickupNumber")
+        self.horizontalLayout.addWidget(self.input_PickupNumber)
+        self.button_RequireFile = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
+        self.button_RequireFile.setMinimumSize(QtCore.QSize(200, 50))
+        self.button_RequireFile.setMaximumSize(QtCore.QSize(200, 50))
+        font = QtGui.QFont()
+        font.setFamily("微軟正黑體")
+        font.setPointSize(12)
+        self.button_RequireFile.setFont(font)
+        self.button_RequireFile.setStyleSheet("border-radius: 10px;\n"
+"color: rgb(170, 255, 255);\n"
+"background-color: rgba(13, 95, 160, 200);")
+        self.button_RequireFile.setObjectName("button_RequireFile")
+        self.horizontalLayout.addWidget(self.button_RequireFile)
+        self.Layout_cRequireFile.addLayout(self.horizontalLayout)
         self.Layout_cFileInfo = QtWidgets.QHBoxLayout()
         self.Layout_cFileInfo.setSpacing(0)
         self.Layout_cFileInfo.setObjectName("Layout_cFileInfo")
@@ -150,6 +177,9 @@ class Ui_MainWindow(object):
         self.label_cFilesize.setAlignment(QtCore.Qt.AlignCenter)
         self.label_cFilesize.setObjectName("label_cFilesize")
         self.Layout_cFileInfo.addWidget(self.label_cFilesize)
+        self.button_DownloadFile = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
+        self.button_DownloadFile.setObjectName("button_DownloadFile")
+        self.Layout_cFileInfo.addWidget(self.button_DownloadFile)
         self.Layout_cRequireFile.addLayout(self.Layout_cFileInfo)
         self.Layout_schedule = QtWidgets.QHBoxLayout()
         self.Layout_schedule.setSpacing(0)
@@ -183,33 +213,6 @@ class Ui_MainWindow(object):
         self.progressBar_RecevieFile.setObjectName("progressBar_RecevieFile")
         self.Layout_schedule.addWidget(self.progressBar_RecevieFile)
         self.Layout_cRequireFile.addLayout(self.Layout_schedule)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.input_PickupNumber = QtWidgets.QLineEdit(self.verticalLayoutWidget_5)
-        self.input_PickupNumber.setMinimumSize(QtCore.QSize(0, 50))
-        font = QtGui.QFont()
-        font.setFamily("Consolas")
-        font.setPointSize(20)
-        self.input_PickupNumber.setFont(font)
-        self.input_PickupNumber.setStyleSheet("border-radius: 10px;\n"
-"background-color: rgba(13, 95, 160, 100);")
-        self.input_PickupNumber.setText("")
-        self.input_PickupNumber.setAlignment(QtCore.Qt.AlignCenter)
-        self.input_PickupNumber.setObjectName("input_PickupNumber")
-        self.horizontalLayout.addWidget(self.input_PickupNumber)
-        self.button_RequireFile = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
-        self.button_RequireFile.setMinimumSize(QtCore.QSize(200, 50))
-        self.button_RequireFile.setMaximumSize(QtCore.QSize(200, 50))
-        font = QtGui.QFont()
-        font.setFamily("微軟正黑體")
-        font.setPointSize(12)
-        self.button_RequireFile.setFont(font)
-        self.button_RequireFile.setStyleSheet("border-radius: 10px;\n"
-"color: rgb(170, 255, 255);\n"
-"background-color: rgba(13, 95, 160, 200);")
-        self.button_RequireFile.setObjectName("button_RequireFile")
-        self.horizontalLayout.addWidget(self.button_RequireFile)
-        self.Layout_cRequireFile.addLayout(self.horizontalLayout)
         self.label_spacer3_2 = QtWidgets.QLabel(self.Client)
         self.label_spacer3_2.setGeometry(QtCore.QRect(160, 190, 12, 45))
         self.label_spacer3_2.setMinimumSize(QtCore.QSize(12, 0))
@@ -512,7 +515,7 @@ class Ui_MainWindow(object):
         self.layout_MainControll.addWidget(self.MainClose)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -524,11 +527,12 @@ class Ui_MainWindow(object):
 " Package"))
         self.button_Setting.setText(_translate("MainWindow", "Setting"))
         self.button_User.setText(_translate("MainWindow", "User"))
-        self.hint_cFilename.setText(_translate("MainWindow", "文件名:"))
-        self.hint_cFileize.setText(_translate("MainWindow", "檔案大小:"))
-        self.hint_schedule.setText(_translate("MainWindow", "進度  "))
         self.input_PickupNumber.setPlaceholderText(_translate("MainWindow", "請輸入取件碼"))
         self.button_RequireFile.setText(_translate("MainWindow", "取件✔"))
+        self.hint_cFilename.setText(_translate("MainWindow", "文件名:"))
+        self.hint_cFileize.setText(_translate("MainWindow", "檔案大小:"))
+        self.button_DownloadFile.setText(_translate("MainWindow", "Download"))
+        self.hint_schedule.setText(_translate("MainWindow", "進度  "))
         self.button_Startlistening.setText(_translate("MainWindow", "發送包裹"))
         self.hint_Filename.setText(_translate("MainWindow", "檔案名稱:"))
         self.label_Filename.setText(_translate("MainWindow", "NOfile"))
@@ -541,3 +545,4 @@ class Ui_MainWindow(object):
         self.hint_clientPort.setText(_translate("MainWindow", "Port(0~65535) :"))
         self.hint_saveFolderPath.setText(_translate("MainWindow", "存檔位置 :"))
         self.label_4.setText(_translate("MainWindow", "User"))
+
