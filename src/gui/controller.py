@@ -251,9 +251,9 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         boxKey = self.ui.input_PickupNumber.text()
         print('------------------')
-        print('[Recv] start()')
+        print('[Recv] checkConnection()')
         self.ui.button_RequireFile.setText('正在連接Server...')
-        SUCCESS_START = client.start()
+        SUCCESS_START = checkConnection()
         if SUCCESS_START == False:
             print('[Recv] --Client connection fail.')
             self.ui.button_RequireFile.setText('連接失敗，重試')
@@ -303,16 +303,26 @@ class MainWindow_controller(QtWidgets.QWidget):
     def QThread_DownloadingFile(self):
         #self.cFileLayoutVisible(False)  # 清空 client layout 避免要重複下載 連接時還顯示著上一個 header
 
-        #client.start()
         boxKey = self.ui.input_PickupNumber.text()
         print('------------------')
+        print('[Recv] checkConnection()')
+        SUCCESS_START = checkConnection()
+        if SUCCESS_START == False:
+            print('[Recv] --Client connection fail.')
+            self.ui.button_RequireFile.setText('連接失敗，重試')
+            self.ui.button_DownloadFile.setEnabled(True)
+            self.ui.button_RequireFile.setEnabled(True)
+            self.thread_ClientReceiveFile.quit()  # 掛起線程
+            return
+
         print('[Recv] reqBoxRecv()')
         client.reqBoxRecv(boxKey, self.DownloadProgressBarUpdate)
-        #client.stop()
+
+        client.stop()
 
         self.ui.button_DownloadFile.setEnabled(True) # 下載結束 button 解鎖
         self.ui.button_RequireFile.setEnabled(True)
-        self.thread_ClientReceiveHeader.quit()  # 掛起線程
+        self.thread_ClientReceiveFile.quit()  # 掛起線程
 
     def UpdataProgressBar_ReceiveFile(self):
         progress = int(client.showDownloadProgress())
@@ -391,9 +401,9 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_Startlistening.setEnabled(True)
 
         print('------------------')
-        print('[Send] start()')
+        print('[Send] checkConnection()')
         self.ui.button_Startlistening.setText('連接Server...')
-        SUCCESS_START = client.start()
+        SUCCESS_START = checkConnection()
         if SUCCESS_START == False:
             print(GUI, '--Client connection fail.')
             self.ui.button_Startlistening.setEnabled(True)
@@ -582,6 +592,19 @@ class MainWindow_controller(QtWidgets.QWidget):
         Other3.setStyleSheet(otherPage_StyleSheet)
 
 
+
+# 檢查Server連接 沒連接就重連
+def checkConnection():
+    CONNECT = client.showConnection()
+    if CONNECT == False:
+        try:
+            SUCCESS_START = client.start()
+            if SUCCESS_START == False:
+                return False
+        except:
+            return False
+        return True
+    return True
 
 
 def sizeConverter(file_size):
