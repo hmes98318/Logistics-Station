@@ -246,7 +246,6 @@ class MainWindow_controller(QtWidgets.QWidget):
     ### Client 取件碼要求 header --------------------------------
     def ClientRequireFile(self):
         self.ui.progressBar_RecevieFile.setMaximum(100) # 進度條最大值 100
-        self.ui.progressBar_RecevieFile.setValue(0) # 進度條歸0
         self.cFileLayoutVisible(False) # 清空 client layout 避免要重複下載 連接時還顯示著上一個 header
         self.cFileDownloadVisible(False)
         self.ui.button_RequireFile.setEnabled(False) # 查詢包裹 button 禁用
@@ -308,6 +307,7 @@ class MainWindow_controller(QtWidgets.QWidget):
     ### Client 取件碼下載檔案 --------------------------------
     def DownloadFile(self):
         self.cFileDownloadVisible(True) # 按下下載後顯示下載進度條
+        self.ui.progressBar_RecevieFile.setValue(0) # 進度條歸0
         self.ui.progressBar_RecevieFile.setStyleSheet("#progressBar_RecevieFile{\n"
                                                     "border: 2px solid #000;\n"
                                                     "border-radius: 10px;\n"
@@ -333,6 +333,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         if SUCCESS_START == False:
             print('[Recv] --Client connection fail.')
             self.ui.button_DownloadFile.setText('下載失敗，重試')
+            self.cFileDownloadVisible(False)
             self.ui.button_RequireFile.setEnabled(True)
             self.ui.button_DownloadFile.setEnabled(True)
             self.thread_ClientReceiveFile.quit() # 掛起線程
@@ -343,6 +344,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         if SUCCESS_RECV == False:
             print('[Recv] --reqBoxRecv() failed.')
             self.ui.button_DownloadFile.setText('下載失敗，重試')
+            self.cFileDownloadVisible(False)
             self.ui.button_RequireFile.setEnabled(True)
             self.ui.button_DownloadFile.setEnabled(True)
             self.thread_ClientReceiveFile.quit() # 掛起線程
@@ -632,15 +634,24 @@ class MainWindow_controller(QtWidgets.QWidget):
 
 # 檢查Server連接 沒連接就重連
 def checkConnection():
-    CONNECT = client.showConnection()
-    if CONNECT == False:
+    try:
+        CONNECT = client.reqConnection()
+        if CONNECT == False:
+            try:
+                SUCCESS_START = client.start()
+                if SUCCESS_START == False:
+                    return False
+                return True
+            except:
+                return True
+    except:
         try:
             SUCCESS_START = client.start()
             if SUCCESS_START == False:
                 return False
+            return True
         except:
-            return False
-        return True
+            return True
     return True
 
 
