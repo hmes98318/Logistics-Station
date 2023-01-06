@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -354,7 +354,7 @@ color: rgb(170, 255, 255);
 background-color: rgba(13, 95, 160, 200);</string>
            </property>
            <property name="text">
-            <string>取件✔</string>
+            <string>查詢包裹</string>
            </property>
           </widget>
          </item>
@@ -452,6 +452,17 @@ background-color: rgba(13, 95, 160, 200);</string>
          </item>
          <item>
           <widget class="QPushButton" name="button_DownloadFile">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius: 10px;
+color: rgb(170, 255, 255);
+background-color: rgba(13, 95, 160, 200);</string>
+           </property>
            <property name="text">
             <string>Download</string>
            </property>
@@ -553,10 +564,10 @@ border-radius: 8px;
      <widget class="QPushButton" name="button_Startlistening">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>600</y>
-        <width>101</width>
-        <height>41</height>
+        <x>20</x>
+        <y>570</y>
+        <width>731</width>
+        <height>71</height>
        </rect>
       </property>
       <property name="font">
@@ -774,11 +785,34 @@ border-radius: 10px;</string>
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="button_SelectfFolder">
+         <property name="minimumSize">
+          <size>
+           <width>730</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>730</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-radius: 10px;
+background-color: rgb(85, 170, 255);</string>
+         </property>
+         <property name="text">
+          <string>選擇資料夾</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QListWidget" name="listWidget_Sendpackage">
          <property name="font">
           <font>
            <family>Consolas</family>
-           <pointsize>12</pointsize>
+           <pointsize>15</pointsize>
            <weight>50</weight>
            <bold>false</bold>
           </font>

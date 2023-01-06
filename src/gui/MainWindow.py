@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainWindow.ui'
+# Form implementation generated from reading ui file 'c:\Users\MSI GP65\Documents\GitHub\ftpy\src\gui\MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -178,6 +178,10 @@ class Ui_MainWindow(object):
         self.label_cFilesize.setObjectName("label_cFilesize")
         self.Layout_cFileInfo.addWidget(self.label_cFilesize)
         self.button_DownloadFile = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
+        self.button_DownloadFile.setMaximumSize(QtCore.QSize(200, 50))
+        self.button_DownloadFile.setStyleSheet("border-radius: 10px;\n"
+"color: rgb(170, 255, 255);\n"
+"background-color: rgba(13, 95, 160, 200);")
         self.button_DownloadFile.setObjectName("button_DownloadFile")
         self.Layout_cFileInfo.addWidget(self.button_DownloadFile)
         self.Layout_cRequireFile.addLayout(self.Layout_cFileInfo)
@@ -223,7 +227,7 @@ class Ui_MainWindow(object):
         self.Server = QtWidgets.QWidget()
         self.Server.setObjectName("Server")
         self.button_Startlistening = QtWidgets.QPushButton(self.Server)
-        self.button_Startlistening.setGeometry(QtCore.QRect(650, 600, 101, 41))
+        self.button_Startlistening.setGeometry(QtCore.QRect(20, 570, 731, 71))
         font = QtGui.QFont()
         font.setFamily("標楷體")
         font.setPointSize(12)
@@ -323,10 +327,17 @@ class Ui_MainWindow(object):
         self.button_SelectfFile.setText("")
         self.button_SelectfFile.setObjectName("button_SelectfFile")
         self.Layout_SelectFile.addWidget(self.button_SelectfFile)
+        self.button_SelectfFolder = QtWidgets.QPushButton(self.verticalLayoutWidget_4)
+        self.button_SelectfFolder.setMinimumSize(QtCore.QSize(730, 100))
+        self.button_SelectfFolder.setMaximumSize(QtCore.QSize(730, 100))
+        self.button_SelectfFolder.setStyleSheet("border-radius: 10px;\n"
+"background-color: rgb(85, 170, 255);")
+        self.button_SelectfFolder.setObjectName("button_SelectfFolder")
+        self.Layout_SelectFile.addWidget(self.button_SelectfFolder)
         self.listWidget_Sendpackage = QtWidgets.QListWidget(self.verticalLayoutWidget_4)
         font = QtGui.QFont()
         font.setFamily("Consolas")
-        font.setPointSize(12)
+        font.setPointSize(15)
         font.setBold(False)
         font.setWeight(50)
         self.listWidget_Sendpackage.setFont(font)
@@ -515,7 +526,7 @@ class Ui_MainWindow(object):
         self.layout_MainControll.addWidget(self.MainClose)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -531,7 +542,7 @@ class Ui_MainWindow(object):
         self.button_RequireFile.setText(_translate("MainWindow", "查詢包裹"))
         self.hint_cFilename.setText(_translate("MainWindow", "文件名:"))
         self.hint_cFileize.setText(_translate("MainWindow", "檔案大小:"))
-        self.button_DownloadFile.setText(_translate("MainWindow", "下載"))
+        self.button_DownloadFile.setText(_translate("MainWindow", "Download"))
         self.hint_schedule.setText(_translate("MainWindow", "進度  "))
         self.button_Startlistening.setText(_translate("MainWindow", "發送包裹"))
         self.hint_Filename.setText(_translate("MainWindow", "檔案名稱:"))
@@ -539,10 +550,10 @@ class Ui_MainWindow(object):
         self.hint_Filesize.setText(_translate("MainWindow", "檔案大小:"))
         self.label_Filesize.setText(_translate("MainWindow", "0 mb"))
         self.hint_Sendschedule.setText(_translate("MainWindow", "進度  "))
+        self.button_SelectfFolder.setText(_translate("MainWindow", "選擇資料夾"))
         self.button_SettingSave.setText(_translate("MainWindow", "儲存設定"))
-        self.groupBox_client.setTitle(_translate("MainWindow", "伺服器設定"))
-        self.hint_clientIP.setText(_translate("MainWindow", "伺服器位置 :"))
+        self.groupBox_client.setTitle(_translate("MainWindow", "代理伺服器設定"))
+        self.hint_clientIP.setText(_translate("MainWindow", "IP地址(IPv4) :"))
         self.hint_clientPort.setText(_translate("MainWindow", "Port(0~65535) :"))
         self.hint_saveFolderPath.setText(_translate("MainWindow", "存檔位置 :"))
         self.label_4.setText(_translate("MainWindow", "User"))
-
