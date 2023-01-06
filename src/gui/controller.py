@@ -318,7 +318,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         file_name = str(client.box_name)
         file_size = str(sizeConverter(client.box_file_size / 1000))
 
-        self.ui.label_cFilename.setText(file_name)
+        self.ui.label_cFilename.setText(str(file_name + client.file_type))
         self.ui.label_cFilesize.setText(file_size)
         self.cFileLayoutVisible(True)
         ### ---------------------------------------------------
@@ -376,7 +376,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         client.stop()
 
         ### 下載成功，將文件資訊添加至listview裡面 ------------------------------
-        self.downloadFileInfolist.append(str('  取件碼:' + str(self.ui.input_PickupNumber.text()) + '\t檔案名稱 : '+ str(client.box_name) + '\t檔案大小 : ' + sizeConverter(client.box_file_size / 1000)))
+        self.downloadFileInfolist.append(str('  取件碼 : ' + str(self.ui.input_PickupNumber.text()) + '\t\t檔案名稱 : '+ str(client.box_name) + str(client.box_type) + '\t檔案大小 : ' + sizeConverter(client.box_file_size / 1000)))
         self.ui.listWidget_downloadInfo.clear()
         self.ui.listWidget_downloadInfo.addItems(self.downloadFileInfolist)
         ### -------------------------------------------------------------------
