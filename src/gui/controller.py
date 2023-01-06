@@ -215,6 +215,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         # Server 頁面按鈕事件 -----------------------------------------
         self.ui.button_Startlistening.clicked.connect(self.StartListening)
         self.ui.button_SelectfFile.clicked.connect(self.SelectSendFile)
+        self.ui.button_SelectfFolder.clicked.connect(self.SelectSendFolder)
         self.ui.button_DownloadFile.clicked.connect(self.DownloadFile)
 
         # Setting 頁面按鈕事件 -----------------------------------------
@@ -402,6 +403,31 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.ui.label_Filename.setText(file_name)
             self.ui.progressBar_SendFile.setValue(0) #進度條歸0
             self.FileSizeConvert(file_size, self.ui.label_Filesize) # 文件大小轉換，印出
+
+            self.ui.button_Startlistening.setEnabled(True)
+            self.sFileLayoutVisible(True)
+            return
+        except:
+            print(GUI, '沒有選檔案@w@, 或是檔案類型錯誤')
+
+    def SelectSendFolder(self):
+        try:
+            # 開啟資料夾，回傳型態為 tuple
+            folder_path = QFileDialog.getExistingDirectory(self,
+                                                            'Open folder',
+                                                            './') # start path
+            print(str(folder_path))
+            # file_name = os.path.basename(folder_path[0])
+            # file_size = os.path.getsize(folder_path[0]) / 1000  # 1000 byte = 1 kb
+
+            print(GUI, 'folder_path: ', folder_path)
+            print(GUI, 'file_name: ', client.file_name)
+            print(GUI, 'file_size: ', client.file_size)
+            client.setFile(folder_path)
+
+            self.ui.label_Filename.setText(client.file_name)
+            self.ui.progressBar_SendFile.setValue(0) #進度條歸0
+            self.FileSizeConvert(client.file_size / 1000, self.ui.label_Filesize) # 文件大小轉換，印出
 
             self.ui.button_Startlistening.setEnabled(True)
             self.sFileLayoutVisible(True)
