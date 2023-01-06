@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -597,7 +597,7 @@ border-radius: 8px;
         <x>20</x>
         <y>20</y>
         <width>732</width>
-        <height>621</height>
+        <height>311</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="Layout_SelectFile">
@@ -768,6 +768,12 @@ border-radius: 8px;
        </item>
        <item>
         <widget class="QPushButton" name="button_Startlistening">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -787,7 +793,7 @@ border-radius: 8px;
 border-radius: 10px;</string>
          </property>
          <property name="text">
-          <string>發送包裹</string>
+          <string>請先選擇檔案!</string>
          </property>
         </widget>
        </item>
@@ -854,83 +860,76 @@ border-radius: 10px;</string>
 background-color: rgb(85, 170, 255);</string>
            </property>
            <property name="text">
-            <string>選擇資料夾</string>
+            <string>開啟資料夾</string>
            </property>
           </widget>
          </item>
         </layout>
        </item>
-       <item>
-        <spacer name="horizontalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>10</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="GroupBox_SendboxKey">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>300</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>300</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>微軟正黑體</family>
-           <pointsize>12</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">#GroupBox_SendboxKey{border-radius: 10px;
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="GroupBox_SendboxKey">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>340</y>
+        <width>730</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微軟正黑體</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#GroupBox_SendboxKey{border-radius: 10px;
 border-color: rgb(62, 127, 177);
 background-color: rgba(85, 170, 255, 100);}</string>
-         </property>
-         <property name="title">
-          <string>&lt;包裹資訊&gt;</string>
-         </property>
-         <widget class="QListWidget" name="listWidget_Sendpackage">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>711</width>
-            <height>261</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <family>Consolas</family>
-            <pointsize>15</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border-color: rgb(62, 127, 177);
+      </property>
+      <property name="title">
+       <string>&lt;包裹資訊&gt;</string>
+      </property>
+      <widget class="QListWidget" name="listWidget_Sendpackage">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>711</width>
+         <height>261</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Consolas</family>
+         <pointsize>15</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(62, 127, 177);
 border-radius: 10px;</string>
-          </property>
-          <property name="flow">
-           <enum>QListView::TopToBottom</enum>
-          </property>
-         </widget>
-        </widget>
-       </item>
-      </layout>
+       </property>
+       <property name="flow">
+        <enum>QListView::TopToBottom</enum>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="Setting">
