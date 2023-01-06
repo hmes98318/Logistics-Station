@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -630,9 +630,9 @@ border-color: rgb(62, 127, 177);
 background-color: rgba(85, 170, 255, 100);}</string>
       </property>
       <property name="title">
-       <string>&lt;已下載的包裹&gt;</string>
+       <string>&lt;已下載-包裹資訊&gt;</string>
       </property>
-      <widget class="QListWidget" name="listWidget">
+      <widget class="QListWidget" name="listWidget_downloadInfo">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -640,6 +640,11 @@ background-color: rgba(85, 170, 255, 100);}</string>
          <width>711</width>
          <height>261</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">border-color: rgb(62, 127, 177);
@@ -913,6 +918,14 @@ border-radius: 10px;</string>
              <height>100</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>Microsoft JhengHei UI</family>
+             <pointsize>16</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">border-radius: 10px;
 background-color: rgb(85, 170, 255);</string>
@@ -961,7 +974,7 @@ border-color: rgb(62, 127, 177);
 background-color: rgba(85, 170, 255, 100);}</string>
       </property>
       <property name="title">
-       <string>&lt;包裹資訊&gt;</string>
+       <string>&lt;已上傳-包裹資訊&gt;</string>
       </property>
       <widget class="QListWidget" name="listWidget_Sendpackage">
        <property name="geometry">
@@ -974,8 +987,8 @@ background-color: rgba(85, 170, 255, 100);}</string>
        </property>
        <property name="font">
         <font>
-         <family>Consolas</family>
-         <pointsize>15</pointsize>
+         <family>Microsoft JhengHei UI</family>
+         <pointsize>12</pointsize>
          <weight>50</weight>
          <bold>false</bold>
         </font>

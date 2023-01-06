@@ -148,7 +148,9 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
 class MainWindow_controller(QtWidgets.QWidget):
     DownloadProgressBarUpdate = pyqtSignal() # 初始化自訂義信號槽
     UploadProgressBarUpdate = pyqtSignal()
-    recvKeyList = []
+    recvKeyList = [] # 存放打包後產生的寄件碼
+    downloadFileInfolist = [] # 存放下載的包裹資訊
+
 
     def __init__(self):
         # in python3, super(Class, self).xxx = super().xxx
@@ -373,6 +375,12 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         client.stop()
 
+        ### 下載成功，將文件資訊添加至listview裡面 ------------------------------
+        self.downloadFileInfolist.append(str('\t取件碼:' + str(self.ui.input_PickupNumber.text()) + '\t檔案名稱'+ str(client.box_name) + '\t檔案大小 : ' + sizeConverter(client.box_file_size / 1000)))
+        # self.ui.listWidget_downloadInfo.clear()
+        self.ui.listWidget_downloadInfo.addItems(self.downloadFileInfolist)
+        ### -------------------------------------------------------------------
+
         self.ui.button_DownloadFile.setText('下載完成')
         self.ui.button_DownloadFile.setEnabled(True) # 下載結束 button 解鎖
         self.ui.button_RequireFile.setEnabled(True)
@@ -516,7 +524,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             # tar_size 算出來最小都 10KB 起跳 我也不知為啥 client.py 的寫法跟 self.SelectSendFile() 的一樣 說不定是打包成tar後的鍋 反正能動先不管了
             self.recvKeyList.append(str('\t' + recvKey + '\t\t\t檔案大小 : ' + sizeConverter(client.tar_size / 1000)))
 
-        self.ui.listWidget_Sendpackage.clear()
+        # self.ui.listWidget_Sendpackage.clear()
         self.ui.listWidget_Sendpackage.addItems(self.recvKeyList)
         ### -----------------------------------------------------
 
