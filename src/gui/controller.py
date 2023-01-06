@@ -376,7 +376,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         client.stop()
 
         ### 下載成功，將文件資訊添加至listview裡面 ------------------------------
-        self.downloadFileInfolist.append(str('\t取件碼:' + str(self.ui.input_PickupNumber.text()) + '\t檔案名稱'+ str(client.box_name) + '\t檔案大小 : ' + sizeConverter(client.box_file_size / 1000)))
+        self.downloadFileInfolist.append(str('  取件碼:' + str(self.ui.input_PickupNumber.text()) + '\t檔案名稱 : '+ str(client.box_name) + '\t檔案大小 : ' + sizeConverter(client.box_file_size / 1000)))
         self.ui.listWidget_downloadInfo.clear()
         self.ui.listWidget_downloadInfo.addItems(self.downloadFileInfolist)
         ### -------------------------------------------------------------------
@@ -522,7 +522,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.recvKeyList.append('\t寄件失敗')
         else:
             # tar_size 算出來最小都 10KB 起跳 我也不知為啥 client.py 的寫法跟 self.SelectSendFile() 的一樣 說不定是打包成tar後的鍋 反正能動先不管了
-            self.recvKeyList.append(str('\t' + recvKey + '\t\t\t檔案大小 : ' + sizeConverter(client.tar_size / 1000)))
+            self.recvKeyList.append(str('  取件碼 : ' + recvKey + '\t\t檔案大小 : ' + sizeConverter(client.tar_size / 1000)))
 
         self.ui.listWidget_Sendpackage.clear()
         self.ui.listWidget_Sendpackage.addItems(self.recvKeyList)
