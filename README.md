@@ -28,7 +28,7 @@ python ./main.py
 
 
 ## Structure
-The main structure of the Client
+The main files structure of the Client
 ```
 src
 ├── data
@@ -44,7 +44,7 @@ src
 └── tcp
     └── Client,py
 ```
-The main structure of the Server
+The main files structure of the Server
 ```
 src
 ├── database
