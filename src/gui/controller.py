@@ -27,6 +27,8 @@ client = Client()
 GUI = 'GUI:'
 DEFAULT_SAVE_DIR = f'{os.path.dirname(__file__)}/save'.replace('\\','/') # .\foo\bar -> ./foo/bar
 
+
+
 # LoginWindow 登入畫面
 class LoginWindow_controller(QtWidgets.QMainWindow):
     def __init__(self):
@@ -154,6 +156,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop)  # 置上對齊
         self.ui.button_Startlistening.setEnabled(False)
         self.cFileLayoutVisible(False)
+        self.cFileDownloadVisible(False)
         self.ui.Layout_cRequireFile.setAlignment(Qt.AlignTop)  # 置上對齊
 
         # --------------測試區域----------------------------------------
@@ -161,10 +164,12 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.progressBar_SendFile.setValue(0)
         # ------------------------------------------------------------
 
-        self.thread_SendFile = QThread()  # 定義 Server 新執行序
-        self.thread_ClientReceiveFile = QThread()  # 定義 Client 新執行序
-        self.DownloadProgressBarUpdate.connect(self.UpdataProgressBar_ReceiveFile)  # 連接自訂義信號槽函數
-        self.UploadProgressBarUpdate.connect(self.UpdataprogressBar_SendFile) 
+        # ------------定義執行序------------
+        self.thread_SendFile = QThread() # 發送包裹
+        self.thread_ClientReceiveHeader = QThread()  # 接收包裹 header
+        self.thread_ClientReceiveFile = QThread()  # 接收包裹 
+        self.UploadProgressBarUpdate.connect(self.UpdataprogressBar_SendFile)  # 連接自訂義信號槽函數
+        self.DownloadProgressBarUpdate.connect(self.UpdataProgressBar_ReceiveFile)
 
         # --- 窗體美化 ---#
         self.setWindowFlags(
@@ -230,45 +235,100 @@ class MainWindow_controller(QtWidgets.QWidget):
                                   self.ui.button_Setting,
                                   self.ui.button_User)
 
+    ### Client 取件碼要求 header --------------------------------
     def ClientRequireFile(self):
         self.ui.progressBar_RecevieFile.setMaximum(100)  # 進度條最大值 100
-        self.ui.button_RequireFile.setEnabled(False)
         self.cFileLayoutVisible(False)  # 清空 client layout 避免要重複下載 連接時還顯示著上一個 header
+        self.cFileDownloadVisible(False)
         self.ui.button_RequireFile.setEnabled(False)
-        self.ui.button_RequireFile.setText('正在連接 Server...')
+        self.thread_ClientReceiveHeader.run = self.QThread_ClientReqHeader
+        self.thread_ClientReceiveHeader.start()
 
-        ### Client 要求 header --------------------------------
-        client.start()
+    def QThread_ClientReqHeader(self):
+        self.cFileLayoutVisible(False)  # 清空 client layout
+        self.cFileDownloadVisible(False)
+        self.ui.progressBar_RecevieFile.setValue(0) #進度條歸0
+
         boxKey = self.ui.input_PickupNumber.text()
         print('------------------')
-        print('reqBoxHeader()')
-        client.reqBoxHeader(boxKey)
+        print('[Recv] start()')
+        self.ui.button_RequireFile.setText('正在連接Server...')
+        SUCCESS_START = client.start()
+        if SUCCESS_START == False:
+            print('[Recv] --Client connection fail.')
+            self.ui.button_RequireFile.setText('連接失敗，重試')
+            self.ui.button_RequireFile.setEnabled(True)
+            self.thread_ClientReceiveHeader.quit()  # 掛起線程
+            return
         self.ui.button_RequireFile.setText('連接成功')
-        #client.stop()
 
+        print('[Recv] reqBoxHeader()')
+        SUCCESS_FOUND_HEADER = client.reqBoxHeader(boxKey)
+        if SUCCESS_FOUND_HEADER == False:
+            self.ui.button_RequireFile.setText('查無包裹')
+            client.stop()
+            self.ui.button_RequireFile.setEnabled(True)
+            self.thread_ClientReceiveHeader.quit()  # 掛起線程
+            return
+
+        # client.stop() 
+        self.ui.button_RequireFile.setText('再次查詢')
         ### GUI 顯示 檔案資料 ----------------------------------
-
         self.ui.label_cFilename.setText(str(client.box_name))
-        self.ui.label_cFilesize.setText(str(client.box_file_size))
+        self.ui.label_cFilesize.setText(str(sizeConverter(client.box_file_size / 1024)))
         self.cFileLayoutVisible(True)
-
         ### ---------------------------------------------------
+        self.ui.button_RequireFile.setEnabled(True)
+        self.thread_ClientReceiveHeader.quit()  # 掛起線程
 
 
+    ### Client 取件碼下載檔案 --------------------------------
     def DownloadFile(self):
+        self.cFileDownloadVisible(True) # 按下下載後顯示下載進度條
+        self.ui.progressBar_RecevieFile.setStyleSheet("#progressBar_RecevieFile{\n"
+                                                    "border: 2px solid #000;\n"
+                                                    "border-radius: 10px;\n"
+                                                    "text-align:center;\n"
+                                                    "}\n"
+                                                    "#progressBar_RecevieFile::chunk { \n"
+                                                    "background-color: rgb(170, 170, 255);\n"
+                                                    "border-radius: 8px;\n"
+                                                    "}")
+        self.ui.button_DownloadFile.setEnabled(False) # 開始下載 button 禁用
+        self.ui.button_RequireFile.setEnabled(False)
+
         self.thread_ClientReceiveFile.run = self.QThread_DownloadingFile
         self.thread_ClientReceiveFile.start()
 
     def QThread_DownloadingFile(self):
+        #self.cFileLayoutVisible(False)  # 清空 client layout 避免要重複下載 連接時還顯示著上一個 header
+
         #client.start()
         boxKey = self.ui.input_PickupNumber.text()
-        time.sleep(1)
-        print('reqBoxRecv()')
-        client.reqBoxRecv(boxKey)
-        client.stop()
+        print('------------------')
+        print('[Recv] reqBoxRecv()')
+        client.reqBoxRecv(boxKey, self.DownloadProgressBarUpdate)
+        #client.stop()
+
+        self.ui.button_DownloadFile.setEnabled(True) # 下載結束 button 解鎖
+        self.ui.button_RequireFile.setEnabled(True)
+        self.thread_ClientReceiveHeader.quit()  # 掛起線程
 
     def UpdataProgressBar_ReceiveFile(self):
-        self.ui.progressBar_RecevieFile.setValue(int(client.showProgress()))  # 增加進度條
+        progress = int(client.showDownloadProgress())
+        #print('progress:',str(progress))
+
+        if progress > 99:
+            self.ui.progressBar_RecevieFile.setStyleSheet("#progressBar_RecevieFile{\n"
+                                                        "border: 2px solid #000;\n"
+                                                        "border-radius: 10px;\n"
+                                                        "text-align:center;\n"
+                                                        "}\n"
+                                                        "#progressBar_RecevieFile::chunk { \n"
+                                                        "background-color: rgb(0, 217, 0);\n"
+                                                        "border-radius: 8px;\n"
+                                                        "}")
+        self.ui.progressBar_RecevieFile.setValue(progress)  # 增加進度條
 
     ### Server -----------------------------------------------------------------------------------------------------------
 
@@ -498,10 +558,12 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.label_cFilesize.setVisible(flag)
         self.ui.hint_cFileize.setVisible(flag)
         self.ui.hint_cFilename.setVisible(flag)
+        self.ui.button_DownloadFile.setVisible(flag)
+        self.ui.Layout_cFileInfo.setEnabled(flag)
+
+    def cFileDownloadVisible(self, flag):
         self.ui.hint_schedule.setVisible(flag)
         self.ui.progressBar_RecevieFile.setVisible(flag)
-
-        self.ui.Layout_cFileInfo.setEnabled(flag)
 
     def button_setStyleSheet(self, NowFocus: QtWidgets.QPushButton,
                              Other1: QtWidgets.QPushButton,

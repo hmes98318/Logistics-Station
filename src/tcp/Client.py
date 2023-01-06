@@ -59,6 +59,7 @@ class Client():
 
     def setFile(self, file_location):
         file_location = file_location.replace('\\\\','/') # .\\file -> ./file
+        file_location = file_location.replace('\\','/') # .\file -> ./file
         self.file_location = file_location
 
         if isFile(file_location):
@@ -74,6 +75,7 @@ class Client():
 
     def setSaveFolder(self, save_folder):
         save_folder = save_folder.replace('\\\\','/') # .\\save -> ./save
+        save_folder = save_folder.replace('\\','/') # .\save -> ./save
 
         if not isDir(save_folder) :
             try:
@@ -307,7 +309,7 @@ class Client():
         return True
 
 
-    def reqBoxRecv(self, boxKey, ProgressBarUpdate=None):
+    def reqBoxRecv(self, boxKey, ProgressBarUpdate):
         print('Start reqBoxRecv().')
         if not self.connection : raise SystemError('Server not connection.')
         if not self.save_folder : raise SystemError('save_folder not set.')
@@ -372,7 +374,7 @@ class Client():
 
                         received_size += len(bytes_read)
                         self.download_progress = countProgress(received_size, self.box_size)
-                        ### ProgressBarUpdate.emit() # PYQT5 --------------------------------------------------
+                        ProgressBarUpdate.emit() # PYQT5 --------------------------------------------------
                     except Exception as error:
                         print('--Fail to receive file. it is Server error, check the server sendBox()')
                         print(error)
@@ -380,6 +382,7 @@ class Client():
 
                 print('All file received.')
                 f.close()
+                ProgressBarUpdate.emit() # PYQT5 --------
         except:
             print('--reqBoxRecv.writeData() Failed to write data.')
             return False

@@ -528,7 +528,7 @@ class Ui_MainWindow(object):
         self.button_Setting.setText(_translate("MainWindow", "Setting"))
         self.button_User.setText(_translate("MainWindow", "User"))
         self.input_PickupNumber.setPlaceholderText(_translate("MainWindow", "請輸入取件碼"))
-        self.button_RequireFile.setText(_translate("MainWindow", "取件✔"))
+        self.button_RequireFile.setText(_translate("MainWindow", "查詢包裹"))
         self.hint_cFilename.setText(_translate("MainWindow", "文件名:"))
         self.hint_cFileize.setText(_translate("MainWindow", "檔案大小:"))
         self.button_DownloadFile.setText(_translate("MainWindow", "Download"))
