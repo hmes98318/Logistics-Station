@@ -275,7 +275,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_RequireFile.setText('再次查詢')
         ### GUI 顯示 檔案資料 ----------------------------------
         self.ui.label_cFilename.setText(str(client.box_name))
-        self.ui.label_cFilesize.setText(str(sizeConverter(client.box_file_size / 1024)))
+        self.ui.label_cFilesize.setText(str(sizeConverter(client.box_file_size / 1000)))
         self.cFileLayoutVisible(True)
         ### ---------------------------------------------------
         self.ui.button_RequireFile.setEnabled(True)
@@ -349,7 +349,7 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                       'Open file',
                                                       './')  # start path
             file_name = os.path.basename(folder_path[0])
-            file_size = os.path.getsize(folder_path[0]) / 1024  # 1024 byte = 1 kb
+            file_size = os.path.getsize(folder_path[0]) / 1000  # 1000 byte = 1 kb
 
             print(GUI, 'folder_path: ', folder_path)
             print(GUI, 'file_name: ', file_name)
@@ -423,7 +423,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.recvKeyList.append('\t寄件失敗')
         else:
             # tar_size 算出來最小都 10KB 起跳 我也不知為啥 client.py 的寫法跟 self.SelectSendFile() 的一樣 說不定是打包成tar後的鍋 反正能動先不管了
-            self.recvKeyList.append(str('\t' + recvKey + '\t\t\t檔案大小 : ' + sizeConverter(client.tar_size / 1024)))
+            self.recvKeyList.append(str('\t' + recvKey + '\t\t\t檔案大小 : ' + sizeConverter(client.tar_size / 1000)))
 
         self.ui.listWidget_Sendpackage.clear()
         self.ui.listWidget_Sendpackage.addItems(self.recvKeyList)
@@ -585,11 +585,11 @@ class MainWindow_controller(QtWidgets.QWidget):
 
 
 def sizeConverter(file_size):
-    if file_size < 1024:
+    if file_size < 1000:
         return (str('%.2f' % file_size) + ' KB')
-    elif file_size < 1024 * 1024:
-        return (str('%.2f' % (file_size / 1024)) + ' MB')
-    elif file_size < 1024 * 1024 * 1024:
-        return (str('%.2f' % (file_size / 1024 / 1024)) + ' GB')
+    elif file_size < 1000 * 1000:
+        return (str('%.2f' % (file_size / 1000)) + ' MB')
+    elif file_size < 1000 * 1000 * 1000:
+        return (str('%.2f' % (file_size / 1000 / 1000)) + ' GB')
     else:
-        return (str('%.2f' % (file_size / 1024 / 1024 / 1024)) + ' TB')
+        return (str('%.2f' % (file_size / 1000 / 1000 / 1000)) + ' TB')
