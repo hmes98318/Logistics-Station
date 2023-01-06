@@ -153,8 +153,8 @@ class Ui_MainWindow(object):
         self.label_cFilename.setMinimumSize(QtCore.QSize(0, 50))
         self.label_cFilename.setMaximumSize(QtCore.QSize(450, 50))
         font = QtGui.QFont()
-        font.setFamily("Consolas")
-        font.setPointSize(11)
+        font.setFamily("微軟正黑體")
+        font.setPointSize(12)
         self.label_cFilename.setFont(font)
         self.label_cFilename.setText("")
         self.label_cFilename.setAlignment(QtCore.Qt.AlignCenter)
@@ -175,7 +175,7 @@ class Ui_MainWindow(object):
         self.label_cFilesize.setMaximumSize(QtCore.QSize(150, 50))
         font = QtGui.QFont()
         font.setFamily("Consolas")
-        font.setPointSize(11)
+        font.setPointSize(12)
         self.label_cFilesize.setFont(font)
         self.label_cFilesize.setText("")
         self.label_cFilesize.setAlignment(QtCore.Qt.AlignCenter)
@@ -184,6 +184,10 @@ class Ui_MainWindow(object):
         self.button_DownloadFile = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
         self.button_DownloadFile.setMinimumSize(QtCore.QSize(0, 50))
         self.button_DownloadFile.setMaximumSize(QtCore.QSize(200, 50))
+        font = QtGui.QFont()
+        font.setFamily("Consolas")
+        font.setPointSize(13)
+        self.button_DownloadFile.setFont(font)
         self.button_DownloadFile.setStyleSheet("border-radius: 10px;\n"
 "color: rgb(170, 255, 255);\n"
 "background-color: rgba(13, 95, 160, 200);")
@@ -228,6 +232,25 @@ class Ui_MainWindow(object):
         self.label_spacer3_2.setMaximumSize(QtCore.QSize(4, 16777215))
         self.label_spacer3_2.setText("")
         self.label_spacer3_2.setObjectName("label_spacer3_2")
+        self.GroupBox_downloadInfo = QtWidgets.QGroupBox(self.Client)
+        self.GroupBox_downloadInfo.setGeometry(QtCore.QRect(20, 340, 731, 300))
+        self.GroupBox_downloadInfo.setMinimumSize(QtCore.QSize(0, 300))
+        self.GroupBox_downloadInfo.setMaximumSize(QtCore.QSize(16777215, 300))
+        font = QtGui.QFont()
+        font.setFamily("微軟正黑體")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.GroupBox_downloadInfo.setFont(font)
+        self.GroupBox_downloadInfo.setStyleSheet("#GroupBox_downloadInfo{border-radius: 10px;\n"
+"border-color: rgb(62, 127, 177);\n"
+"background-color: rgba(85, 170, 255, 100);}")
+        self.GroupBox_downloadInfo.setObjectName("GroupBox_downloadInfo")
+        self.listWidget = QtWidgets.QListWidget(self.GroupBox_downloadInfo)
+        self.listWidget.setGeometry(QtCore.QRect(10, 30, 711, 261))
+        self.listWidget.setStyleSheet("border-color: rgb(62, 127, 177);\n"
+"border-radius: 10px;")
+        self.listWidget.setObjectName("listWidget")
         self.stackedWidget.addWidget(self.Client)
         self.Server = QtWidgets.QWidget()
         self.Server.setObjectName("Server")
@@ -553,7 +576,7 @@ class Ui_MainWindow(object):
         self.layout_MainControll.addWidget(self.MainClose)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -571,6 +594,7 @@ class Ui_MainWindow(object):
         self.hint_cFileize.setText(_translate("MainWindow", "檔案大小:"))
         self.button_DownloadFile.setText(_translate("MainWindow", "Download"))
         self.hint_schedule.setText(_translate("MainWindow", "進度  "))
+        self.GroupBox_downloadInfo.setTitle(_translate("MainWindow", "<已下載的包裹>"))
         self.hint_Filename.setText(_translate("MainWindow", "檔案名稱:"))
         self.label_Filename.setText(_translate("MainWindow", "NOfile"))
         self.hint_Filesize.setText(_translate("MainWindow", "檔案大小:"))

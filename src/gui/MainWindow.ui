@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -406,8 +406,8 @@ background-color: rgba(13, 95, 160, 200);</string>
            </property>
            <property name="font">
             <font>
-             <family>Consolas</family>
-             <pointsize>11</pointsize>
+             <family>微軟正黑體</family>
+             <pointsize>12</pointsize>
             </font>
            </property>
            <property name="text">
@@ -463,7 +463,7 @@ background-color: rgba(13, 95, 160, 200);</string>
            <property name="font">
             <font>
              <family>Consolas</family>
-             <pointsize>11</pointsize>
+             <pointsize>12</pointsize>
             </font>
            </property>
            <property name="text">
@@ -487,6 +487,12 @@ background-color: rgba(13, 95, 160, 200);</string>
              <width>200</width>
              <height>50</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>13</pointsize>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">border-radius: 10px;
@@ -588,6 +594,58 @@ border-radius: 8px;
       <property name="text">
        <string/>
       </property>
+     </widget>
+     <widget class="QGroupBox" name="GroupBox_downloadInfo">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>340</y>
+        <width>731</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微軟正黑體</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#GroupBox_downloadInfo{border-radius: 10px;
+border-color: rgb(62, 127, 177);
+background-color: rgba(85, 170, 255, 100);}</string>
+      </property>
+      <property name="title">
+       <string>&lt;已下載的包裹&gt;</string>
+      </property>
+      <widget class="QListWidget" name="listWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>711</width>
+         <height>261</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(62, 127, 177);
+border-radius: 10px;</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="Server">
