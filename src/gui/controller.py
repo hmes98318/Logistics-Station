@@ -424,6 +424,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.ui.progressBar_SendFile.setValue(0) #進度條歸0
             self.FileSizeConvert(file_size, self.ui.label_Filesize) # 文件大小轉換，印出
 
+            self.ui.button_Startlistening.setText("發送包裹")
             self.ui.button_Startlistening.setEnabled(True)
             self.sFileLayoutVisible(True)
             return
@@ -449,6 +450,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.ui.progressBar_SendFile.setValue(0) #進度條歸0
             self.FileSizeConvert(client.file_size / 1000, self.ui.label_Filesize) # 文件大小轉換，印出
 
+            self.ui.button_Startlistening.setText("發送包裹")
             self.ui.button_Startlistening.setEnabled(True)
             self.sFileLayoutVisible(True)
             return
