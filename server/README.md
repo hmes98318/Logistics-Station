@@ -1,14 +1,14 @@
-#  Logistics-Station 的伺服器配置
+#  Logistics-Station Server Installation Document
 
 
-## 使用 Python 部屬
+## Deploying with Python
 
-### 環境配置
+### Preconditions
  * [MongoDB](https://www.mongodb.com/)
  * [Python 3.10](https://www.python.org/downloads/release/python-3109/)
 
 
-### 啟動MongoDB
+### Start MongoDB
 Windows  
 ```
 cd 'C:\Program Files\MongoDB\Server\6.0\bin'
@@ -19,16 +19,17 @@ Mac
 ```
 brew services start mongodb-community@6.0
 ```
-結尾的版本號碼依照安裝的版本更改
+The version number at the end changes according to the installed version.  
 
 
-### 安裝Python模塊
+### Install Python modules
+[`requirements.txt`](./requirements.txt)
 ```
-pip install pymongo python-dotenv
+pip install -r requirements.txt
 ```
 
 
-### 啟動伺服器
+### Start the Server
 ```
 python ./main.py
 ```
@@ -36,11 +37,10 @@ python ./main.py
 
 
 
-## 使用 Docker Compose 部屬
-
+## Deploying with Docker Compose
 image link : https://hub.docker.com/r/hmes98318/logistics-station
 
-### 配置 [`docker-compose.yml`](./docker-compose.yml)
+### Configuration [`docker-compose.yml`](./docker-compose.yml)
 ```yml
 version: '3.8'
 
@@ -86,7 +86,7 @@ networks:
 ```
 
 
-### 啟動容器
+### Start the Container
 ```
 docker-compose up -d
 ```
