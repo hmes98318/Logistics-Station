@@ -531,7 +531,7 @@ class Ui_MainWindow(object):
         self.button_RequireFile.setText(_translate("MainWindow", "查詢包裹"))
         self.hint_cFilename.setText(_translate("MainWindow", "文件名:"))
         self.hint_cFileize.setText(_translate("MainWindow", "檔案大小:"))
-        self.button_DownloadFile.setText(_translate("MainWindow", "Download"))
+        self.button_DownloadFile.setText(_translate("MainWindow", "下載"))
         self.hint_schedule.setText(_translate("MainWindow", "進度  "))
         self.button_Startlistening.setText(_translate("MainWindow", "發送包裹"))
         self.hint_Filename.setText(_translate("MainWindow", "檔案名稱:"))

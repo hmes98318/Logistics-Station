@@ -2,7 +2,7 @@
 import os
 import sys
 
-sys.path.append('./src')  # 更改模塊導入路徑
+sys.path.append('./src') # 更改模塊導入路徑
 
 # PyQt5 引擎 ---------------------------------------
 from PyQt5 import QtWidgets, QtGui, QtCore, Qt
@@ -107,8 +107,8 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
             if userData[input_ID] == input_PW:
                 # from main import MainWindow
                 MainWindow = MainWindow_controller()
-                MainWindow.show()  # 開啟 MainWindow
-                self.close()  # 關閉 LoginWindow
+                MainWindow.show() # 開啟 MainWindow
+                self.close() # 關閉 LoginWindow
             else:
                 pwfailResult = QMessageBox.warning(self,
                                                    '提示訊息', '密碼錯誤',
@@ -126,7 +126,7 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
 
 # MainWindow 主要畫面
 class MainWindow_controller(QtWidgets.QWidget):
-    DownloadProgressBarUpdate = pyqtSignal()  # 初始化自訂義信號槽
+    DownloadProgressBarUpdate = pyqtSignal() # 初始化自訂義信號槽
     UploadProgressBarUpdate = pyqtSignal()
     recvKeyList = []
 
@@ -137,7 +137,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.setupUi(self)
         self.setup_control()
 
-        self.ui.stackedWidget.setCurrentIndex(0)  # 登入成功後初始介面為 Recv package
+        self.ui.stackedWidget.setCurrentIndex(0) # 登入成功後初始介面為 Recv package
 
         # ----------Setting 預設值-------------------------------------
         self.ui.input_clientIP.setText('proxy.ggwp.tw')
@@ -152,31 +152,31 @@ class MainWindow_controller(QtWidgets.QWidget):
         # ------------------------------------------------------------
 
         self.ui.button_Client.setStyleSheet('background-color: rgb(255, 255, 255);'
-                                             'border-radius: 10px;')  # 更改顏色
+                                             'border-radius: 10px;') # 更改顏色
 
-        #self.ui.button_Client.setEnabled(False)  # 未設定 IP 和 Port 時禁用
-        #self.ui.button_Server.setEnabled(False)  # 未設定 IP 和 Port 時禁用
+        #self.ui.button_Client.setEnabled(False) # 未設定 IP 和 Port 時禁用
+        #self.ui.button_Server.setEnabled(False) # 未設定 IP 和 Port 時禁用
 
-        self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用 (沒有檔案)
-        self.ui.button_SelectfFile.setEnabled(True)  # 選擇檔案 button 啟用
+        self.ui.button_Startlistening.setEnabled(False) # 開始聆聽 button 禁用 (沒有檔案)
+        self.ui.button_SelectfFile.setEnabled(True) # 選擇檔案 button 啟用
 
         self.sFileLayoutVisible(False)
-        self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop)  # 置上對齊
+        self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop) # 置上對齊
         self.ui.button_Startlistening.setEnabled(False)
         self.cFileLayoutVisible(False)
         self.cFileDownloadVisible(False)
-        self.ui.Layout_cRequireFile.setAlignment(Qt.AlignTop)  # 置上對齊
+        self.ui.Layout_cRequireFile.setAlignment(Qt.AlignTop) # 置上對齊
 
         # --------------測試區域----------------------------------------
-        self.ui.progressBar_RecevieFile.setValue(0)  # 進度條 0 
+        self.ui.progressBar_RecevieFile.setValue(0) # 進度條 0 
         self.ui.progressBar_SendFile.setValue(0)
         # ------------------------------------------------------------
 
         # ------------定義執行序------------
         self.thread_SendFile = QThread() # 發送包裹
-        self.thread_ClientReceiveHeader = QThread()  # 接收包裹 header
-        self.thread_ClientReceiveFile = QThread()  # 接收包裹 
-        self.UploadProgressBarUpdate.connect(self.UpdataprogressBar_SendFile)  # 連接自訂義信號槽函數
+        self.thread_ClientReceiveHeader = QThread() # 接收包裹 header
+        self.thread_ClientReceiveFile = QThread() # 接收包裹 
+        self.UploadProgressBarUpdate.connect(self.UpdataprogressBar_SendFile) # 連接自訂義信號槽函數
         self.DownloadProgressBarUpdate.connect(self.UpdataProgressBar_ReceiveFile)
 
         # --- 窗體美化 ---#
@@ -234,7 +234,7 @@ class MainWindow_controller(QtWidgets.QWidget):
     ### Client -----------------------------------------------------------------------------------------------------------
 
     def SwitchToClientPage(self):
-        self.ui.stackedWidget.setCurrentIndex(0)  # 切換 Stack Widget 到 (索引值 0 / Client) 頁
+        self.ui.stackedWidget.setCurrentIndex(0) # 切換 Stack Widget 到 (索引值 0 / Client) 頁
         # self.ui.label_schedule.setText(str(0))
 
         # 顏色轉換
@@ -245,19 +245,18 @@ class MainWindow_controller(QtWidgets.QWidget):
 
     ### Client 取件碼要求 header --------------------------------
     def ClientRequireFile(self):
-        self.ui.progressBar_RecevieFile.setMaximum(100)  # 進度條最大值 100
-        self.cFileLayoutVisible(False)  # 清空 client layout 避免要重複下載 連接時還顯示著上一個 header
+        self.ui.progressBar_RecevieFile.setMaximum(100) # 進度條最大值 100
+        self.ui.progressBar_RecevieFile.setValue(0) # 進度條歸0
+        self.cFileLayoutVisible(False) # 清空 client layout 避免要重複下載 連接時還顯示著上一個 header
         self.cFileDownloadVisible(False)
-        self.ui.button_RequireFile.setEnabled(False)
+        self.ui.button_RequireFile.setEnabled(False) # 查詢包裹 button 禁用
+
         self.thread_ClientReceiveHeader.run = self.QThread_ClientReqHeader
         self.thread_ClientReceiveHeader.start()
 
     def QThread_ClientReqHeader(self):
-        self.cFileLayoutVisible(False)  # 清空 client layout
-        self.cFileDownloadVisible(False)
-        self.ui.progressBar_RecevieFile.setValue(0) #進度條歸0
-
         boxKey = self.ui.input_PickupNumber.text()
+
         print('------------------')
         print('[Recv] checkConnection()')
         self.ui.button_RequireFile.setText('正在連接Server...')
@@ -266,28 +265,44 @@ class MainWindow_controller(QtWidgets.QWidget):
             print('[Recv] --Client connection fail.')
             self.ui.button_RequireFile.setText('連接失敗，重試')
             self.ui.button_RequireFile.setEnabled(True)
-            self.thread_ClientReceiveHeader.quit()  # 掛起線程
+            self.thread_ClientReceiveHeader.quit() # 掛起線程
             return
         self.ui.button_RequireFile.setText('連接成功')
 
-        print('[Recv] reqBoxHeader()')
-        SUCCESS_FOUND_HEADER = client.reqBoxHeader(boxKey)
-        if SUCCESS_FOUND_HEADER == False:
-            self.ui.button_RequireFile.setText('查無包裹')
+        try:
+            print('[Recv] reqBoxHeader()')
+            SUCCESS_FOUND_HEADER = client.reqBoxHeader(boxKey)
+            if SUCCESS_FOUND_HEADER == False:
+                self.ui.button_RequireFile.setText('查無包裹')
+                client.stop()
+                self.ui.button_RequireFile.setEnabled(True)
+                self.thread_ClientReceiveHeader.quit() # 掛起線程
+                return
+        except Exception as error:
+            # 瘋狂連續點擊查詢包裹按鈕才會造成接收錯誤
+            # GUI 崩潰觸發條件 : 瘋狂連續點擊查詢包裹按鈕 (不影響正常運作)
+            # GUI 崩潰只會發生在接收 header 後並且包裹存在並回傳成功, 在 layout 顯示檔名,大小時, 暫時無解
+            print('[Recv] reqBoxHeader() json.loads() errors.')
+            print(error)
+            self.ui.button_RequireFile.setText('連接失敗，重試')
             client.stop()
             self.ui.button_RequireFile.setEnabled(True)
-            self.thread_ClientReceiveHeader.quit()  # 掛起線程
+            self.thread_ClientReceiveHeader.quit() # 掛起線程
             return
 
         # client.stop() 
         self.ui.button_RequireFile.setText('再次查詢')
         ### GUI 顯示 檔案資料 ----------------------------------
-        self.ui.label_cFilename.setText(str(client.box_name))
-        self.ui.label_cFilesize.setText(str(sizeConverter(client.box_file_size / 1000)))
+        file_name = str(client.box_name)
+        file_size = str(sizeConverter(client.box_file_size / 1000))
+
+        self.ui.label_cFilename.setText(file_name)
+        self.ui.label_cFilesize.setText(file_size)
         self.cFileLayoutVisible(True)
         ### ---------------------------------------------------
+        #time.sleep(1)
         self.ui.button_RequireFile.setEnabled(True)
-        self.thread_ClientReceiveHeader.quit()  # 掛起線程
+        self.thread_ClientReceiveHeader.quit() # 掛起線程
 
 
     ### Client 取件碼下載檔案 --------------------------------
@@ -302,35 +317,43 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                     "background-color: rgb(170, 170, 255);\n"
                                                     "border-radius: 8px;\n"
                                                     "}")
+        self.ui.button_RequireFile.setEnabled(False) # 查詢包裹 button 禁用
         self.ui.button_DownloadFile.setEnabled(False) # 開始下載 button 禁用
-        self.ui.button_RequireFile.setEnabled(False)
 
         self.thread_ClientReceiveFile.run = self.QThread_DownloadingFile
         self.thread_ClientReceiveFile.start()
 
     def QThread_DownloadingFile(self):
-        #self.cFileLayoutVisible(False)  # 清空 client layout 避免要重複下載 連接時還顯示著上一個 header
-
         boxKey = self.ui.input_PickupNumber.text()
+
         print('------------------')
         print('[Recv] checkConnection()')
+        self.ui.button_DownloadFile.setText('下載中...')
         SUCCESS_START = checkConnection()
         if SUCCESS_START == False:
             print('[Recv] --Client connection fail.')
-            self.ui.button_RequireFile.setText('連接失敗，重試')
-            self.ui.button_DownloadFile.setEnabled(True)
+            self.ui.button_DownloadFile.setText('下載失敗，重試')
             self.ui.button_RequireFile.setEnabled(True)
-            self.thread_ClientReceiveFile.quit()  # 掛起線程
+            self.ui.button_DownloadFile.setEnabled(True)
+            self.thread_ClientReceiveFile.quit() # 掛起線程
             return
 
         print('[Recv] reqBoxRecv()')
-        client.reqBoxRecv(boxKey, self.DownloadProgressBarUpdate)
+        SUCCESS_RECV = client.reqBoxRecv(boxKey, self.DownloadProgressBarUpdate)
+        if SUCCESS_RECV == False:
+            print('[Recv] --reqBoxRecv() failed.')
+            self.ui.button_DownloadFile.setText('下載失敗，重試')
+            self.ui.button_RequireFile.setEnabled(True)
+            self.ui.button_DownloadFile.setEnabled(True)
+            self.thread_ClientReceiveFile.quit() # 掛起線程
+            return
 
         client.stop()
 
+        self.ui.button_DownloadFile.setText('下載完成')
         self.ui.button_DownloadFile.setEnabled(True) # 下載結束 button 解鎖
         self.ui.button_RequireFile.setEnabled(True)
-        self.thread_ClientReceiveFile.quit()  # 掛起線程
+        self.thread_ClientReceiveFile.quit() # 掛起線程
 
     def UpdataProgressBar_ReceiveFile(self):
         progress = int(client.showDownloadProgress())
@@ -346,12 +369,12 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                         "background-color: rgb(0, 217, 0);\n"
                                                         "border-radius: 8px;\n"
                                                         "}")
-        self.ui.progressBar_RecevieFile.setValue(progress)  # 增加進度條
+        self.ui.progressBar_RecevieFile.setValue(progress) # 增加進度條
 
     ### Server -----------------------------------------------------------------------------------------------------------
 
     def SwitchToServerPage(self):
-        self.ui.stackedWidget.setCurrentIndex(1)  # 切換 Stack Widget 到 (索引值 1 / Server) 頁
+        self.ui.stackedWidget.setCurrentIndex(1) # 切換 Stack Widget 到 (索引值 1 / Server) 頁
         # 顏色轉換
         self.button_setStyleSheet(self.ui.button_Server,
                                   self.ui.button_Client,
@@ -365,7 +388,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             # 開啟資料夾，回傳型態為 tuple
             folder_path = QFileDialog.getOpenFileName(self,
                                                       'Open file',
-                                                      './')  # start path
+                                                      './') # start path
             file_name = os.path.basename(folder_path[0])
             file_size = os.path.getsize(folder_path[0]) / 1000  # 1000 byte = 1 kb
 
@@ -376,7 +399,7 @@ class MainWindow_controller(QtWidgets.QWidget):
 
             self.ui.label_Filename.setText(file_name)
             self.ui.progressBar_SendFile.setValue(0) #進度條歸0
-            self.FileSizeConvert(file_size, self.ui.label_Filesize)  # 文件大小轉換，印出
+            self.FileSizeConvert(file_size, self.ui.label_Filesize) # 文件大小轉換，印出
 
             self.ui.button_Startlistening.setEnabled(True)
             self.sFileLayoutVisible(True)
@@ -388,7 +411,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         label.setText(sizeConverter(file_size))
 
     def StartListening(self):
-        self.ui.progressBar_SendFile.setMaximum(100)  # 進度條最大值 100
+        self.ui.progressBar_SendFile.setMaximum(100) # 進度條最大值 100
         self.ui.progressBar_SendFile.setStyleSheet("#progressBar_SendFile{\n"
                                                     "border: 2px solid #000;\n"
                                                     "border-radius: 10px;\n"
@@ -398,8 +421,8 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                     "background-color: rgb(170, 170, 255);\n"
                                                     "border-radius: 8px;\n"
                                                     "}") # 進度條顏色
-        self.ui.button_Startlistening.setEnabled(False)  # 開始發送 button 禁用
-        self.ui.button_SelectfFile.setEnabled(False)  # 聆聽時選擇檔案 button 禁用
+        self.ui.button_Startlistening.setEnabled(False) # 開始發送 button 禁用
+        self.ui.button_SelectfFile.setEnabled(False) # 聆聽時選擇檔案 button 禁用
 
         self.thread_SendFile.run = self.QThread_SendFile
         self.thread_SendFile.start()
@@ -417,7 +440,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.ui.button_Startlistening.setEnabled(True)
             self.ui.button_SelectfFile.setEnabled(True)
             self.ui.button_Startlistening.setText('連接失敗')
-            self.thread_SendFile.quit()  # 掛起線程
+            self.thread_SendFile.quit() # 掛起線程
             return
 
         print('[Send] packingBox()')
@@ -428,7 +451,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.ui.button_Startlistening.setEnabled(True)
             self.ui.button_SelectfFile.setEnabled(True)
             self.ui.button_Startlistening.setText('打包失敗')
-            self.thread_SendFile.quit()  # 掛起線程
+            self.thread_SendFile.quit() # 掛起線程
             return
 
         print('[Send] reqBoxSend()')
@@ -451,8 +474,8 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         self.ui.button_Startlistening.setText('發送包裹') # 傳送完成了按鈕重置
         self.ui.button_Startlistening.setEnabled(True) # 開始發送 button 啟用
-        self.ui.button_SelectfFile.setEnabled(True)  # 選擇檔案 button 啟用
-        self.thread_SendFile.quit()  # 掛起線程
+        self.ui.button_SelectfFile.setEnabled(True) # 選擇檔案 button 啟用
+        self.thread_SendFile.quit() # 掛起線程
 
     def UpdataprogressBar_SendFile(self):
         progress = int(client.showUploadProgress())
@@ -469,13 +492,12 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                     "background-color: rgb(0, 217, 0);\n"
                                                     "border-radius: 8px;\n"
                                                     "}")
-        """"""
         self.ui.progressBar_SendFile.setValue(progress) # 增加進度條
 
     ### Setting -----------------------------------------------------------------------------------------------------------
 
     def SwitchToSettingPage(self):
-        self.ui.stackedWidget.setCurrentIndex(2)  # 切換 Stack Widget 到 (索引值 2 / Setting) 頁
+        self.ui.stackedWidget.setCurrentIndex(2) # 切換 Stack Widget 到 (索引值 2 / Setting) 頁
 
         # 顏色轉換
         self.button_setStyleSheet(self.ui.button_Setting,
@@ -503,20 +525,20 @@ class MainWindow_controller(QtWidgets.QWidget):
                 return
             except socket.gaierror:
                 result = QMessageBox.warning(self,
-                                             '查無域名',
-                                             '請檢察輸入的網址或IP是否正確!\n'+
-                                             '網址範例 example.com\n'+
-                                             'IPv4 範例 192.168.1.10',
-                                             QMessageBox.Ok)
+                                            '查無域名',
+                                            '請檢察輸入的網址或IP是否正確!\n'+
+                                            '網址範例 example.com\n'+
+                                            'IPv4 範例 192.168.1.10',
+                                            QMessageBox.Ok)
                 if result == QMessageBox.Ok:
                     print(GUI, 'Domain not found or IP value error.')
                     return
             except TypeError and ValueError:
                 result = QMessageBox.warning(self,
-                                             '參數錯誤',
-                                             '請確認輸入正確的數值!\n'+
-                                             'Port 範例 7000',
-                                             QMessageBox.Ok)
+                                            '參數錯誤',
+                                            '請確認輸入正確的數值!\n'+
+                                            'Port 範例 7000',
+                                            QMessageBox.Ok)
                 if result == QMessageBox.Ok:
                     print(GUI, 'Setting input value error.')
                     return
@@ -524,19 +546,19 @@ class MainWindow_controller(QtWidgets.QWidget):
     def OpenSaveFolder(self):
         folder_path = QFileDialog.getExistingDirectory(self,
                                                        'Open folder',
-                                                       './')  # start path
+                                                       './') # start path
 
-        if folder_path == '':
+        if folder_path == '': # 沒選擇就跳回預設值
             folder_path = DEFAULT_SAVE_DIR
 
-        client.setSaveFolder(folder_path)  # 設置 client 儲存路徑
+        client.setSaveFolder(folder_path) # 設置 client 儲存路徑
         print(GUI, 'setSaveFolder() =', folder_path)
         self.ui.input_ShowSavepath.setText(folder_path)
 
     ### User -----------------------------------------------------------------------------------------------------------
 
     def SwitchToUserPage(self):
-        self.ui.stackedWidget.setCurrentIndex(3)  # 切換 Stack Widget 到 (索引值 3 / User) 頁
+        self.ui.stackedWidget.setCurrentIndex(3) # 切換 Stack Widget 到 (索引值 3 / User) 頁
 
         # 顏色轉換
         # button_union = [self.ui.button_User, self.ui.button_Client, self.ui.button_Server, self.ui.button_Setting]
@@ -578,8 +600,6 @@ class MainWindow_controller(QtWidgets.QWidget):
         # self.ui.Layout_Filename.setEnabled(flag)
 
     def cFileLayoutVisible(self, flag):
-        # self.ui.label_cFilesize.setVisible(flag)
-        # self.ui.label_cFilename.setVisible(flag)
         self.ui.label_cFilename.setVisible(flag)
         self.ui.label_cFilesize.setVisible(flag)
         self.ui.hint_cFileize.setVisible(flag)
@@ -597,15 +617,16 @@ class MainWindow_controller(QtWidgets.QWidget):
                              Other3: QtWidgets.QPushButton):
 
         otherPage_StyleSheet = 'background-color: rgba(36, 67, 124, 50);' \
-                               'border-radius: 10px;' \
-                               'color: rgb(255, 255, 255);'
+                                'border-radius: 10px;' \
+                                'color: rgb(255, 255, 255);'
         nowPage_StyleSheet = 'background-color: rgba(255, 255, 255, 255);' \
-                             'border-radius: 10px;'
+                                'border-radius: 10px;'
 
         NowFocus.setStyleSheet(nowPage_StyleSheet)
         Other1.setStyleSheet(otherPage_StyleSheet)
         Other2.setStyleSheet(otherPage_StyleSheet)
         Other3.setStyleSheet(otherPage_StyleSheet)
+
 
 
 
