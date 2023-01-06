@@ -762,69 +762,123 @@ border-radius: 8px;
         </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="button_SelectfFile">
-         <property name="minimumSize">
-          <size>
-           <width>730</width>
-           <height>100</height>
-          </size>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>0</number>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>730</width>
-           <height>100</height>
-          </size>
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
          </property>
-         <property name="styleSheet">
-          <string notr="true">background-image: url(./src/gui/image/button_SelectFile.png);
+         <item>
+          <widget class="QPushButton" name="button_SelectfFile">
+           <property name="minimumSize">
+            <size>
+             <width>350</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>350</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-image: url(./src/gui/image/button_SelectFile.png);
 border-radius: 10px;</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="button_SelectfFolder">
+           <property name="minimumSize">
+            <size>
+             <width>350</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>350</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius: 10px;
+background-color: rgb(85, 170, 255);</string>
+           </property>
+           <property name="text">
+            <string>選擇資料夾</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="button_SelectfFolder">
+        <widget class="QGroupBox" name="GroupBox_SendboxKey">
          <property name="minimumSize">
           <size>
-           <width>730</width>
-           <height>100</height>
+           <width>0</width>
+           <height>300</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>730</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-radius: 10px;
-background-color: rgb(85, 170, 255);</string>
-         </property>
-         <property name="text">
-          <string>選擇資料夾</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QListWidget" name="listWidget_Sendpackage">
          <property name="font">
           <font>
-           <family>Consolas</family>
-           <pointsize>15</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
+           <family>微軟正黑體</family>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-radius: 10px;
+          <string notr="true">#GroupBox_SendboxKey{border-radius: 10px;
 border-color: rgb(62, 127, 177);
-background-color: rgba(85, 170, 255, 100);</string>
+background-color: rgba(85, 170, 255, 100);}</string>
          </property>
-         <property name="flow">
-          <enum>QListView::TopToBottom</enum>
+         <property name="title">
+          <string>&lt;包裹資訊&gt;</string>
          </property>
+         <widget class="QListWidget" name="listWidget_Sendpackage">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>711</width>
+            <height>261</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>15</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-color: rgb(62, 127, 177);
+border-radius: 10px;</string>
+          </property>
+          <property name="flow">
+           <enum>QListView::TopToBottom</enum>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>
