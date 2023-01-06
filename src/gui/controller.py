@@ -25,7 +25,7 @@ client = Client()
 # server = Server()
 
 GUI = 'GUI:'
-DEFAULT_SAVE_DIR = f'{os.path.dirname(__file__)}/save'.replace('\\','/') # .\foo\bar -> ./foo/bar
+DEFAULT_SAVE_DIR = f'{os.path.expanduser("~/Downloads")}/save'.replace('\\','/') # .\foo\bar -> ./foo/bar
 
 
 
@@ -137,18 +137,26 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.setupUi(self)
         self.setup_control()
 
-        self.ui.stackedWidget.setCurrentIndex(0)  # 登入成功後初始介面為 Setting
+        self.ui.stackedWidget.setCurrentIndex(0)  # 登入成功後初始介面為 Recv package
+
+        # ----------Setting 預設值-------------------------------------
         self.ui.input_clientIP.setText('proxy.ggwp.tw')
         self.ui.input_clientPort.setText('7000')
-        self.SettingSave()
+        self.ui.input_ShowSavepath.setText(DEFAULT_SAVE_DIR) # 預設路徑
 
-        self.ui.button_Client.setStyleSheet('background-color: rgb(255, 255, 255);;'
+        ### 儲存設定 (不直接 call SettingSave() 因為會跳保存成功按鈕)
+        input_clientIP = self.ui.input_clientIP.text()
+        input_clientPort = int(self.ui.input_clientPort.text()) # Port 沒轉 int 會出問題
+        client.setHost(input_clientIP, input_clientPort)
+        client.setSaveFolder(DEFAULT_SAVE_DIR)
+        # ------------------------------------------------------------
+
+        self.ui.button_Client.setStyleSheet('background-color: rgb(255, 255, 255);'
                                              'border-radius: 10px;')  # 更改顏色
 
         #self.ui.button_Client.setEnabled(False)  # 未設定 IP 和 Port 時禁用
         #self.ui.button_Server.setEnabled(False)  # 未設定 IP 和 Port 時禁用
 
-        self.ui.input_ShowSavepath.setText(DEFAULT_SAVE_DIR) # 預設路徑
         self.ui.button_Startlistening.setEnabled(False)  # 開始聆聽 button 禁用 (沒有檔案)
         self.ui.button_SelectfFile.setEnabled(True)  # 選擇檔案 button 啟用
 
@@ -480,38 +488,46 @@ class MainWindow_controller(QtWidgets.QWidget):
             try:
                 input_clientIP = self.ui.input_clientIP.text()
                 input_clientPort = int(self.ui.input_clientPort.text())
+
+                if input_clientPort > 65535 or input_clientPort < 1 :
+                    raise ValueError(GUI, 'input_clientPort out of range.')
+
                 client.setHost(input_clientIP, input_clientPort)
-                return
-                '''if self.ui.input_ShowSavepath.text() == DEFAULT_SAVE_DIR:
-                    QMessageBox.warning(self,
-                                        '警告訊息',
-                                        '請選擇保存路徑!\n',
-                                        QMessageBox.Ok)
-                    return
-
-                
-
                 QMessageBox.information(self,
                                         '提示訊息', '保存成功',
                                         QMessageBox.Ok)
+                
+                print(GUI, f'setHost({input_clientIP}, {input_clientPort})')
                 self.ui.button_Client.setEnabled(True)
                 self.ui.button_Server.setEnabled(True)
-                return'''
+                return
+            except socket.gaierror:
+                result = QMessageBox.warning(self,
+                                             '查無域名',
+                                             '請檢察輸入的網址或IP是否正確!\n'+
+                                             '網址範例 example.com\n'+
+                                             'IPv4 範例 192.168.1.10',
+                                             QMessageBox.Ok)
+                if result == QMessageBox.Ok:
+                    print(GUI, 'Domain not found or IP value error.')
+                    return
             except TypeError and ValueError:
                 result = QMessageBox.warning(self,
                                              '參數錯誤',
-                                             '請確認輸入正確的數值!\n'
-                                             'IPv4 範例 192.168.1.10\n'
-                                             'Port 範例 5000',
+                                             '請確認輸入正確的數值!\n'+
+                                             'Port 範例 7000',
                                              QMessageBox.Ok)
                 if result == QMessageBox.Ok:
-                    print(GUI, 'TypeError or ValueError.')
+                    print(GUI, 'Setting input value error.')
                     return
 
     def OpenSaveFolder(self):
         folder_path = QFileDialog.getExistingDirectory(self,
                                                        'Open folder',
                                                        './')  # start path
+
+        if folder_path == '':
+            folder_path = DEFAULT_SAVE_DIR
 
         client.setSaveFolder(folder_path)  # 設置 client 儲存路徑
         print(GUI, 'setSaveFolder() =', folder_path)
