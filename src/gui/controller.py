@@ -325,7 +325,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_DownloadFile.setText('Download')
         ### GUI 顯示 檔案資料 ----------------------------------
         file_name = str(client.box_name)
-        file_type = str(client.file_type) if str(client.file_type) != '.dir' else '' # 是資料夾就清除附檔名
+        file_type = str(client.box_type) if str(client.box_type) != '.dir' else '' # 是資料夾就清除附檔名
         file_size = str(sizeConverter(client.box_file_size / 1000))
 
         self.ui.label_cFilename.setText(file_name + file_type)
@@ -390,7 +390,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.RecvCacheKey = boxKey
             ### GUI 刷新 檔案資料 ----------------------------------
             file_name = str(client.box_name)
-            file_type = str(client.file_type) if str(client.file_type) != '.dir' else '' # 是資料夾就清除附檔名
+            file_type = str(client.box_type) if str(client.box_type) != '.dir' else '' # 是資料夾就清除附檔名
             file_size = str(sizeConverter(client.box_file_size / 1000))
 
             self.ui.label_cFilename.setText(file_name + file_type)
@@ -413,7 +413,7 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         ### 下載成功，將文件資訊添加至listview裡面 ------------------------------
         file_name = str(client.box_name)
-        file_type = str(client.file_type) if str(client.file_type) != '.dir' else '' # 是資料夾就清除附檔名
+        file_type = str(client.box_type) if str(client.box_type) != '.dir' else '' # 是資料夾就清除附檔名
         file_size = str(sizeConverter(client.box_file_size / 1000))
 
         self.downloadFileInfolist.append(str('  取件碼 : ' + boxKey + '\t\t檔案名稱 : '+ file_name + file_type + '\t檔案大小 : ' + file_size))
