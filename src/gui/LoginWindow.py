@@ -23,7 +23,7 @@ class Ui_LoginWindow(object):
         font.setFamily("微軟正黑體")
         font.setPointSize(12)
         self.frame.setFont(font)
-        self.frame.setStyleSheet("#frame{background-image:url(./src/gui/image/Ftpy_Background.png);\n"
+        self.frame.setStyleSheet("#frame{background-image:url(./src/gui/image/Login_Background.png);\n"
 "border-radius: 20px;}")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)

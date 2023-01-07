@@ -30,7 +30,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#frame{background-image:url(./src/gui/image/Ftpy_Background.png);
+     <string notr="true">#frame{background-image:url(./src/gui/image/Login_Background.png);
 border-radius: 20px;}</string>
     </property>
     <property name="frameShape">
