@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'LoginWindow.ui'
+# Form implementation generated from reading ui file 'c:\Users\MSI GP65\Documents\GitHub\ftpy\src\gui\LoginWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -23,7 +23,7 @@ class Ui_LoginWindow(object):
         font.setFamily("微軟正黑體")
         font.setPointSize(12)
         self.frame.setFont(font)
-        self.frame.setStyleSheet("#frame{background-image:url(./src/gui/image/LoginBackground.jpg);\n"
+        self.frame.setStyleSheet("#frame{background-image:url(./src/gui/image/Login_Background.png);\n"
 "border-radius: 20px;}")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -65,7 +65,7 @@ class Ui_LoginWindow(object):
         self.LoginClose.setObjectName("LoginClose")
         self.layout_LoginControll.addWidget(self.LoginClose)
         self.button_LogicIn = QtWidgets.QPushButton(self.frame)
-        self.button_LogicIn.setGeometry(QtCore.QRect(10, 380, 311, 41))
+        self.button_LogicIn.setGeometry(QtCore.QRect(660, 390, 311, 41))
         font = QtGui.QFont()
         font.setFamily("華康粗明體(P)")
         font.setPointSize(12)
@@ -73,24 +73,24 @@ class Ui_LoginWindow(object):
         font.setUnderline(False)
         font.setWeight(75)
         self.button_LogicIn.setFont(font)
-        self.button_LogicIn.setStyleSheet("background-color: rgb(170, 255, 255);\n"
+        self.button_LogicIn.setStyleSheet("background-color: rgb(10, 255, 255);\n"
 "border-radius: 15px;")
         self.button_LogicIn.setObjectName("button_LogicIn")
         self.ForgetPW = QtWidgets.QLabel(self.frame)
-        self.ForgetPW.setGeometry(QtCore.QRect(10, 670, 71, 16))
+        self.ForgetPW.setGeometry(QtCore.QRect(900, 360, 71, 16))
         font = QtGui.QFont()
         font.setFamily("微軟正黑體")
         self.ForgetPW.setFont(font)
         self.ForgetPW.setObjectName("ForgetPW")
         self.CreateID = QtWidgets.QLabel(self.frame)
-        self.CreateID.setGeometry(QtCore.QRect(10, 650, 71, 16))
+        self.CreateID.setGeometry(QtCore.QRect(660, 360, 71, 16))
         font = QtGui.QFont()
         font.setFamily("微軟正黑體")
         font.setPointSize(9)
         self.CreateID.setFont(font)
         self.CreateID.setObjectName("CreateID")
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.frame)
-        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 250, 311, 51))
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(660, 230, 311, 51))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.layout_ID = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.layout_ID.setContentsMargins(0, 0, 0, 0)
@@ -130,7 +130,7 @@ class Ui_LoginWindow(object):
         self.input_ID.setObjectName("input_ID")
         self.layout_ID.addWidget(self.frame_ID)
         self.horizontalLayoutWidget_5 = QtWidgets.QWidget(self.frame)
-        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(10, 310, 311, 51))
+        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(660, 300, 311, 51))
         self.horizontalLayoutWidget_5.setObjectName("horizontalLayoutWidget_5")
         self.layout_PW = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_5)
         self.layout_PW.setContentsMargins(0, 0, 0, 0)
@@ -169,6 +169,17 @@ class Ui_LoginWindow(object):
         self.input_PW.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft)
         self.input_PW.setObjectName("input_PW")
         self.layout_PW.addWidget(self.frame_PW)
+        self.label = QtWidgets.QLabel(self.frame)
+        self.label.setGeometry(QtCore.QRect(660, 180, 311, 41))
+        font = QtGui.QFont()
+        font.setFamily("微軟正黑體")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(85, 85, 127);")
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
         LoginWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(LoginWindow)
@@ -178,8 +189,8 @@ class Ui_LoginWindow(object):
         _translate = QtCore.QCoreApplication.translate
         LoginWindow.setWindowTitle(_translate("LoginWindow", "MainWindow"))
         self.button_LogicIn.setText(_translate("LoginWindow", "Login"))
-        self.ForgetPW.setText(_translate("LoginWindow", "忘記密碼"))
+        self.ForgetPW.setText(_translate("LoginWindow", "忘記密碼?"))
         self.CreateID.setText(_translate("LoginWindow", "註冊帳號"))
         self.input_ID.setPlaceholderText(_translate("LoginWindow", "帳號"))
         self.input_PW.setPlaceholderText(_translate("LoginWindow", "密碼"))
-
+        self.label.setText(_translate("LoginWindow", "※使用者登入※"))

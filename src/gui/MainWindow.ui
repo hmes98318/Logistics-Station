@@ -74,7 +74,7 @@ border-radius: 20px;}
        <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
-         <height>30</height>
+         <height>50</height>
         </size>
        </property>
       </spacer>
@@ -84,13 +84,13 @@ border-radius: 20px;}
        <property name="minimumSize">
         <size>
          <width>200</width>
-         <height>40</height>
+         <height>70</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>200</width>
-         <height>50</height>
+         <height>70</height>
         </size>
        </property>
        <property name="font">
@@ -109,7 +109,8 @@ border-radius: 20px;}
 color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Client</string>
+        <string>Receive 
+ package</string>
        </property>
        <property name="checkable">
         <bool>false</bool>
@@ -127,7 +128,7 @@ color: rgb(255, 255, 255);</string>
        <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
-         <height>30</height>
+         <height>50</height>
         </size>
        </property>
       </spacer>
@@ -137,19 +138,19 @@ color: rgb(255, 255, 255);</string>
        <property name="minimumSize">
         <size>
          <width>200</width>
-         <height>40</height>
+         <height>70</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>200</width>
-         <height>50</height>
+         <height>70</height>
         </size>
        </property>
        <property name="font">
         <font>
          <family>BankGothic Md BT</family>
-         <pointsize>20</pointsize>
+         <pointsize>18</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -157,7 +158,8 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Server</string>
+        <string>Send 
+ Package</string>
        </property>
       </widget>
      </item>
@@ -169,7 +171,7 @@ color: rgb(255, 255, 255);</string>
        <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
-         <height>30</height>
+         <height>50</height>
         </size>
        </property>
       </spacer>
@@ -265,7 +267,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>220</x>
       <y>40</y>
-      <width>771</width>
+      <width>770</width>
       <height>651</height>
      </rect>
     </property>
@@ -287,7 +289,7 @@ border-radius: 15px;}</string>
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>732</width>
+        <width>731</width>
         <height>231</height>
        </rect>
       </property>
@@ -296,92 +298,224 @@ border-radius: 15px;}</string>
         <number>10</number>
        </property>
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLineEdit" name="input_PickupNumber">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>20</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius: 10px;
+background-color: rgba(13, 95, 160, 100);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="placeholderText">
+            <string>請輸入取件碼</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="button_RequireFile">
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>微軟正黑體</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius: 10px;
+color: rgb(170, 255, 255);
+background-color: rgba(13, 95, 160, 200);</string>
+           </property>
+           <property name="text">
+            <string>查詢包裹</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="Layout_cFileInfo">
          <property name="spacing">
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="hint_cFilename">
-           <property name="maximumSize">
-            <size>
-             <width>70</width>
-             <height>50</height>
-            </size>
+          <layout class="QVBoxLayout" name="Layout_cFileInfo2">
+           <property name="spacing">
+            <number>4</number>
            </property>
-           <property name="font">
-            <font>
-             <family>標楷體</family>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>文件名:</string>
-           </property>
-          </widget>
+           <item>
+            <layout class="QHBoxLayout" name="Layout_cFilename">
+             <item>
+              <widget class="QLabel" name="hint_cFilename">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>標楷體</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>文件名:    </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_cFilename">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>450</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Consolas</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="Layout_cFilesize">
+             <item>
+              <widget class="QLabel" name="hint_cFileize">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>90</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>標楷體</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>檔案大小:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_cFilesize">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>450</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Consolas</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QLabel" name="label_cFilename">
+          <widget class="QPushButton" name="button_DownloadFile">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>70</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>450</width>
-             <height>50</height>
+             <width>200</width>
+             <height>70</height>
             </size>
            </property>
            <property name="font">
             <font>
              <family>Consolas</family>
-             <pointsize>11</pointsize>
+             <pointsize>13</pointsize>
             </font>
            </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-           <property name="wordWrap">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="hint_cFileize">
-           <property name="maximumSize">
-            <size>
-             <width>90</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>標楷體</family>
-             <pointsize>12</pointsize>
-            </font>
+           <property name="styleSheet">
+            <string notr="true">border-radius: 10px;
+color: rgb(170, 255, 255);
+background-color: rgba(13, 95, 160, 200);</string>
            </property>
            <property name="text">
-            <string>檔案大小:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_cFilesize">
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Consolas</family>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <string>Download</string>
            </property>
           </widget>
          </item>
@@ -449,36 +583,6 @@ border-radius: 8px;
          </item>
         </layout>
        </item>
-       <item>
-        <widget class="QPushButton" name="button_RequireFile">
-         <property name="minimumSize">
-          <size>
-           <width>730</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>730</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>微軟正黑體</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-radius: 10px;
-color: rgb(170, 255, 255);
-background-color: rgba(13, 95, 160, 200);</string>
-         </property>
-         <property name="text">
-          <string>連線至 Server 獲取檔案✔</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QLabel" name="label_spacer3_2">
@@ -506,49 +610,72 @@ background-color: rgba(13, 95, 160, 200);</string>
        <string/>
       </property>
      </widget>
+     <widget class="QGroupBox" name="GroupBox_downloadInfo">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>340</y>
+        <width>731</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微軟正黑體</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#GroupBox_downloadInfo{border-radius: 10px;
+border-color: rgb(62, 127, 177);
+background-color: rgba(85, 170, 255, 100);}</string>
+      </property>
+      <property name="title">
+       <string>&lt;已下載-包裹資訊&gt;</string>
+      </property>
+      <widget class="QListWidget" name="listWidget_downloadInfo">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>711</width>
+         <height>261</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(62, 127, 177);
+border-radius: 10px;</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="Server">
-     <widget class="QPushButton" name="button_Startlistening">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>600</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(192, 216, 251);
-border-radius: 10px;</string>
-      </property>
-      <property name="text">
-       <string>開始聆聽</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="button_Stoplistening">
-      <property name="geometry">
-       <rect>
-        <x>660</x>
-        <y>600</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(192, 216, 251);
-border-radius: 10px;</string>
-      </property>
-      <property name="text">
-       <string>中斷聆聽</string>
-      </property>
-     </widget>
      <widget class="QWidget" name="verticalLayoutWidget_4">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>20</y>
         <width>732</width>
-        <height>211</height>
+        <height>311</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="Layout_SelectFile">
@@ -656,29 +783,239 @@ border-radius: 10px;</string>
         </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="button_SelectfFile">
+        <layout class="QHBoxLayout" name="Layout_Sendschedule">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="hint_Sendschedule">
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>微軟正黑體</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="inputMethodHints">
+            <set>Qt::ImhSensitiveData</set>
+           </property>
+           <property name="text">
+            <string>進度  </string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QProgressBar" name="progressBar_SendFile">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#progressBar_SendFile{
+border: 2px solid #000;
+border-radius: 10px;
+text-align:center;
+}
+#progressBar_SendFile::chunk { 
+background-color: rgb(170, 170, 255);
+border-radius: 8px;
+}</string>
+           </property>
+           <property name="value">
+            <number>24</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button_Startlistening">
          <property name="minimumSize">
           <size>
-           <width>730</width>
-           <height>100</height>
+           <width>0</width>
+           <height>50</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>730</width>
-           <height>100</height>
+           <width>16777215</width>
+           <height>50</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>標楷體</family>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(./src/gui/image/button_SelectFile.png);
+          <string notr="true">background-color: rgb(192, 216, 251);
 border-radius: 10px;</string>
          </property>
          <property name="text">
-          <string/>
+          <string>請先選擇檔案!</string>
          </property>
         </widget>
        </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <item>
+          <widget class="QPushButton" name="button_SelectfFile">
+           <property name="minimumSize">
+            <size>
+             <width>350</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>350</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-image: url(./src/gui/image/button_SelectFile.png);
+border-radius: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="button_SelectfFolder">
+           <property name="minimumSize">
+            <size>
+             <width>350</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>350</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Microsoft JhengHei UI</family>
+             <pointsize>16</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-image: url(./src/gui/image/button_SelectFolder.png);
+border-radius: 10px;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
+     </widget>
+     <widget class="QGroupBox" name="GroupBox_SendboxKey">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>340</y>
+        <width>730</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微軟正黑體</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#GroupBox_SendboxKey{border-radius: 10px;
+border-color: rgb(62, 127, 177);
+background-color: rgba(85, 170, 255, 100);}</string>
+      </property>
+      <property name="title">
+       <string>&lt;已上傳-包裹資訊&gt;</string>
+      </property>
+      <widget class="QListWidget" name="listWidget_Sendpackage">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>711</width>
+         <height>261</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft JhengHei UI</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(62, 127, 177);
+border-radius: 10px;</string>
+       </property>
+       <property name="flow">
+        <enum>QListView::TopToBottom</enum>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="Setting">
@@ -728,158 +1065,6 @@ border-radius: 10px;</string>
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QGroupBox" name="groupBox_server">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>300</y>
-        <width>641</width>
-        <height>140</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>標楷體</family>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="title">
-       <string>伺服器端設定</string>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="verticalLayoutWidget_3">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>30</y>
-         <width>591</width>
-         <height>91</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="Layout_server1">
-        <item>
-         <layout class="QHBoxLayout" name="Layout_server2">
-          <item>
-           <widget class="QLabel" name="hint_serverIP">
-            <property name="font">
-             <font>
-              <family>微軟正黑體</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>IP地址(IPv4) :</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="input_serverIP">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Consolas</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgba(170, 170, 255, 70);
-border-radius: 10px;</string>
-            </property>
-            <property name="inputMask">
-             <string>000.000.000.000</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>300</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="Layout_server3">
-          <item>
-           <widget class="QLabel" name="hint_serverPort">
-            <property name="font">
-             <font>
-              <family>微軟正黑體</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>Port(0~65535) :</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="input_serverPort">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Consolas</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgba(170, 170, 255, 70);
-border-radius: 10px;</string>
-            </property>
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>400</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
      <widget class="QGroupBox" name="groupBox_client">
       <property name="geometry">
        <rect>
@@ -898,7 +1083,7 @@ border-radius: 10px;</string>
        </font>
       </property>
       <property name="title">
-       <string>用戶端設定</string>
+       <string>代理伺服器設定</string>
       </property>
       <property name="flat">
        <bool>true</bool>
@@ -961,7 +1146,7 @@ border-radius: 10px;</string>
 border-radius: 10px;</string>
             </property>
             <property name="inputMask">
-             <string>000.000.000.000</string>
+             <string/>
             </property>
             <property name="frame">
              <bool>true</bool>
@@ -1123,23 +1308,121 @@ border-radius: 10px;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="User">
-     <widget class="QLabel" name="label_4">
+     <widget class="QFrame" name="UserPage_Background">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>280</y>
-        <width>271</width>
-        <height>261</height>
+        <x>0</x>
+        <y>0</y>
+        <width>770</width>
+        <height>650</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-       </font>
+      <property name="styleSheet">
+       <string notr="true">#UserPage_Background{border-radius: 15px;
+background-image: url(./src/gui/image/UserPage_Background.png);}</string>
       </property>
-      <property name="text">
-       <string>User</string>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QWidget" name="verticalLayoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>320</y>
+         <width>381</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="hint_hyperlink">
+          <property name="font">
+           <font>
+            <family>華康少女文字W7</family>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>For more details visit
+</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="hint_logisticsStation">
+          <property name="font">
+           <font>
+            <family>華康少女文字W7</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Repository</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_logisticsStation">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>   ‧ Logistics-Station</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="hint_Author">
+          <property name="font">
+           <font>
+            <family>華康少女文字W7</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Author</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_hmes98318">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>   ‧ hmes98318</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_sakura0711">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>   ‧ sakura0711</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
    </widget>

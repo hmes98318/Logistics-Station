@@ -30,7 +30,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#frame{background-image:url(./src/gui/image/LoginBackground.jpg);
+     <string notr="true">#frame{background-image:url(./src/gui/image/Login_Background.png);
 border-radius: 20px;}</string>
     </property>
     <property name="frameShape">
@@ -139,8 +139,8 @@ border-radius: 20px;}</string>
     <widget class="QPushButton" name="button_LogicIn">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>380</y>
+       <x>660</x>
+       <y>390</y>
        <width>311</width>
        <height>41</height>
       </rect>
@@ -155,7 +155,7 @@ border-radius: 20px;}</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(170, 255, 255);
+      <string notr="true">background-color: rgb(10, 255, 255);
 border-radius: 15px;</string>
      </property>
      <property name="text">
@@ -165,8 +165,8 @@ border-radius: 15px;</string>
     <widget class="QLabel" name="ForgetPW">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>670</y>
+       <x>900</x>
+       <y>360</y>
        <width>71</width>
        <height>16</height>
       </rect>
@@ -177,14 +177,14 @@ border-radius: 15px;</string>
       </font>
      </property>
      <property name="text">
-      <string>忘記密碼</string>
+      <string>忘記密碼?</string>
      </property>
     </widget>
     <widget class="QLabel" name="CreateID">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>650</y>
+       <x>660</x>
+       <y>360</y>
        <width>71</width>
        <height>16</height>
       </rect>
@@ -202,8 +202,8 @@ border-radius: 15px;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_3">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>250</y>
+       <x>660</x>
+       <y>230</y>
        <width>311</width>
        <height>51</height>
       </rect>
@@ -309,8 +309,8 @@ border-radius: 15px;</string>
     <widget class="QWidget" name="horizontalLayoutWidget_5">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>310</y>
+       <x>660</x>
+       <y>300</y>
        <width>311</width>
        <height>51</height>
       </rect>
@@ -412,6 +412,33 @@ border-radius: 15px;}</string>
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>660</x>
+       <y>180</y>
+       <width>311</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微軟正黑體</family>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 85, 127);</string>
+     </property>
+     <property name="text">
+      <string>※使用者登入※</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
    </widget>
   </widget>
