@@ -267,7 +267,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>220</x>
       <y>40</y>
-      <width>771</width>
+      <width>770</width>
       <height>651</height>
      </rect>
     </property>
@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -1293,23 +1293,78 @@ border-radius: 10px;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="User">
-     <widget class="QLabel" name="label_4">
+     <widget class="QFrame" name="UserPage_Background">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>280</y>
-        <width>271</width>
-        <height>261</height>
+        <x>0</x>
+        <y>0</y>
+        <width>770</width>
+        <height>650</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-       </font>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 15px;
+background-image: url(./src/gui/image/UserPage_Background.png);</string>
       </property>
-      <property name="text">
-       <string>User</string>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QWidget" name="verticalLayoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>350</y>
+         <width>381</width>
+         <height>139</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="hint_hyperlink">
+          <property name="font">
+           <font>
+            <family>華康少女文字W7</family>
+            <pointsize>18</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>For more details visit</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_hmes98318">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>  ‧hmes98318</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_sakura0711">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>  ‧sakura0711</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
    </widget>
