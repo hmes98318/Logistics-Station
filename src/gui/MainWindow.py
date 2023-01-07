@@ -665,8 +665,8 @@ class Ui_MainWindow(object):
         self.button_Startlistening.setText(_translate("MainWindow", "請先選擇檔案!"))
         self.GroupBox_SendboxKey.setTitle(_translate("MainWindow", "<已上傳-包裹資訊>"))
         self.button_SettingSave.setText(_translate("MainWindow", "儲存設定"))
-        self.groupBox_client.setTitle(_translate("MainWindow", "代理伺服器設定"))
-        self.hint_clientIP.setText(_translate("MainWindow", "IP地址(IPv4) :"))
+        self.groupBox_client.setTitle(_translate("MainWindow", "伺服器設定"))
+        self.hint_clientIP.setText(_translate("MainWindow", "伺服器位置 :"))
         self.hint_clientPort.setText(_translate("MainWindow", "Port(0~65535) :"))
         self.hint_saveFolderPath.setText(_translate("MainWindow", "存檔位置 :"))
         self.hint_hyperlink.setText(_translate("MainWindow", "For more details visit\n"
