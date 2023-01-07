@@ -140,7 +140,7 @@ border-radius: 20px;}</string>
      <property name="geometry">
       <rect>
        <x>660</x>
-       <y>310</y>
+       <y>390</y>
        <width>311</width>
        <height>41</height>
       </rect>
@@ -165,8 +165,8 @@ border-radius: 15px;</string>
     <widget class="QLabel" name="ForgetPW">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>670</y>
+       <x>900</x>
+       <y>360</y>
        <width>71</width>
        <height>16</height>
       </rect>
@@ -177,14 +177,14 @@ border-radius: 15px;</string>
       </font>
      </property>
      <property name="text">
-      <string>忘記密碼</string>
+      <string>忘記密碼?</string>
      </property>
     </widget>
     <widget class="QLabel" name="CreateID">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>650</y>
+       <x>660</x>
+       <y>360</y>
        <width>71</width>
        <height>16</height>
       </rect>
@@ -203,7 +203,7 @@ border-radius: 15px;</string>
      <property name="geometry">
       <rect>
        <x>660</x>
-       <y>170</y>
+       <y>230</y>
        <width>311</width>
        <height>51</height>
       </rect>
@@ -310,7 +310,7 @@ border-radius: 15px;</string>
      <property name="geometry">
       <rect>
        <x>660</x>
-       <y>240</y>
+       <y>300</y>
        <width>311</width>
        <height>51</height>
       </rect>
@@ -412,6 +412,30 @@ border-radius: 15px;}</string>
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>660</x>
+       <y>180</y>
+       <width>311</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微軟正黑體</family>
+       <pointsize>16</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>[使用者登入]</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
    </widget>
   </widget>

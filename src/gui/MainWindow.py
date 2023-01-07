@@ -586,7 +586,7 @@ class Ui_MainWindow(object):
         self.layout_MainControll.addWidget(self.MainClose)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
