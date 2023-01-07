@@ -155,6 +155,8 @@ class MainWindow_controller(QtWidgets.QWidget):
     downloadFileInfolist = [] # 存放下載的包裹資訊
     explorerPath = [] # 存放儲存路徑
 
+    RecvCacheKey = '' # 暫存 boxKey 來判斷下載的目標是否相同
+
 
     def __init__(self):
         # in python3, super(Class, self).xxx = super().xxx
@@ -318,6 +320,7 @@ class MainWindow_controller(QtWidgets.QWidget):
             return
 
         # client.stop() 
+        self.RecvCacheKey = boxKey # 包裹存在 暫存 boxKey
         self.ui.button_RequireFile.setText('再次查詢')
         self.ui.button_DownloadFile.setText('Download')
         ### GUI 顯示 檔案資料 ----------------------------------
@@ -369,11 +372,37 @@ class MainWindow_controller(QtWidgets.QWidget):
             self.thread_ClientReceiveFile.quit() # 掛起線程
             return
 
+        QUERYED_KEY = True if boxKey == self.RecvCacheKey else False
+        if QUERYED_KEY == False:
+            print('[Recv] DownloadFile() not found header, trying reqBoxHeader()')
+            SUCCESS_FOUND_HEADER = client.reqBoxHeader(boxKey)
+            if SUCCESS_FOUND_HEADER == False:
+                self.ui.button_DownloadFile.setText('下載失敗，重試')
+                self.ui.button_RequireFile.setText('查無包裹')
+                client.stop()
+                self.cFileLayoutVisible(False)
+                self.cFileDownloadVisible(False)
+                self.ui.button_RequireFile.setEnabled(True)
+                self.ui.button_DownloadFile.setEnabled(True)
+                self.thread_ClientReceiveHeader.quit() # 掛起線程
+                return
+
+            self.RecvCacheKey = boxKey
+            ### GUI 刷新 檔案資料 ----------------------------------
+            file_name = str(client.box_name)
+            file_type = str(client.file_type) if str(client.file_type) != '.dir' else '' # 是資料夾就清除附檔名
+            file_size = str(sizeConverter(client.box_file_size / 1000))
+
+            self.ui.label_cFilename.setText(file_name + file_type)
+            self.ui.label_cFilesize.setText(file_size)
+            ### ---------------------------------------------------
+
         print('[Recv] reqBoxRecv()')
         SUCCESS_RECV = client.reqBoxRecv(boxKey, self.DownloadProgressBarUpdate)
         if SUCCESS_RECV == False:
             print('[Recv] --reqBoxRecv() failed.')
             self.ui.button_DownloadFile.setText('下載失敗，重試')
+            client.stop()
             self.cFileDownloadVisible(False)
             self.ui.button_RequireFile.setEnabled(True)
             self.ui.button_DownloadFile.setEnabled(True)
