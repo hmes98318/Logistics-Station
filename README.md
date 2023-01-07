@@ -5,7 +5,7 @@
 
 
 A simple file shares implement in Python TCP socket.  
-Use a centralized Server to send and receive files so that multiple Clients can transfer files to each other.  
+Using a centralized Server to send and receive files that multiple Client can transfer files to each other.  
 
 TCP/IP network programming final report.  
 
