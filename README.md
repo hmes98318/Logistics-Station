@@ -9,6 +9,7 @@ Using a centralized Server to send and receive files that multiple Client can tr
 
 TCP/IP network programming final report.  
 
+<img src="./public/Recv4.png" alt="Recv4" width="600"/>
 
 ## Installation
 ### Install modules
