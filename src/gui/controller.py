@@ -729,7 +729,12 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.hint_cFileize.setVisible(flag)
         self.ui.hint_cFilename.setVisible(flag)
         self.ui.button_DownloadFile.setVisible(flag)
+
         self.ui.Layout_cFileInfo.setEnabled(flag)
+        self.ui.Layout_cFileInfo2.setEnabled(flag)
+        self.ui.Layout_cFilename.setEnabled(flag)
+        self.ui.Layout_cFilesize.setEnabled(flag)
+        
 
     def cFileDownloadVisible(self, flag):
         self.ui.hint_schedule.setVisible(flag)
