@@ -1303,8 +1303,8 @@ border-radius: 10px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-radius: 15px;
-background-image: url(./src/gui/image/UserPage_Background.png);</string>
+       <string notr="true">#UserPage_Background{border-radius: 15px;
+background-image: url(./src/gui/image/UserPage_Background.png);}</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1316,9 +1316,9 @@ background-image: url(./src/gui/image/UserPage_Background.png);</string>
        <property name="geometry">
         <rect>
          <x>370</x>
-         <y>350</y>
+         <y>320</y>
          <width>381</width>
-         <height>139</height>
+         <height>201</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -1327,13 +1327,53 @@ background-image: url(./src/gui/image/UserPage_Background.png);</string>
           <property name="font">
            <font>
             <family>華康少女文字W7</family>
-            <pointsize>18</pointsize>
+            <pointsize>14</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
           <property name="text">
-           <string>For more details visit</string>
+           <string>For more details visit
+</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="hint_logisticsStation">
+          <property name="font">
+           <font>
+            <family>華康少女文字W7</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Repository</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_logisticsStation">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>   ‧ Logistics-Station</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="hint_Author">
+          <property name="font">
+           <font>
+            <family>華康少女文字W7</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Author</string>
           </property>
          </widget>
         </item>
@@ -1342,11 +1382,14 @@ background-image: url(./src/gui/image/UserPage_Background.png);</string>
           <property name="font">
            <font>
             <family>Consolas</family>
-            <pointsize>14</pointsize>
+            <pointsize>10</pointsize>
            </font>
           </property>
           <property name="text">
-           <string>  ‧hmes98318</string>
+           <string>   ‧ hmes98318</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -1355,11 +1398,11 @@ background-image: url(./src/gui/image/UserPage_Background.png);</string>
           <property name="font">
            <font>
             <family>Consolas</family>
-            <pointsize>14</pointsize>
+            <pointsize>10</pointsize>
            </font>
           </property>
           <property name="text">
-           <string>  ‧sakura0711</string>
+           <string>   ‧ sakura0711</string>
           </property>
          </widget>
         </item>

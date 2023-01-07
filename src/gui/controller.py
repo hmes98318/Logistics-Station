@@ -199,10 +199,13 @@ class MainWindow_controller(QtWidgets.QWidget):
         
         # --------------標籤超連結----------------------------------------
         
-        self.ui.label_hmes98318.setText('  ‧<a href="https://github.com/hmes98318">hmes98318</a>')
+        self.ui.label_logisticsStation.setText('    ‧ <a href="https://github.com/hmes98318/Logistics-Station">Logistics-Station</a>')
+        self.ui.label_logisticsStation.setOpenExternalLinks(True)  # 使其成為超連結
+        self.ui.label_logisticsStation.setTextInteractionFlags(Qt.TextBrowserInteraction)  # 雙擊可以選擇
+        self.ui.label_hmes98318.setText('     ‧ <a href="https://github.com/hmes98318">hmes98318</a>')
         self.ui.label_hmes98318.setOpenExternalLinks(True)  # 使其成為超連結
         self.ui.label_hmes98318.setTextInteractionFlags(Qt.TextBrowserInteraction)  # 雙擊可以選擇
-        self.ui.label_sakura0711.setText('  ‧<a href="https://github.com/sakura0711">sakura0711</a>')
+        self.ui.label_sakura0711.setText('     ‧ <a href="https://github.com/sakura0711">sakura0711</a>')
         self.ui.label_sakura0711.setOpenExternalLinks(True)  # 使其成為超連結
         self.ui.label_sakura0711.setTextInteractionFlags(Qt.TextBrowserInteraction)  # 雙擊可以選擇
 
