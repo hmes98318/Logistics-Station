@@ -46,6 +46,8 @@ client = Client()
 # server = Server()
 
 GUI = 'GUI:'
+DEFAULT_HOST = '127.0.0.1'
+DEFAULT_PORT = '7000'
 DEFAULT_SAVE_DIR = f'{os.path.expanduser("~/Downloads")}/save'.replace('\\','/') # .\foo\bar -> ./foo/bar
 
 
@@ -168,8 +170,8 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.stackedWidget.setCurrentIndex(0) # 登入成功後初始介面為 Recv package
 
         # ----------Setting 預設值-------------------------------------
-        self.ui.input_clientIP.setText('proxy.ggwp.tw')
-        self.ui.input_clientPort.setText('7000')
+        self.ui.input_clientIP.setText(DEFAULT_HOST)
+        self.ui.input_clientPort.setText(DEFAULT_PORT)
         self.ui.input_ShowSavepath.setText(DEFAULT_SAVE_DIR) # 預設路徑
 
         ### 儲存設定 (不直接 call SettingSave() 因為會跳保存成功按鈕)
