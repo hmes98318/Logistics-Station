@@ -314,11 +314,13 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         # client.stop() 
         self.ui.button_RequireFile.setText('再次查詢')
+        self.ui.button_DownloadFile.setText('Download')
         ### GUI 顯示 檔案資料 ----------------------------------
         file_name = str(client.box_name)
+        file_type = str(client.file_type) if str(client.file_type) != '.dir' else '' # 是資料夾就清除附檔名
         file_size = str(sizeConverter(client.box_file_size / 1000))
 
-        self.ui.label_cFilename.setText(str(file_name + client.file_type))
+        self.ui.label_cFilename.setText(file_name + file_type)
         self.ui.label_cFilesize.setText(file_size)
         self.cFileLayoutVisible(True)
         ### ---------------------------------------------------
@@ -376,7 +378,11 @@ class MainWindow_controller(QtWidgets.QWidget):
         client.stop()
 
         ### 下載成功，將文件資訊添加至listview裡面 ------------------------------
-        self.downloadFileInfolist.append(str('  取件碼 : ' + str(self.ui.input_PickupNumber.text()) + '\t\t檔案名稱 : '+ str(client.box_name) + str(client.box_type) + '\t檔案大小 : ' + sizeConverter(client.box_file_size / 1000)))
+        file_name = str(client.box_name)
+        file_type = str(client.file_type) if str(client.file_type) != '.dir' else '' # 是資料夾就清除附檔名
+        file_size = str(sizeConverter(client.box_file_size / 1000))
+
+        self.downloadFileInfolist.append(str('  取件碼 : ' + boxKey + '\t\t檔案名稱 : '+ file_name + file_type + '\t檔案大小 : ' + file_size))
         self.ui.listWidget_downloadInfo.clear()
         self.ui.listWidget_downloadInfo.addItems(self.downloadFileInfolist)
         ### -------------------------------------------------------------------
@@ -445,6 +451,10 @@ class MainWindow_controller(QtWidgets.QWidget):
             folder_path = QFileDialog.getExistingDirectory(self,
                                                             'Open folder',
                                                             './') # start path
+
+            if not os.path.isdir(str(folder_path)): # 沒選擇資料夾跳例外
+                raise ValueError(GUI, '--folder_path is None.')
+
             print(str(folder_path))
             # file_name = os.path.basename(folder_path[0])
             # file_size = os.path.getsize(folder_path[0]) / 1000  # 1000 byte = 1 kb
