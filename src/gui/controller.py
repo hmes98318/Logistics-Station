@@ -21,6 +21,7 @@
 
 
 import os, sys
+import subprocess
 
 sys.path.append('./src') # 更改模塊導入路徑
 
@@ -146,10 +147,13 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
 
 # MainWindow 主要畫面
 class MainWindow_controller(QtWidgets.QWidget):
+
     DownloadProgressBarUpdate = pyqtSignal() # 初始化自訂義信號槽
     UploadProgressBarUpdate = pyqtSignal()
+
     recvKeyList = [] # 存放打包後產生的寄件碼
     downloadFileInfolist = [] # 存放下載的包裹資訊
+    explorerPath = [] # 存放儲存路徑
 
 
     def __init__(self):
@@ -188,10 +192,11 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.cFileLayoutVisible(False)
         self.cFileDownloadVisible(False)
         self.ui.Layout_cRequireFile.setAlignment(Qt.AlignTop) # 置上對齊
-
-        # --------------測試區域----------------------------------------
         self.ui.progressBar_RecevieFile.setValue(0) # 進度條 0 
         self.ui.progressBar_SendFile.setValue(0)
+
+        # --------------測試區域----------------------------------------
+        self.ui.listWidget_downloadInfo.clicked.connect(self.OpenExplorer)
         # ------------------------------------------------------------
 
         # ------------定義執行序------------
@@ -563,6 +568,15 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                     "border-radius: 8px;\n"
                                                     "}")
         self.ui.progressBar_SendFile.setValue(progress) # 增加進度條
+
+    def OpenExplorer(self):
+        self.explorerPath = ' \"' + str(self.ui.input_ShowSavepath.text()).replace('/','\\') + '\"' # 替換路徑 / -> \\
+        # subprocess.Popen('explorer "C:\\Users\\MSI GP65\\Downloads"')  # 依照路徑開啟檔案管
+        subprocess.Popen('explorer' + str(self.explorerPath) )  # 依照路徑開啟檔案管
+        # subprocess.Popen('explorer' + str(self.explorerPath) )  # 依照路徑開啟檔案管
+        # self.ui.listWidget_downloadInfo.currentitem()
+
+
 
     ### Setting -----------------------------------------------------------------------------------------------------------
 
