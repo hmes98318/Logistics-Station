@@ -430,8 +430,11 @@ border-radius: 15px;}</string>
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 85, 127);</string>
+     </property>
      <property name="text">
-      <string>[使用者登入]</string>
+      <string>※使用者登入※</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

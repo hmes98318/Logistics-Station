@@ -177,6 +177,7 @@ class Ui_LoginWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(85, 85, 127);")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         LoginWindow.setCentralWidget(self.centralwidget)
@@ -192,4 +193,4 @@ class Ui_LoginWindow(object):
         self.CreateID.setText(_translate("LoginWindow", "註冊帳號"))
         self.input_ID.setPlaceholderText(_translate("LoginWindow", "帳號"))
         self.input_PW.setPlaceholderText(_translate("LoginWindow", "密碼"))
-        self.label.setText(_translate("LoginWindow", "[使用者登入]"))
+        self.label.setText(_translate("LoginWindow", "※使用者登入※"))
