@@ -544,6 +544,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         self.ui.button_Startlistening.setText('發送包裹') # 傳送完成了按鈕重置
         self.ui.button_Startlistening.setEnabled(True) # 開始發送 button 啟用
         self.ui.button_SelectfFile.setEnabled(True) # 選擇檔案 button 啟用
+        self.ui.button_SelectfFolder.setEnabled(True) # 選擇資料夾 button 啟用
         self.thread_SendFile.quit() # 掛起線程
 
     def UpdataprogressBar_SendFile(self):
