@@ -1,7 +1,7 @@
 # Logistics-Station
 
 <a href="https://www.python.org/downloads/release/python-3109/"><img alt="Python 3.10" src="https://img.shields.io/badge/python-3.10-blue?style=for-the-badge&logo=PYTHON"></a>
-<a href="https://github.com/hmes98318/Logistics-Station/blob/main/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/hmes98318/Logistics-Station?style=for-the-badge&color=brightgreen"></a>  
+<a href="https://github.com/hmes98318/Logistics-Station/blob/main/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/hmes98318/Logistics-Station?style=for-the-badge"></a>    
 
 
 A simple file shares implement in Python TCP socket.  
