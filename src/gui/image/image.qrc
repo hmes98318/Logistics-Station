@@ -8,6 +8,7 @@
     <file>button_Client.jpg</file>
     <file>button_Server.jpg</file>
     <file>button_SelectFile.png</file>
+    <file>button_SelectFolder.png</file>
     <file>button_openSaveFile.png</file>
   </qresource>
 </RCC>

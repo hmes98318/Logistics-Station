@@ -375,8 +375,9 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.button_SelectfFolder.setFont(font)
-        self.button_SelectfFolder.setStyleSheet("border-radius: 10px;\n"
-"background-color: rgb(85, 170, 255);")
+        self.button_SelectfFolder.setStyleSheet("background-image: url(./src/gui/image/button_SelectFolder.png);\n"
+"border-radius: 10px;")
+        self.button_SelectfFolder.setText("")
         self.button_SelectfFolder.setObjectName("button_SelectfFolder")
         self.horizontalLayout_4.addWidget(self.button_SelectfFolder)
         self.Layout_SelectFile.addLayout(self.horizontalLayout_4)
@@ -610,7 +611,6 @@ class Ui_MainWindow(object):
         self.label_Filesize.setText(_translate("MainWindow", "0 mb"))
         self.hint_Sendschedule.setText(_translate("MainWindow", "進度  "))
         self.button_Startlistening.setText(_translate("MainWindow", "請先選擇檔案!"))
-        self.button_SelectfFolder.setText(_translate("MainWindow", "開啟資料夾"))
         self.GroupBox_SendboxKey.setTitle(_translate("MainWindow", "<已上傳-包裹資訊>"))
         self.button_SettingSave.setText(_translate("MainWindow", "儲存設定"))
         self.groupBox_client.setTitle(_translate("MainWindow", "代理伺服器設定"))

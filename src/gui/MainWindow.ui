@@ -927,11 +927,11 @@ border-radius: 10px;</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">border-radius: 10px;
-background-color: rgb(85, 170, 255);</string>
+            <string notr="true">background-image: url(./src/gui/image/button_SelectFolder.png);
+border-radius: 10px;</string>
            </property>
            <property name="text">
-            <string>開啟資料夾</string>
+            <string/>
            </property>
           </widget>
          </item>
