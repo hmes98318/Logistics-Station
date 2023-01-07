@@ -749,20 +749,29 @@ def checkConnection():
         CONNECT = client.reqConnection()
         if CONNECT == False:
             try:
+                print('[Check] Server not connected, try to reconnect.')
                 SUCCESS_START = client.start()
                 if SUCCESS_START == False:
+                    print('[Check] Failed to connect to the server.')
                     return False
+                print('[Check] Connected.')
                 return True
             except:
-                return True
+                print('[Check] Failed to connect to the server.')
+                return False
     except:
         try:
+            print('[Check] Server not connected, try to reconnect.')
             SUCCESS_START = client.start()
             if SUCCESS_START == False:
+                print('[Check] Failed to connect to the server.')
                 return False
+            print('[Check] Connected.')
             return True
         except:
-            return True
+            print('[Check] Failed to connect to the server.')
+            return False
+    print('[Check] Nothing to do.')
     return True
 
 
