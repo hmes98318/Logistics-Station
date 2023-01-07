@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -386,7 +386,7 @@ background-color: rgba(13, 95, 160, 200);</string>
             </font>
            </property>
            <property name="text">
-            <string>文件名:</string>
+            <string>文件名:    </string>
            </property>
           </widget>
          </item>
@@ -414,7 +414,7 @@ background-color: rgba(13, 95, 160, 200);</string>
             <string/>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
            <property name="wordWrap">
             <bool>false</bool>
@@ -470,7 +470,7 @@ background-color: rgba(13, 95, 160, 200);</string>
             <string/>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>

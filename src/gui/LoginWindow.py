@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'LoginWindow.ui'
+# Form implementation generated from reading ui file 'c:\Users\MSI GP65\Documents\GitHub\ftpy\src\gui\LoginWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -23,7 +23,7 @@ class Ui_LoginWindow(object):
         font.setFamily("微軟正黑體")
         font.setPointSize(12)
         self.frame.setFont(font)
-        self.frame.setStyleSheet("#frame{background-image:url(./src/gui/image/LoginBackground.jpg);\n"
+        self.frame.setStyleSheet("#frame{background-image:url(./src/gui/image/Ftpy_Background.png);\n"
 "border-radius: 20px;}")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -65,7 +65,7 @@ class Ui_LoginWindow(object):
         self.LoginClose.setObjectName("LoginClose")
         self.layout_LoginControll.addWidget(self.LoginClose)
         self.button_LogicIn = QtWidgets.QPushButton(self.frame)
-        self.button_LogicIn.setGeometry(QtCore.QRect(10, 380, 311, 41))
+        self.button_LogicIn.setGeometry(QtCore.QRect(660, 310, 311, 41))
         font = QtGui.QFont()
         font.setFamily("華康粗明體(P)")
         font.setPointSize(12)
@@ -90,7 +90,7 @@ class Ui_LoginWindow(object):
         self.CreateID.setFont(font)
         self.CreateID.setObjectName("CreateID")
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.frame)
-        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 250, 311, 51))
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(660, 170, 311, 51))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.layout_ID = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.layout_ID.setContentsMargins(0, 0, 0, 0)
@@ -130,7 +130,7 @@ class Ui_LoginWindow(object):
         self.input_ID.setObjectName("input_ID")
         self.layout_ID.addWidget(self.frame_ID)
         self.horizontalLayoutWidget_5 = QtWidgets.QWidget(self.frame)
-        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(10, 310, 311, 51))
+        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(660, 240, 311, 51))
         self.horizontalLayoutWidget_5.setObjectName("horizontalLayoutWidget_5")
         self.layout_PW = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_5)
         self.layout_PW.setContentsMargins(0, 0, 0, 0)

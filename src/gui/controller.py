@@ -491,6 +491,7 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                     "}") # 進度條顏色
         self.ui.button_Startlistening.setEnabled(False) # 開始發送 button 禁用
         self.ui.button_SelectfFile.setEnabled(False) # 聆聽時選擇檔案 button 禁用
+        self.ui.button_SelectfFolder.setEnabled(False) # 聆聽時選擇資料夾 button 禁用
 
         self.thread_SendFile.run = self.QThread_SendFile
         self.thread_SendFile.start()

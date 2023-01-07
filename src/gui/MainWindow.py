@@ -157,7 +157,7 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.label_cFilename.setFont(font)
         self.label_cFilename.setText("")
-        self.label_cFilename.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_cFilename.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_cFilename.setWordWrap(False)
         self.label_cFilename.setObjectName("label_cFilename")
         self.Layout_cFileInfo.addWidget(self.label_cFilename)
@@ -178,7 +178,7 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.label_cFilesize.setFont(font)
         self.label_cFilesize.setText("")
-        self.label_cFilesize.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_cFilesize.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_cFilesize.setObjectName("label_cFilesize")
         self.Layout_cFileInfo.addWidget(self.label_cFilesize)
         self.button_DownloadFile = QtWidgets.QPushButton(self.verticalLayoutWidget_5)
@@ -586,7 +586,7 @@ class Ui_MainWindow(object):
         self.layout_MainControll.addWidget(self.MainClose)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -600,7 +600,7 @@ class Ui_MainWindow(object):
         self.button_User.setText(_translate("MainWindow", "User"))
         self.input_PickupNumber.setPlaceholderText(_translate("MainWindow", "請輸入取件碼"))
         self.button_RequireFile.setText(_translate("MainWindow", "查詢包裹"))
-        self.hint_cFilename.setText(_translate("MainWindow", "文件名:"))
+        self.hint_cFilename.setText(_translate("MainWindow", "文件名:    "))
         self.hint_cFileize.setText(_translate("MainWindow", "檔案大小:"))
         self.button_DownloadFile.setText(_translate("MainWindow", "Download"))
         self.hint_schedule.setText(_translate("MainWindow", "進度  "))
