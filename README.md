@@ -68,6 +68,7 @@ src
 <img src="./public/Send.png" alt="Send" width="600"/>
 <img src="./public/Send2.png" alt="Send2" width="600"/>
 <img src="./public/Send3.png" alt="Send3" width="600"/>
+<img src="./public/Setting.png" alt="Setting" width="600"/>
 
 
 ## Copyright & License
