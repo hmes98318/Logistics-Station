@@ -1,4 +1,4 @@
-#  Logistics-Station Server Installation Document
+#  Logistics-Station Server Deployment Document
 
 
 ## Deploying with Python

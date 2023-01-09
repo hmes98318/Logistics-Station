@@ -5,7 +5,10 @@
 
 
 A simple file shares implement in Python TCP socket.  
+
 Using a centralized Server to send and receive files that multiple Client can transfer files to each other.  
+To share a file with others, the user just needs to upload the file to the server and share the **pickup code** with the others.  
+The others can then download the corresponding file from the server using the **pickup code**.  
 
 TCP/IP network programming final report.  
 
@@ -29,7 +32,7 @@ python ./main.py
 
 
 ## Structure
-The main files structure of the Client
+The main file structure of the Client
 ```
 src
 ├── data
@@ -40,12 +43,12 @@ src
 │   │   └── (UI images)
 │   ├── LoginWindow.py (Login UI)
 │   ├── MainWindow.py  (Main UI)
-│   └── controller.py  (execute)
+│   └── controller.py  (UI controller)
 │
 └── tcp
-    └── Client,py
+    └── Client.py
 ```
-The main files structure of the Server
+The main file structure of the Server
 ```
 src
 ├── database
@@ -55,10 +58,9 @@ src
 ```
 
 
-
 ## Examples
-`account` : user  
-`password` : password  
+ * `account` : user  
+ * `password` : password  
 </br>
 <img src="./public/login.png" alt="login" width="600"/>
 <img src="./public/Recv.png" alt="Recv" width="600"/>
