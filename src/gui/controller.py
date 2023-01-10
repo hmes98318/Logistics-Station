@@ -188,7 +188,8 @@ class MainWindow_controller(QtWidgets.QWidget):
         #self.ui.button_Server.setEnabled(False) # 未設定 IP 和 Port 時禁用
 
         self.ui.button_Startlistening.setEnabled(False) # 開始聆聽 button 禁用 (沒有檔案)
-        self.ui.button_SelectfFile.setEnabled(True) # 選擇檔案 button 啟用
+        self.ui.label_button_SelectfFile.setEnabled(True)  # 選擇檔案啟用
+        self.ui.label_button_SelectfFolder.setEnabled(True)# 選擇檔案啟用
 
         self.sFileLayoutVisible(False)
         self.ui.Layout_SelectFile.setAlignment(Qt.AlignTop) # 置上對齊
@@ -252,16 +253,19 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         # Client 頁面按鈕事件 -----------------------------------------
         self.ui.button_RequireFile.clicked.connect(self.ClientRequireFile)
+        self.ui.button_DownloadFile.clicked.connect(self.DownloadFile)
         self.ui.listWidget_downloadInfo.clicked.connect(self.OpenExplorer)
 
         # Server 頁面按鈕事件 -----------------------------------------
         self.ui.button_Startlistening.clicked.connect(self.StartListening)
-        self.ui.button_SelectfFile.clicked.connect(self.SelectSendFile)
-        self.ui.button_SelectfFolder.clicked.connect(self.SelectSendFolder)
-        self.ui.button_DownloadFile.clicked.connect(self.DownloadFile)
-
+        # self.ui.button_SelectfFile.clicked.connect(self.SelectSendFile)
+        # self.ui.button_SelectfFolder.clicked.connect(self.SelectSendFolder)
+        self.ui.label_button_SelectfFile.mousePressEvent = self.SelectSendFile
+        self.ui.label_button_SelectfFolder.mousePressEvent = self.SelectSendFolder
+        
         # Setting 頁面按鈕事件 -----------------------------------------
-        self.ui.button_OpenSaveFolder.clicked.connect(self.OpenSaveFolder)
+        # self.ui.button_OpenSaveFolder.clicked.connect(self.OpenSaveFolder)
+        self.ui.label_button_OpenSaveFolder.mousePressEvent = self.OpenSaveFolder
         self.ui.button_SettingSave.clicked.connect(self.SettingSave)
 
     ###--- 各事件對應函數 ---###
@@ -468,7 +472,7 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         # print(GUI, server.host + ' ' + str(server.port))
 
-    def SelectSendFile(self):
+    def SelectSendFile(self, e:QMouseEvent):
         try:
             # 開啟資料夾，回傳型態為 tuple
             folder_path = QFileDialog.getOpenFileName(self,
@@ -493,7 +497,7 @@ class MainWindow_controller(QtWidgets.QWidget):
         except:
             print(GUI, '沒有選檔案@w@, 或是檔案類型錯誤')
 
-    def SelectSendFolder(self):
+    def SelectSendFolder(self, e:QMouseEvent):
         try:
             # 開啟資料夾，回傳型態為 tuple
             folder_path = QFileDialog.getExistingDirectory(self,
@@ -538,8 +542,8 @@ class MainWindow_controller(QtWidgets.QWidget):
                                                     "border-radius: 8px;\n"
                                                     "}") # 進度條顏色
         self.ui.button_Startlistening.setEnabled(False) # 開始發送 button 禁用
-        self.ui.button_SelectfFile.setEnabled(False) # 聆聽時選擇檔案 button 禁用
-        self.ui.button_SelectfFolder.setEnabled(False) # 聆聽時選擇資料夾 button 禁用
+        self.ui.label_button_SelectfFile.setEnabled(False) # 聆聽時選擇檔案 button 禁用
+        self.ui.label_button_SelectfFolder.setEnabled(False) # 聆聽時選擇資料夾 button 禁用
 
         self.thread_SendFile.run = self.QThread_SendFile
         self.thread_SendFile.start()
@@ -591,8 +595,8 @@ class MainWindow_controller(QtWidgets.QWidget):
 
         self.ui.button_Startlistening.setText('發送包裹') # 傳送完成了按鈕重置
         self.ui.button_Startlistening.setEnabled(True) # 開始發送 button 啟用
-        self.ui.button_SelectfFile.setEnabled(True) # 選擇檔案 button 啟用
-        self.ui.button_SelectfFolder.setEnabled(True) # 選擇資料夾 button 啟用
+        self.ui.label_button_SelectfFile.setEnabled(True) # 選擇檔案 button 啟用
+        self.ui.label_button_SelectfFolder.setEnabled(True) # 選擇資料夾 button 啟用
         self.thread_SendFile.quit() # 掛起線程
 
     def UpdataprogressBar_SendFile(self):
@@ -670,7 +674,7 @@ class MainWindow_controller(QtWidgets.QWidget):
                     print(GUI, 'Setting input value error.')
                     return
 
-    def OpenSaveFolder(self):
+    def OpenSaveFolder(self, e:QMouseEvent):
         folder_path = QFileDialog.getExistingDirectory(self,
                                                        'Open folder',
                                                        './') # start path
