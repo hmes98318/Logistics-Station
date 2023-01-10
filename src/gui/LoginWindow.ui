@@ -30,8 +30,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#frame{background-image:url(./src/gui/image/Login_Background.png);
-border-radius: 20px;}</string>
+     <string notr="true"/>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -152,6 +151,7 @@ border-radius: 15px;</string>
      <property name="font">
       <font>
        <family>微軟正黑體</family>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="text">
@@ -391,7 +391,7 @@ border-radius: 15px;}</string>
       </item>
      </layout>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="hint_UserLogin">
      <property name="geometry">
       <rect>
        <x>660</x>
@@ -418,6 +418,43 @@ border-radius: 15px;}</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QLabel" name="label_LoginBackground">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1000</width>
+       <height>700</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>1000</width>
+       <height>700</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>1000</width>
+       <height>700</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_LoginBackground{background-image:url(./src/gui/image/Login_Background.png);
+border-radius: 20px;}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>label_LoginBackground</zorder>
+    <zorder>horizontalLayoutWidget</zorder>
+    <zorder>button_LogicIn</zorder>
+    <zorder>ForgetPW</zorder>
+    <zorder>CreateID</zorder>
+    <zorder>horizontalLayoutWidget_3</zorder>
+    <zorder>horizontalLayoutWidget_5</zorder>
+    <zorder>hint_UserLogin</zorder>
    </widget>
   </widget>
  </widget>
