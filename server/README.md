@@ -22,7 +22,7 @@ brew services start mongodb-community@6.0
 The version number at the end changes according to the installed version.  
 
 
-### Open Directory
+### Open The Directory
 ```
 cd server/
 ```

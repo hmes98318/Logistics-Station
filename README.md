@@ -20,11 +20,12 @@ TCP/IP network programming class final report.
 pip install -r requirements.txt
 ```
 
-### Entrypoint
+### Open The Directory
 ```
 cd src/
 ```
 
+### Entrypoint
 ```
 python ./main.py
 ```
