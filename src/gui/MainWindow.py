@@ -369,7 +369,7 @@ class Ui_MainWindow(object):
         self.label_button_SelectfFile = QtWidgets.QLabel(self.verticalLayoutWidget_4)
         self.label_button_SelectfFile.setMinimumSize(QtCore.QSize(350, 100))
         self.label_button_SelectfFile.setMaximumSize(QtCore.QSize(350, 100))
-        self.label_button_SelectfFile.setStyleSheet("background-image: url(./src/gui/image/button_SelectFile.png);\n"
+        self.label_button_SelectfFile.setStyleSheet("background-image: url(./gui/image/button_SelectFile.png);\n"
 "border-radius: 10px;")
         self.label_button_SelectfFile.setText("")
         self.label_button_SelectfFile.setObjectName("label_button_SelectfFile")
@@ -379,7 +379,7 @@ class Ui_MainWindow(object):
         self.label_button_SelectfFolder = QtWidgets.QLabel(self.verticalLayoutWidget_4)
         self.label_button_SelectfFolder.setMinimumSize(QtCore.QSize(350, 100))
         self.label_button_SelectfFolder.setMaximumSize(QtCore.QSize(350, 100))
-        self.label_button_SelectfFolder.setStyleSheet("background-image: url(./src/gui/image/button_SelectFolder.png);\n"
+        self.label_button_SelectfFolder.setStyleSheet("background-image: url(./gui/image/button_SelectFolder.png);\n"
 "border-radius: 10px;")
         self.label_button_SelectfFolder.setText("")
         self.label_button_SelectfFolder.setObjectName("label_button_SelectfFolder")
@@ -527,7 +527,7 @@ class Ui_MainWindow(object):
         self.label_button_OpenSaveFolder = QtWidgets.QLabel(self.verticalLayoutWidget_2)
         self.label_button_OpenSaveFolder.setMinimumSize(QtCore.QSize(40, 40))
         self.label_button_OpenSaveFolder.setMaximumSize(QtCore.QSize(40, 40))
-        self.label_button_OpenSaveFolder.setStyleSheet("background-image: url(./src/gui/image/button_openSaveFile.png);\n"
+        self.label_button_OpenSaveFolder.setStyleSheet("background-image: url(./gui/image/button_openSaveFile.png);\n"
 "border-radius: 10px;")
         self.label_button_OpenSaveFolder.setText("")
         self.label_button_OpenSaveFolder.setObjectName("label_button_OpenSaveFolder")
@@ -596,7 +596,7 @@ class Ui_MainWindow(object):
         self.label_UserPage_Background = QtWidgets.QLabel(self.FrameUserPage)
         self.label_UserPage_Background.setGeometry(QtCore.QRect(7, 4, 761, 641))
         self.label_UserPage_Background.setStyleSheet("#label_UserPage_Background{border-radius: 15px;\n"
-"background-image: url(./src/gui/image/UserPage_Background.png);}")
+"background-image: url(./gui/image/UserPage_Background.png);}")
         self.label_UserPage_Background.setText("")
         self.label_UserPage_Background.setObjectName("label_UserPage_Background")
         self.label_UserPage_Background.raise_()
@@ -621,14 +621,14 @@ class Ui_MainWindow(object):
         self.label_MainMin = QtWidgets.QLabel(self.horizontalLayoutWidget)
         self.label_MainMin.setMinimumSize(QtCore.QSize(25, 25))
         self.label_MainMin.setMaximumSize(QtCore.QSize(25, 25))
-        self.label_MainMin.setStyleSheet("border-image: url(./src/gui/image/WindowMin.jpg);")
+        self.label_MainMin.setStyleSheet("border-image: url(./gui/image/WindowMin.jpg);")
         self.label_MainMin.setText("")
         self.label_MainMin.setObjectName("label_MainMin")
         self.layout_MainControll.addWidget(self.label_MainMin)
         self.label_MainClose = QtWidgets.QLabel(self.horizontalLayoutWidget)
         self.label_MainClose.setMinimumSize(QtCore.QSize(25, 25))
         self.label_MainClose.setMaximumSize(QtCore.QSize(25, 25))
-        self.label_MainClose.setStyleSheet("border-image: url(./src/gui/image/WindowClose.jpg);")
+        self.label_MainClose.setStyleSheet("border-image: url(./gui/image/WindowClose.jpg);")
         self.label_MainClose.setText("")
         self.label_MainClose.setObjectName("label_MainClose")
         self.layout_MainControll.addWidget(self.label_MainClose)

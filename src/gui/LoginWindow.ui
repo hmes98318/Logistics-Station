@@ -82,7 +82,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(./src/gui/image/WindowMin.jpg);</string>
+         <string notr="true">border-image: url(./gui/image/WindowMin.jpg);</string>
         </property>
         <property name="text">
          <string/>
@@ -104,7 +104,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(./src/gui/image/WindowClose.jpg);</string>
+         <string notr="true">border-image: url(./gui/image/WindowClose.jpg);</string>
         </property>
         <property name="text">
          <string/>
@@ -224,7 +224,7 @@ border-radius: 15px;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-image: url(./src/gui/image/Account_Icon.jpg);</string>
+          <string notr="true">border-image: url(./gui/image/Account_Icon.jpg);</string>
          </property>
          <property name="text">
           <string/>
@@ -331,7 +331,7 @@ border-radius: 15px;}</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-image: url(./src/gui/image/Password_Icon.jpg);</string>
+          <string notr="true">border-image: url(./gui/image/Password_Icon.jpg);</string>
          </property>
          <property name="text">
           <string/>
@@ -440,7 +440,7 @@ border-radius: 15px;}</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_LoginBackground{background-image:url(./src/gui/image/Login_Background.png);
+      <string notr="true">#label_LoginBackground{background-image:url(./gui/image/Login_Background.png);
 border-radius: 20px;}</string>
      </property>
      <property name="text">

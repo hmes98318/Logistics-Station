@@ -23,7 +23,6 @@
 import os, sys
 import subprocess
 
-sys.path.append('./src') # 更改模塊導入路徑
 
 # PyQt5 引擎 ---------------------------------------
 from PyQt5 import QtWidgets, QtGui, QtCore, Qt
@@ -36,19 +35,19 @@ from data.UserData import *
 
 # Socket 模塊-------------------------------------
 from tcp.Client import *
-# from server.src.Server import *
 
 # UI 介面 ----------------------------------------
 from gui.LoginWindow import Ui_LoginWindow
 from gui.MainWindow import Ui_MainWindow
 
+
 client = Client()
-# server = Server()
 
 GUI = 'GUI:'
 DEFAULT_HOST = '127.0.0.1'
 DEFAULT_PORT = '7000'
 DEFAULT_SAVE_DIR = f'{os.path.expanduser("~/Downloads")}/save'.replace('\\','/') # .\foo\bar -> ./foo/bar
+
 
 
 

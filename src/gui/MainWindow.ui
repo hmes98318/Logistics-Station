@@ -898,7 +898,7 @@ border-radius: 10px;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-image: url(./src/gui/image/button_SelectFile.png);
+            <string notr="true">background-image: url(./gui/image/button_SelectFile.png);
 border-radius: 10px;</string>
            </property>
            <property name="text">
@@ -934,7 +934,7 @@ border-radius: 10px;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-image: url(./src/gui/image/button_SelectFolder.png);
+            <string notr="true">background-image: url(./gui/image/button_SelectFolder.png);
 border-radius: 10px;</string>
            </property>
            <property name="text">
@@ -1279,7 +1279,7 @@ border-radius: 10px;</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-image: url(./src/gui/image/button_openSaveFile.png);
+             <string notr="true">background-image: url(./gui/image/button_openSaveFile.png);
 border-radius: 10px;</string>
             </property>
             <property name="text">
@@ -1419,7 +1419,7 @@ border-radius: 10px;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">#label_UserPage_Background{border-radius: 15px;
-background-image: url(./src/gui/image/UserPage_Background.png);}</string>
+background-image: url(./gui/image/UserPage_Background.png);}</string>
        </property>
        <property name="text">
         <string/>
@@ -1486,7 +1486,7 @@ background-image: url(./src/gui/image/UserPage_Background.png);}</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-image: url(./src/gui/image/WindowMin.jpg);</string>
+        <string notr="true">border-image: url(./gui/image/WindowMin.jpg);</string>
        </property>
        <property name="text">
         <string/>
@@ -1508,7 +1508,7 @@ background-image: url(./src/gui/image/UserPage_Background.png);}</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-image: url(./src/gui/image/WindowClose.jpg);</string>
+        <string notr="true">border-image: url(./gui/image/WindowClose.jpg);</string>
        </property>
        <property name="text">
         <string/>
