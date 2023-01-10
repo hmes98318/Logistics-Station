@@ -7,10 +7,9 @@
 A simple file shares implement in Python TCP socket.  
 
 Using a centralized Server to send and receive files that multiple Client can transfer files to each other.  
-To share a file with others, the user just needs to upload the file to the server and share the **pickup code** with the others.  
-The others can then download the corresponding file from the server using the **pickup code**.  
+Others can download the corresponding file from the Server by using the **pickup code** when the user upload the file to the Server and share the **pickup code** with them.  
 
-TCP/IP network programming final report.  
+TCP/IP network programming class final report.  
 
 <img src="./public/Recv4.png" alt="Recv4" width="600"/>
 
@@ -22,6 +21,10 @@ pip install -r requirements.txt
 ```
 
 ### Entrypoint
+```
+cd src/
+```
+
 ```
 python ./main.py
 ```
@@ -35,6 +38,8 @@ python ./main.py
 The main file structure of the Client
 ```
 src
+├── main.py (Entrypoint)
+│
 ├── data
 │   └── userData
 │

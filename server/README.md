@@ -22,6 +22,12 @@ brew services start mongodb-community@6.0
 The version number at the end changes according to the installed version.  
 
 
+### Open Directory
+```
+cd server/
+```
+
+
 ### Install Python modules
 [`requirements.txt`](./requirements.txt)
 ```
@@ -29,9 +35,24 @@ pip install -r requirements.txt
 ```
 
 
+### Configure Environment
+[`.env`](./.env)
+```env
+SERVER_PORT = 7000  # Listening port
+DEPOT = ./depot     # The mount point where the file is temporarily stored
+
+MONGO_URL = mongodb://localhost:27017
+DATABASE_NAME = Logistics-Station
+DATABASE_COLLECTION = data
+
+KEY_LENGTH = 5      # Generated pickup code length
+MAX_LISTENING = 10
+```
+
+
 ### Start the Server
 ```
-python ./main.py
+python ./startServer.py
 ```
 
 
