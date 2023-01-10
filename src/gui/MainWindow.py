@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(100, 0))
         MainWindow.setStyleSheet("#MainWindow{background-color: rgba(255, 255, 255, 0);}")
         self.frame_Main = QtWidgets.QFrame(MainWindow)
-        self.frame_Main.setGeometry(QtCore.QRect(-1, -1, 1000, 700))
+        self.frame_Main.setGeometry(QtCore.QRect(-1, -1, 1001, 700))
         self.frame_Main.setStyleSheet("#frame_Main{background-color: rgba(36, 67, 124,250);\n"
 "border-radius: 20px;}\n"
 "\n"
@@ -268,7 +268,7 @@ class Ui_MainWindow(object):
         self.Server = QtWidgets.QWidget()
         self.Server.setObjectName("Server")
         self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.Server)
-        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(20, 20, 732, 311))
+        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(20, 20, 731, 311))
         self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
         self.Layout_SelectFile = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
         self.Layout_SelectFile.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -417,6 +417,22 @@ class Ui_MainWindow(object):
 "border-radius: 10px;")
         self.listWidget_Sendpackage.setFlow(QtWidgets.QListView.TopToBottom)
         self.listWidget_Sendpackage.setObjectName("listWidget_Sendpackage")
+        self.label_button_SelectfFile = QtWidgets.QLabel(self.GroupBox_SendboxKey)
+        self.label_button_SelectfFile.setGeometry(QtCore.QRect(10, 180, 350, 100))
+        self.label_button_SelectfFile.setMinimumSize(QtCore.QSize(350, 100))
+        self.label_button_SelectfFile.setMaximumSize(QtCore.QSize(350, 100))
+        self.label_button_SelectfFile.setStyleSheet("background-image: url(./src/gui/image/button_SelectFile.png);\n"
+"border-radius: 10px;")
+        self.label_button_SelectfFile.setText("")
+        self.label_button_SelectfFile.setObjectName("label_button_SelectfFile")
+        self.label_button_SelectfFolder = QtWidgets.QLabel(self.GroupBox_SendboxKey)
+        self.label_button_SelectfFolder.setGeometry(QtCore.QRect(370, 180, 350, 100))
+        self.label_button_SelectfFolder.setMinimumSize(QtCore.QSize(350, 100))
+        self.label_button_SelectfFolder.setMaximumSize(QtCore.QSize(350, 100))
+        self.label_button_SelectfFolder.setStyleSheet("background-image: url(./src/gui/image/button_SelectFolder.png);\n"
+"border-radius: 10px;")
+        self.label_button_SelectfFolder.setText("")
+        self.label_button_SelectfFolder.setObjectName("label_button_SelectfFolder")
         self.stackedWidget.addWidget(self.Server)
         self.Setting = QtWidgets.QWidget()
         self.Setting.setObjectName("Setting")
@@ -543,6 +559,14 @@ class Ui_MainWindow(object):
         self.button_OpenSaveFolder.setObjectName("button_OpenSaveFolder")
         self.Layout_client3.addWidget(self.button_OpenSaveFolder)
         self.verticalLayout_2.addLayout(self.Layout_client3)
+        self.label_button_OpenSaveFolder = QtWidgets.QLabel(self.Setting)
+        self.label_button_OpenSaveFolder.setGeometry(QtCore.QRect(620, 220, 40, 40))
+        self.label_button_OpenSaveFolder.setMinimumSize(QtCore.QSize(40, 40))
+        self.label_button_OpenSaveFolder.setMaximumSize(QtCore.QSize(40, 40))
+        self.label_button_OpenSaveFolder.setStyleSheet("background-image: url(./src/gui/image/button_openSaveFile.png);\n"
+"border-radius: 10px;")
+        self.label_button_OpenSaveFolder.setText("")
+        self.label_button_OpenSaveFolder.setObjectName("label_button_OpenSaveFolder")
         self.stackedWidget.addWidget(self.Setting)
         self.User = QtWidgets.QWidget()
         self.User.setObjectName("User")
@@ -644,7 +668,7 @@ class Ui_MainWindow(object):
         self.layout_MainControll.addWidget(self.label_MainClose)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
