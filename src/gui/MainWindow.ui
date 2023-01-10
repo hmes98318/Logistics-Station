@@ -267,7 +267,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>220</x>
       <y>40</y>
-      <width>770</width>
+      <width>771</width>
       <height>651</height>
      </rect>
     </property>
@@ -281,7 +281,7 @@ color: rgb(255, 255, 255);</string>
 border-radius: 15px;}</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Client">
      <widget class="QWidget" name="verticalLayoutWidget_5">
@@ -1308,7 +1308,7 @@ border-radius: 10px;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="User">
-     <widget class="QFrame" name="UserPage_Background">
+     <widget class="QFrame" name="FrameUserPage">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1318,8 +1318,7 @@ border-radius: 10px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#UserPage_Background{border-radius: 15px;
-background-image: url(./src/gui/image/UserPage_Background.png);}</string>
+       <string notr="true"/>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1423,6 +1422,25 @@ background-image: url(./src/gui/image/UserPage_Background.png);}</string>
         </item>
        </layout>
       </widget>
+      <widget class="QLabel" name="label_UserPage_Background">
+       <property name="geometry">
+        <rect>
+         <x>7</x>
+         <y>4</y>
+         <width>761</width>
+         <height>641</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#label_UserPage_Background{border-radius: 15px;
+background-image: url(./src/gui/image/UserPage_Background.png);}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <zorder>label_UserPage_Background</zorder>
+      <zorder>verticalLayoutWidget_3</zorder>
      </widget>
     </widget>
    </widget>
@@ -1468,23 +1486,18 @@ background-image: url(./src/gui/image/UserPage_Background.png);}</string>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="MainMin">
-       <property name="maximumSize">
+      <widget class="QLabel" name="label_MainMin">
+       <property name="minimumSize">
         <size>
          <width>25</width>
          <height>25</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="whatsThis">
-        <string/>
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
        </property>
        <property name="styleSheet">
         <string notr="true">border-image: url(./src/gui/image/WindowMin.jpg);</string>
@@ -1492,20 +1505,14 @@ background-image: url(./src/gui/image/UserPage_Background.png);}</string>
        <property name="text">
         <string/>
        </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="MainClose">
+      <widget class="QLabel" name="label_MainClose">
        <property name="minimumSize">
         <size>
-         <width>0</width>
-         <height>0</height>
+         <width>25</width>
+         <height>25</height>
         </size>
        </property>
        <property name="maximumSize">
@@ -1514,26 +1521,11 @@ background-image: url(./src/gui/image/UserPage_Background.png);}</string>
          <height>25</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string/>
-       </property>
        <property name="styleSheet">
-        <string notr="true">border-image: url(./src/gui/image/WindowClose.jpg);
-</string>
+        <string notr="true">border-image: url(./src/gui/image/WindowClose.jpg);</string>
        </property>
        <property name="text">
         <string/>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
        </property>
       </widget>
      </item>

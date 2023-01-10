@@ -77,9 +77,9 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
         # self.ui.pushButton.clicked.connect(self.buttonClicked)
 
         # LoginClose 關閉視窗
-        self.ui.LoginClose.clicked.connect(self.LoginClose)
+        self.ui.label_LoginMin.mousePressEvent = self.LoginMinimized
         # LoginMin 縮小視窗
-        self.ui.LoginMin.clicked.connect(self.LoginMinimized)
+        self.ui.label_LoginClose.mousePressEvent = self.LoginClose
 
         # LoginMove 滑鼠移動事件 (拖動視窗實現) -----------------------
         self.ui.LoginMove.mousePressEvent = self.loginPressEvent
@@ -89,11 +89,11 @@ class LoginWindow_controller(QtWidgets.QMainWindow):
         # Login 按鈕，檢查帳號資訊-----------------------------------
         self.ui.button_LogicIn.clicked.connect(self.loginIn)
 
-    def LoginClose(self):
+    def LoginClose(self, e:QMouseEvent):
         print(GUI, '關閉視窗!')
         self.close()
 
-    def LoginMinimized(self):
+    def LoginMinimized(self, e:QMouseEvent):
         print(GUI, '縮小視窗!')
         self.showMinimized()
 
@@ -234,10 +234,10 @@ class MainWindow_controller(QtWidgets.QWidget):
     def setup_control(self):
         # self.ui.pushButton.clicked.connect(self.buttonClicked)
 
-        # MainClose 關閉視窗
-        self.ui.MainClose.clicked.connect(self.MainClose)
         # MainMin 縮小視窗
-        self.ui.MainMin.clicked.connect(self.MainMinimized)
+        self.ui.label_MainMin.mousePressEvent = self.MainMinimized
+        # MainClose 關閉視窗
+        self.ui.label_MainClose.mousePressEvent = self.MainClose
 
         # MainMove 滑鼠移動事件 (拖動視窗實現) -----------------------
         self.ui.MainMove.mousePressEvent = self.MainPressEvent
@@ -266,13 +266,14 @@ class MainWindow_controller(QtWidgets.QWidget):
 
     ###--- 各事件對應函數 ---###
 
-    def MainClose(self):
-        print(GUI, '關閉視窗!')
-        self.close()
-
-    def MainMinimized(self):
+    def MainMinimized(self, e:QMouseEvent):
         print(GUI, '縮小視窗!')
         self.showMinimized()
+
+        
+    def MainClose(self, e:QMouseEvent):
+        print(GUI, '關閉視窗!')
+        self.close()
 
     ### Client -----------------------------------------------------------------------------------------------------------
 

@@ -69,20 +69,18 @@ border-radius: 20px;}</string>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="LoginMin">
-        <property name="maximumSize">
+       <widget class="QLabel" name="label_LoginMin">
+        <property name="minimumSize">
          <size>
           <width>30</width>
           <height>30</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-         </font>
-        </property>
-        <property name="whatsThis">
-         <string/>
+        <property name="maximumSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
         </property>
         <property name="styleSheet">
          <string notr="true">border-image: url(./src/gui/image/WindowMin.jpg);</string>
@@ -90,47 +88,27 @@ border-radius: 20px;}</string>
         <property name="text">
          <string/>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="LoginClose">
+       <widget class="QLabel" name="label_LoginClose">
         <property name="minimumSize">
          <size>
-          <width>1</width>
-          <height>0</height>
+          <width>30</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>30</width>
-          <height>30</height>
+          <width>25</width>
+          <height>25</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-         </font>
-        </property>
-        <property name="toolTip">
-         <string/>
         </property>
         <property name="styleSheet">
          <string notr="true">border-image: url(./src/gui/image/WindowClose.jpg);</string>
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
         </property>
        </widget>
       </item>
